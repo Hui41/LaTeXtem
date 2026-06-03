@@ -1,0 +1,73 @@
+\fdusetup{
+  style = {
+    footnote-style = xits,
+    bib-backend = bibtex,
+    bib-resource = {reference.bib},
+  },
+}
+
+
+
+\usepackage{enumerate}
+
+% 自定义引用样式，支持可选参数
+\NewDocumentCommand{\mycite}{o m}{%
+  \IfNoValueTF{#1}
+    {\scalebox{1.2}[1.2]{\raisebox{-0.70ex}{\cite{#2}}}}
+    { \scalebox{0.9}[0.9]{\raisebox{0.10ex}{\textnormal{[#1, {\scalebox{1.3}[1.3]{\raisebox{-0.80ex}{\citealp{#2}}}}]}}}}}
+
+
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, % 启用彩色链接
+    linkcolor=black,  % 普通内部链接的颜色
+    citecolor=black,  % 引用链接的颜色
+    filecolor=black,  % 打开本地文件的链接颜色
+    urlcolor=black    % 链接到URL的颜色
+}
+
+% 确保在导言区后期再重新设置一次
+\AtEndPreamble{%
+    \hypersetup{
+        colorlinks=true,     % 启用彩色链接
+        linkcolor=black,     % 普通内部链接的颜色
+        citecolor=blue,     % 引用链接的颜色
+        filecolor=green,     % 本地文件的链接颜色
+        urlcolor=red,      % URL 链接的颜色
+    }
+}
+
+
+
+
+\usepackage{amsmath}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\dimension}{dim}
+\DeclareMathOperator{\di}{div}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\ricci}{Ricci}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\hess}{Hess}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\aut}{Aut}
+\DeclareMathOperator{\id}{Id}
+
+\DeclareMathOperator{\im}{Im}
+
+\def\zz{{\mathbb Z}}
+\def\rr{{\mathbb R}}
+\def\cc{{\mathbb C}}
+\def\qq{{\mathbb Q}}
+\def\nn{{\mathbb N}}
+\def\ss{{\mathbb S}}
+\def\hh{{\mathbb H}}
+\def\oo{{\infty}}
+\def\db{{\bar{\partial}}}
+
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+
+\newcommand{\dif}{\mathop{}\!\mathrm{d}} % unicode-math 
+\usepackage{wrapfig}
+
