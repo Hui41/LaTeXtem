@@ -1,0 +1,39 @@
+\documentclass[openany, a4paper,12pt]{book}
+
+\input{preambleS-en.tex}
+
+%%% 标题有数学符号, 请使用: \texorpdfstring{$\phi$}{name}
+
+\def\crm{{(M,T_{1,0}(M))}}
+
+\usetikzlibrary{positioning, fit, calc}   
+\tikzset{block/.style={draw, thick, text width=2cm ,minimum height=1.3cm, align=center},   
+line/.style={-latex}     
+}  
+
+\begin{document}
+
+\title{CR Geometry}
+\author{L}
+\date{2025 Spring}
+\maketitle
+
+
+
+% 前置部分包含目录、中英文摘要以及符号表等
+% \frontmatter
+
+% 目录
+\tableofcontents
+
+\input{Symplectic Manifolds.tex}
+
+\input{CR Manifolds.tex}
+
+
+
+
+
+ \bibliographystyle{plain}
+ \bibliography{reference}
+\end{document}

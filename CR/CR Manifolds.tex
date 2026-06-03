@@ -1,0 +1,587 @@
+\chapter{CR Manifolds}
+\textcolor{blue}{Note that the wedge $\wedge $  is taken by Alt convention, not Det convention as usual.}
+
+\section{CR manifolds}
+Let $M$ be a $m$-dimensional smooth manifold.  Let $n\in \nn$ be an integer s.t. $1\leq n \leq [m/2]$.  
+\begin{definition}
+    A complex subbundle $T_{1,0}(M)$ of the complexified tangent bundle $T(M) \otimes \mathbb{C}$, of complex rank $n$, is called \textbf{an almost complex CR structure} if 
+    $$
+T_{1,0}(M) \cap T_{0,1}(M)=(0).
+$$ 
+Here $ T_{0,1}(M)=\overline{T_{1,0}(M)}$. The integers $n$ and $k=m-2n$ are respectively the CR dimension and CR codimension of the almost CR structure and $(n,k)$ is its type.    
+\end{definition}
+\begin{remark}[cf. \cite{dragomirDifferentialGeometryAnalysis2006}]
+An almost CR manifold of type $(n,0) $ is an almost complex manifold.  
+\end{remark}
+\begin{definition}
+    An almost CR structure is \textbf{formally integrable} if
+    $$
+\left[\Gamma^{\infty}\left(U, T_{1,0}(M)\right), \Gamma^{\infty}\left(U, T_{1,0}(M)\right)\right] \subseteq \Gamma^{\infty}\left(U, T_{1,0}(M)\right).
+$$
+If this is the case, $T_{1,0}(M)$ is referred to as a\textbf{ CR structure} and $(M,T_{1,0}(M))$ is a \textbf{CR manifold. } 
+\end{definition}
+\begin{definition}
+    A smooth map $f$ between two CR manifolds is called a \textbf{CR map} if   
+    $$
+\left(d_{x} f\right) T_{1,0}(M)_{x} \subseteq T_{1,0}(N)_{f(x)},
+$$
+where $df$ is the $\cc$-linear extension of the differential map.  
+\end{definition}
+\begin{remark}
+    CR manifolds are the objects of a category whose arrows are smooth maps preserving CR structures. The  complex manifolds and holomorphic maps form a subcategory of the category of CR manifolds and CR maps.
+\end{remark}
+
+Let $\crm$ be a CR manifold of type $(n,k)$.
+\begin{definition}
+    The\textbf{ maximal complex} or \textbf{Levi distribution} of $\crm$ is  
+    $$
+H(M)=\operatorname{Re}\left\{T_{1,0}(M) \oplus T_{0,1}(M)\right\}.
+$$
+It carries the \textbf{complex structure} $J_{b}: H(M) \rightarrow H(M)$ given by
+$$
+J_{b}(V+\bar{V})=i(V-\bar{V}).
+$$
+Formally integrable condition is equivalent to
+$$
+\begin{gathered}
+{\left[J_{b} X, Y\right]+\left[X, J_{b} Y\right] \in \Gamma^{\infty}(U, H(M)),} \\
+{\left[J_{b} X, J_{b} Y\right]-[X, Y]=J_{b}\left\{\left[J_{b} X, Y\right]+\left[X, J_{b} Y\right]\right\}}
+\end{gathered}
+$$
+CR map is equivalent to say
+$$
+\left(d_{x} f\right) H(M)_{x} \subseteq H(N)_{f(x)}
+$$
+and
+$$
+\left(d_{x} f\right) \circ J_{b, x}=J_{b, f(x)}^{N} \circ\left(d_{x} f\right).
+$$
+\end{definition}
+  
+\begin{definition}
+   $ f : M \to N$ is a\textbf{ CR isomorphism} (or a CR equivalence) if $f$ is a smooth  diffeomorphism and a CR map.
+\end{definition}
+
+CR manifolds arise mainly as real submanifolds of complex manifolds. Let $V$ be a complex manifold, of complex dimension $N$ , and let $M \subset V$ be a real $m$-dimensional submanifold. Let us set
+$$ T_{1,0}(M):=T^{1,0}(V) \cap T(M) \otimes \cc. $$
+\begin{proposition}
+    If $M$ is a real hypersurface $(m = 2N - 1)$, then$ T_{1,0}(M)$ is a CR structure of type $(N - 1, 1)$. 
+\end{proposition}
+In general the complex dimension of $T_{1,0}(M)$ defined above may not be constant. Nevertheless, if $ \dim _{\cc}T_{1,0}(M)\equiv n $, then $\crm$  is a CR manifold of type $(n,k)$.
+\begin{definition}
+    If the CR codimension of $\crm$ and the codimension of $M$ as a real submanifold of $V$ coincide, i.e., $k=2N-m$,  then $\crm$  is termed \textbf{ generic}.
+\end{definition}
+   
+
+\subsection{Hypersurface type}
+ Let 
+$$ E_x=\{\omega \in T^{*}_x(M):H(M)_x \subset \ker (\omega )\} $$ 
+Assume $M$ is orientable, then the bundle $E$ has a globally defined nowhere vanishing sections $\theta \in \Gamma (E)$.  
+Given any \textbf{pseudo-Hermitian structure} $\theta$ on $M$ the \textbf{Levi form} $L_{\theta}$ is defined by
+$$
+\boxed{L_{\theta}(Z, \bar{W}):=-i(d \theta)(Z, \bar{W})=G_{\theta }(Z, \overline{W}).}
+$$
+
+\begin{remark}
+The definition of Levi form of type $(n,k)$ could be possible, cf. \cite{dragomirDifferentialGeometryAnalysis2006}. 
+\end{remark}
+
+Define a bilinear form (also called \textbf{Levi form})
+$$
+\boxed{G_{\theta}(X, Y)=(d \theta)\left(X, J_{b} Y\right),}
+$$
+then
+$$
+\begin{aligned}
+G_{\theta}\left(J_{b} X, J_{b} Y\right)-G_{\theta}(X, Y) & =-(d \theta)\left(J_{b} X, Y\right)-(d \theta)\left(X, J_{b} Y\right) \\
+& =\frac{1}{2}\left\{\theta\left(\left[J_{b} X, Y\right]\right)+\theta\left(\left[X, J_{b} Y\right]\right)\right\} \\
+& =\frac{1}{2} \theta\left(J_{b}\left\{[X, Y]-\left[J_{b} X, J_{b} Y\right]\right\}\right)=0.
+\end{aligned}
+$$
+Define the $2$-form $\Omega$ by 
+$$\boxed{\Omega(X,Y):=g_{\theta}(X,JY)=-d \theta (X,Y).} $$
+
+\begin{definition}
+    We say that $\left(M, T_{1,0}(M)\right)$ is \textbf{nondegenerate} if the Levi form $L_{\theta}$ is, the pair $(M, \theta)$ is referred to as a \textbf{pseudo-Hermitian manifold},
+    and \textbf{strictly pseudoconvex} if $L_{\theta}$ is positive.
+\end{definition}
+
+\begin{remark}
+Any two pseudo-Hermitian structure $\theta ,\hat{\theta }$ are related by 
+\begin{equation}\label{eq:crtran}
+    \hat{\theta }=\lambda \theta 
+\end{equation}   
+for some non-zero function $\lambda .$ Then Levi form changes according to 
+$$ L_{\hat{\theta }}=\lambda L_{\theta }. $$ 
+Hence non-degeneracy is a \textbf{CR-invariant} property, i.e., it is invariant under a transformation $\eqref{eq:crtran}.$ 
+\end{remark}
+
+\begin{definition}
+    We say that a CR map $f: M \rightarrow N$ is a \textbf{pseudo-Hermitian map} if for some $c\in \mathbb{R}$,
+    $$f^{*}\theta=c\theta. $$
+    If $c=1$, then $f$ is referred to as an \textbf{isopseudo-Hermitian map}.
+\end{definition}
+
+\begin{definition}[Webster metric]
+    $$
+g_{\theta}(X, Y)=G_{\theta}(X, Y), \quad g_{\theta}(X, T)=0, \quad g_{\theta}(T, T)=1
+$$
+$$
+\boxed{g_{\theta}=\pi_{H} G_{\theta}+\theta \otimes \theta.}
+$$
+\end{definition}
+\begin{proposition}[Reeb vector field]
+  There is a unique globally defined nowhere zero tangent vector field $T$ on $M$ such that
+  $$ \theta (T)=1, \quad T \rfloor \, d \theta =0.
+  $$
+\end{proposition}
+
+
+
+\subsubsection{CR geometry and contact Riemannian geometry}
+Let $M$ be a $(2n+1)$-dimensional smooth manifold. Let $(\phi,\xi,\eta)$
+be a synthetic object, consisting of a $(1, 1)$-tensor ﬁeld $\phi: T (M) \to T (M)$, a tangent
+vector ﬁeld $\xi \in \mathcal{X}(M)$, and a differential $1$-form $\eta$ on $M$. Then $(\phi,\xi,\eta)$ is an \textbf{almost contact structure} if
+$$
+\phi^{2}=-I+\eta \otimes \xi, \quad \phi \xi=0, \quad \eta(\xi)=1, \quad \eta \circ \phi=0 .
+$$
+An almost contact structure $(\phi,\xi,\eta)$ is said to be \textbf{normal} if (recall $ \eqref{eq:Jtorsion} $)
+$$
+[\phi, \phi]+2(d \eta) \otimes \xi=0.
+$$
+A Riemannian metric $g$ on $M$ is said to be \textbf{compatible} with the almost contact structure $(\phi,\xi,\eta)$ if
+$$
+g(\phi X, \phi Y)=g(X, Y)-\eta(X) \eta(Y).
+$$
+A synthetic object $(\phi,\xi,\eta,g)$ consisting of an almost contact
+structure $(\phi,\xi,\eta)$ and a compatible Riemannian metric $g$ is said to be an \textbf{almost contact metric structure}. 
+
+Given an almost contact metric structure $(\phi,\xi,\eta,g)$ one deﬁnes
+a $2$-form $\Omega$ by setting $$\Omega(X, Y ) = g(X, \phi Y ).$$  
+
+$(\phi,\xi,\eta,g)$ is said to satisfy the \textbf{contact condition }if $\Omega = d\eta$, and if this is the case, $(\phi,\xi,\eta,g)$ is called a \textbf{contact metric structure }on $M$. 
+
+A contact metric structure $(\phi,\xi,\eta,g)$ that is also normal is called a \textbf{Sasakian structure} (and $g$ is a \textbf{Sasakian metric}).
+
+\begin{example}
+    Strictly pseudoconvex CR manifolds are contact Riemannian manifolds, in a natural way.
+    In fact,
+    $$
+\begin{aligned}
+J_{b}^{2} & =-I+\theta \otimes T, \\
+J_{b} T & =0, \quad \theta \circ J_{b}=0, \quad g_{\theta}(X, T)=\theta(X), \\
+g_{\theta}\left(J_{b} X, J_{b} Y\right) & =g_{\theta}(X, Y)-\theta(X) \theta(Y),
+\end{aligned}
+$$
+and
+$$\Omega=-d\theta.$$
+\end{example}
+
+\begin{theorem}[\cite{dragomirDifferentialGeometryAnalysis2006}]
+    Let $(M, T_{1,0} (M), \theta)$ be a pseudo-Hermitian manifold. Then the Webster metric $g_{\theta}$ is Sasakian if and only if the Tanaka-Webster connection $\nabla$ has vanishing \textbf{pseudo-Hermitian torsion}, that is, $\tau=0.$ 
+\end{theorem}
+\begin{remark}
+    The pseudo-Hermitian torsion of $\nabla $,  $\tau$ is defined by 
+    $$\boxed{\tau(X)=T_{\nabla}(T,X).}$$ 
+    $T_{\nabla}$ is torsion tensor of the Tanaka–Webster connection.
+\end{remark}
+
+\begin{theorem}[Tanaka-Webster connection on pseudo-Hermitian manifold]
+    There exists a connection $\nabla$ with the following properties:\\
+    1. $H(M)$ is parallel w.r.t. $\nabla$;\\
+    2. $\nabla g_{\theta}=0,\nabla J=0, \nabla \theta =0,\nabla T=0.$\\
+    3. $T_{\nabla}(X,Y)=-2\Omega(X,Y)T, T_{\nabla}(T,JX)=-JT_{\nabla}(T,X)$.
+\end{theorem}
+
+\begin{remark}
+    We say $T_{\nabla}$ is \textbf{pure} if
+    \begin{align}
+    T_{\nabla}(Z, W) & =0 \\
+    T_{\nabla}(Z, \bar{W}) & =2 i L_{\theta}(Z, \bar{W}) T \label{eq:pure2}\\
+    \tau \circ J+J \circ \tau & =0
+    \end{align}
+\end{remark}
+
+\begin{theorem}[Tanaka-Webster connection]
+    Let $(M, T_{1,0}(M),\theta) $ be a nondegenerate CR manifold. Then there is a unique linear connection $ \nabla  $ on $M$ satisfying the following axioms:
+    \begin{enumerate}[(i)]
+        \item $H(M)$ is parallel w.r.t. $\nabla$.
+        \item $ \nabla J =0,\quad \nabla g_{\theta }=0. $
+        \item $ T_{\nabla } $ is pure.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Let $ \pi _{\pm}: T_{\cc}M \to T_{1,0}(M)~ (T_{0,1}(M)) $ be the natural projections. Then $ \pi _{-}Z=\overline{\pi _{+} \bar{Z} }$. Note also that 
+    $$ T_{\cc}M=T_{1,0}(M) \oplus T_{1,0}(M) \oplus \cc T.$$
+
+    \textbf{Uniqueness}: From $ \eqref{eq:pure2} $, 
+    $$ [\bar{Y}, Z]=\nabla_{\bar{Y}} Z-\nabla_Z \bar{Y}+2 i L_\theta(Z, \bar{Y}) T, \quad \forall Y,Z \in T_{1,0}(M) .$$
+
+\end{proof}
+
+\begin{proposition}\label{pr:connection}
+    The following formulas hold:
+   $$ \boxed{T_{\nabla }=2(\theta  \wedge \tau -\Omega \otimes  T) }$$ 
+   $$ \boxed{\nabla ^{\theta }=\nabla +(\Omega -A)T+\tau  \otimes \theta +2 \theta \odot  J }$$
+   $$ \trace_{g_{\theta }}(\nabla ^{\theta }-\nabla )=\trace_{G_{\theta }}(\nabla ^{\theta }-\nabla )=0. $$
+\end{proposition}
+
+
+\begin{theorem}
+  The curvatures of  TW connection and LC connection  are related by 
+  $$ \begin{aligned}
+    R^\theta(X, Y) Z=R(X, Y) & Z+(L X \wedge L Y) Z-2 \Omega(X, Y) J Z \\
+    & -g_\theta(S(X, Y), Z) T+\theta(Z) S(X, Y) \\
+    & -2 g_\theta((\theta \wedge \mathcal{O})(X, Y), Z) T+2 \theta(Z)(\theta \wedge \mathcal{O})(X, Y),
+    \end{aligned} $$
+    for any $X,Y,Z \in TM$. 
+    where 
+    $$ S(X,Y)=(\nabla _{X}\tau )Y-(\nabla _{Y}\tau )X ,$$
+    $$ \mathcal{O}=\tau ^2+2J \tau -I ,\quad L=\tau +J.$$
+\end{theorem}
+\begin{remark}
+   Note that 
+   $$ J^2Y=-Y+\theta (Y)T, \quad \forall Y \in TM. $$ 
+\end{remark}
+
+\begin{theorem}[Structure equations for TW connection]
+    \begin{equation}
+    \begin{aligned}
+d\theta & =2\sqrt{-1}h_{\alpha\bar{\beta}}\theta^{\alpha}\wedge\theta^{\bar\beta},  \\
+d\theta^{\alpha}& =\theta^\beta\wedge\omega_\beta^\alpha+\theta\wedge\tau^\alpha, & dh_{\alpha\bar{\beta}}=\omega_{\alpha}^{\gamma}h_{\gamma\bar{\beta}}+h_{\alpha\bar{\gamma}}\omega_{\bar{\beta}}^{\bar{\gamma}},  \\
+d\omega_\beta^{\alpha}& =-\omega_\gamma^\alpha\wedge\omega_\beta^\gamma+\Pi_\beta^\alpha, 
+\end{aligned}
+\end{equation}
+where
+\begin{equation}
+\begin{aligned}
+\Pi_\beta^\alpha&=R_{\beta\gamma\bar\delta}^\alpha\theta^\gamma\wedge\theta^{\bar\delta}+W_{\beta\gamma}^\alpha\theta^\gamma\wedge\theta-W_{\beta\bar\gamma}^\alpha\theta^{\bar\gamma}\wedge\theta\\&
++2\sqrt{-1}\theta_\beta\wedge\tau^\alpha-2\sqrt{-1}\tau_\beta\wedge\theta^\alpha,
+\end{aligned}
+\end{equation}
+and
+\begin{equation}
+    W_{\alpha \bar{\gamma}}^{\beta}=h^{\bar{\delta} \beta} A_{\bar{\gamma} \bar{\delta}, \alpha}, \quad W_{\alpha \gamma}^{\beta}=h^{\bar{\delta} \beta} A_{\alpha \gamma, \bar{\delta}}, \quad \tau_{\alpha}=h_{\alpha \bar{\beta}} \tau^{\bar{\beta}}, \quad \theta_{\alpha}=h_{\alpha \bar{\beta}} \theta^{\bar{\beta}}.
+\end{equation}
+\end{theorem}
+\begin{remark}
+    \begin{equation}
+d\theta^{\bar\alpha}=\theta^{\bar\beta}\wedge\omega_{\bar\beta}^{\bar\alpha}+\theta\wedge\tau^{\bar\alpha}
+    \end{equation}
+\end{remark}
+
+\section{Divergence formulas}
+\begin{definition}
+    Define the divergence of a vector $X \in TM$  by 
+    $$ \di (X) \Psi  = \mathcal{L}_{X} \Psi ,$$
+    where $\Psi $ is a volume form. 
+\end{definition}
+\begin{remark}
+   We can take 
+   $$ \Psi = \theta \wedge (d \theta )^n .$$ 
+\end{remark}
+\begin{remark}
+    By 3rd relation of Proposition \ref{pr:connection}, 
+   $$ \di (X)= \trace_{g_{\theta }}\{Y \in TM \to \nabla _{Y}X\} .$$ 
+   Note that 
+   $$ \begin{aligned}
+   g_{\theta }(\nabla ^{\theta }_{e_{A}}X,e_{A})= g_{\theta }(\nabla ^{\theta }_{T_{\alpha }}X,T_{\bar \alpha })+g_{\theta }(\nabla ^{\theta }_{T_{\bar\alpha }}X,T_{ \alpha })+g_{\theta }(\nabla ^{\theta }_{T}X,T),
+   \end{aligned}  $$
+   assuming $\{T_{\alpha }\} $ is orthonormal and $T_{\alpha }=\frac{1}{\sqrt{2}}(e_{\alpha }-iJ e_{\alpha }) $.  
+\end{remark}
+\begin{exercise}
+    For any complex vector $Z \in T_{\cc}(M)$, 
+    $$ \overline{\di (Z)}=\di (\bar{Z}) .$$
+\end{exercise}
+\begin{definition}
+    Define  the divergence of a 1-form $\sigma $ by 
+    $$ \di (\sigma )=\di (X_{\sigma }), $$ 
+    where $X_{\sigma }$ is the dual vector of $\sigma $ w.r.t. $g_{\theta }$, i.e., $g_{\theta }(X_{\sigma },Y)=\sigma (Y), \forall  Y \in TM $.    
+\end{definition}
+\begin{exercise}
+$$ \di (Z)=T_{\alpha }(Z^{\alpha })+Z^{\beta } \omega _{\beta }^{\alpha }(T_{\alpha }), \quad \forall  Z=Z^{\alpha }T_{\alpha }\in T_{1,0}(M).$$
+$$ \di (\sigma )=\sigma _{\alpha ,\bar{\beta }}h^{\alpha \bar{\beta }}. $$
+\end{exercise}
+
+\begin{definition}
+    Sublaplacian for functions is defined by 
+    $$ \Delta _b(u):=-\di(\nabla^{\mathcal{H}} u)=-(u_{\alpha \bar{\beta }}h^{\alpha \bar{\beta }}+u_{\bar{\alpha }\beta }h^{\bar{\alpha }\beta }) ,$$
+    where $\nabla ^{\mathcal{H}}u$ is the horizontal component of the gradient $\nabla u$.  
+\end{definition}
+\begin{exercise}
+    The usual Laplacian is given by 
+    $$ \Delta  u= -(u_{\alpha \bar{\beta }}h^{\alpha \bar{\beta }}+u_{\bar{\alpha }\beta }h^{\bar{\alpha }\beta }+u_{00}). $$
+\end{exercise}
+
+
+
+
+
+
+
+
+
+
+\chapter{Geometry of CR-Submanifolds}
+
+\section{CR-submanifolds and CR-structures}
+Let $N$ be a $n$-dimensional \textit{almost Hermitian manifold} with almost complex structure $J$ and with Hermitian metric $g$. Let $M$ be a \textit{real} $m$-dimensional Riemannian manifold isometrically immersed in $N$.
+
+\begin{definition}
+    The differential geometry of $M$ depends on the behaviour of the tangent bundle of $M$ relative to the action of the almost complex structure $J$. Thus $M$ is called a \textbf{\textit{complex} (holomorphic)} submanifold if $T_xM$ is invariant by $J$, i.e., we have
+$$
+J(T_xM) = T_xM, \quad \text{for each } x \in M.
+$$
+Also, we say that $M$ is a \textbf{\textit{totally real} (anti-invariant)} submanifold of $N$ if we have
+$$
+J(T_xM) \subseteq T_xM^{\perp}, \quad \text{for each } x \in M.
+$$
+These two classes of submanifolds have been extensively investigated in the last decade from different viewpoints.
+\end{definition}
+
+\begin{definition}
+    In 1978 ``we" (refer to the author of \cite{bejancuGeometryCRSubmanifolds1986}) initiated a study of the differential geometry of a new class of submanifolds situated between the above two classes, called CR-submanifolds. More precisely, $M$ is said to be a \textbf{CR-submanifold} of $N$ if there exists a differentiable distribution
+\[
+D: x \mapsto D_x \subseteq T_xM,
+\]
+on $M$ satisfying the following conditions:
+\begin{enumerate}
+    \item[(i)] $D$ is holomorphic, i.e., $J(D_x) = D_x$ for each $x \in M$,
+    \item[(ii)] the complementary orthogonal distribution
+    \[
+    D^{\perp}: x \mapsto D^{\perp}_x \subseteq T_xM^{\perp},
+    \]
+    is anti-invariant, i.e., $J(D^{\perp}_x) \subseteq (T_xM)^{\perp}$ for each $x \in M$.
+\end{enumerate}
+We denote by $p$ the complex dimension of the distribution.
+D and by $q$ the real dimension of the distribution $D^\perp$. Then for $q = 0$ (resp. $p = 0$) a CR-submanifold becomes a \textbf{complex submanifold (resp. totally real submanifold)}. If $q = \dim T_xM^\perp$ the CR-submanifold is called an \textbf{anti-holomorphic submanifold}. A \textbf{proper CR-submanifold} is a CR-submanifold which is neither a complex submanifold nor a totally real submanifold.
+\end{definition}
+
+\begin{example}
+    Each real hypersurface $M$ of $N$ (with $n \geq 2$) is a proper CR-submanifold. In fact we define
+\[
+D_x^\perp : x \mapsto D_x^\perp = J(T_xM^\perp)
+\]
+and take $D$ as the complementary orthogonal distribution to $D^\perp$ in $TM$. Thus $M$ is endowed with a pair of distributions $(D, D^\perp)$ satisfying the conditions of the definition of a CR-submanifold. Moreover, we have $\dim _{\mathbb{R}} D_x^\perp = 1$ and $\dim_{\mathbb{C}} D_x = n - 1$.
+
+Hence, $M$ is a proper CR-submanifold.
+\end{example}
+
+
+\begin{remark}
+    It is easily seen that on a CR-submanifold the 
+distribution \( D \) (resp. \( D^{\perp} \)) is the maximal distribution 
+invariant by \( J \) (resp. anti-invariant by \( J \)), i.e., if \( D' \) 
+(resp. \( D'' \)) is an invariant (resp. anti-invariant) distribution on \( M \), 
+then we have \( D'_{x} \subseteq D_{x} \) (resp. \( D''_{x} \subseteq D_{x} \)), for each \( x \in M \).
+\end{remark}
+
+\begin{definition}
+    Now let \( M \) be an arbitrary Riemannian manifold isometrically immersed in an almost Hermitian manifold \( N \). 
+For each vector field \( X \) tangent to \( M \) we put
+\begin{equation}
+    JX = \phi X + \omega X,
+\end{equation}
+where \( \phi X \) and \( \omega X \) are respectively the tangent part and the normal part of \( JX \). Also, for each vector field \( V \) normal to \( M \) we put
+\begin{equation}
+    JV = BV + CV,
+\end{equation}
+where \( BV \) and \( CV \) are respectively the tangent part and the normal part of \( JV \).
+\end{definition}
+
+
+\begin{theorem}
+     The submanifold \( M \) of \( N \) is a CR-submanifold if and only if we have
+\[
+\text{rank}(\phi) = \text{constant}, \omega\phi = 0.
+\]
+or, if and only if
+\[
+\text{rank}(B) = \text{constant}, \phi B = 0.
+\]
+\end{theorem}
+\begin{remark}
+Note that 
+\begin{equation}
+    \begin{aligned}
+        &\phi X=JPX\\
+        &\omega X=JQX
+    \end{aligned}
+\end{equation}
+    for any $X\in TM$, $P, Q$ is the projection to $D, D^{\perp}$ respectively.
+
+    Also, 
+\begin{equation}
+    \begin{aligned}
+        &D=Im (\phi)=ker (\omega)\\
+        &D^{\perp}=Im (B)=ker (\phi).
+    \end{aligned}
+\end{equation}
+\end{remark}
+
+\begin{remark}
+     Now, suppose \( M \) is a CR-submanifold of the almost Hermitian manifold \( N \). 
+    \begin{equation}
+        \begin{aligned}
+            \phi^2 = -P\\
+            \phi^3 + \phi = 0\\
+            C^3 + C = 0.
+        \end{aligned}
+    \end{equation}
+\end{remark}
+
+
+\begin{proposition}
+    On each CR-submanifold \( M \) the vector bundle 
+morphisms \( \phi \) and \( C \) define \( f \)-structures on \( TM \) and \( T^{\perp}M \) 
+respectively.
+\end{proposition}
+
+\begin{theorem}[Blair-Chen]
+    A CR-submanifold of a \textbf{Hermitian} manifold is a CR-manifold.
+\end{theorem}
+
+\section{f-structure}
+
+Let \( M_n \) be an \( n \)-dimensional differentiable manifold of class \( C^{\infty} \) and 
+let there be given a tensor field \( f \neq 0 \) of type \( (1,1) \) and of class \( C^{\infty} \) such that
+\begin{equation}
+f^3 + f = 0.
+\label{eq:f_cubed_plus_f}
+\end{equation}
+
+\begin{theorem}[\cite{YANO1982251}]
+    For a tensor field \( f \neq 0 \) satisfying \eqref{eq:f_cubed_plus_f}, the operators
+\begin{equation}
+l = -f^2, \quad m = f^2 + 1,
+\label{eq:operators_l_m}
+\end{equation}
+
+\( 1 \) denoting the identity operator, applied to the tangent space at a point of the manifold are complementary projection operators.
+
+Moreover,
+\begin{equation}
+fl = lf = f,
+\label{eq:fl_lf_f}
+\end{equation}
+\begin{equation}
+fm = mf = 0, lm=ml=0,
+\label{eq:fm_mf}
+\end{equation}
+\begin{equation}
+f^2 l = -l,
+\label{eq:f2l}
+\end{equation}
+\begin{equation}
+f^3 m = 0,
+\label{eq:f3m}
+\end{equation}
+that is, \( f \) acts on \( L \) as an almost complex structure operator and on \( M \) as null operator.
+\end{theorem}
+
+\begin{remark}
+    Thus if there is given a tensor field \( f \neq 0 \) satisfying $\eqref{eq:f_cubed_plus_f}$, then there exist 
+complementary distributions \( L \) and \( M \) corresponding to the projection operators 
+\( l \) and \( m \) respectively. 
+
+Moreover, one can show that if the rank of \( f \) is constant and is equal to \( r \), 
+then the dimensions of \( L \) and \( M \) are \( r \) and \( n-r \) respectively. We call such a structure 
+an \( f \)-structure of rank \( r \).
+\end{remark}
+
+Let me mention that
+\begin{theorem}[\cite{YANO1982251}]
+     A necessary and sufficient condition for an \( n \)-dimensional 
+manifold to admit a tensor field \( f \neq 0 \) of type \( (1,1) \) and of rank \( r \) such 
+that \( f^3 + f = 0 \) is that \( r \) is even: \( r = 2m \) and the group of tangent bundle 
+of the manifold be reduced to the group \( U(m) \times O(n-2m) \).
+\end{theorem}
+
+
+\section{Integrability of Distributions on a CR-Submanifold}
+First of all, we have 
+\begin{equation}
+    [\phi, \phi](X, Y) = [\phi X, \phi Y] + \phi^2[X, Y] - \phi([\phi X, Y]) - \phi([X, \phi Y]).
+\end{equation}
+and
+\begin{equation}
+    [J, J](X, Y) = [\phi, \phi](X, Y) - \Omega([\phi X, Y] + [X, \phi Y]).
+\end{equation}
+
+\begin{theorem}[Bejancu]
+Let \( M \) be a CR-submanifold of an 
+almost Hermitian manifold \( N \). Then the distribution \( D \) is 
+integrable if and only if
+\begin{equation}
+[J, J](X, Y)^{\perp} = 0
+\end{equation}
+and
+\begin{equation}
+Q(\phi, \phi)(X, Y) = 0, \text{ for any } X, Y \in \Gamma(D).
+\end{equation}
+\end{theorem}
+
+\begin{corollary}
+    Let $M$ be a CR-submanifold of a \textbf{Hermitian} manifold $N$. The distribution $D$ is integrable if and only if the Nijenhuis tensor of $\phi$ vanishes identically on $D$.
+\end{corollary}
+
+\begin{theorem}
+    Let $M$ be a CR-submanifold of an almost Hermitian manifold $N$. The distribution $D$ is integrable if and only if the Nijenhuis tensor of $\phi$ vanishes identically on $D^{\perp}$.
+\end{theorem}
+
+\section{CR-submanifold of a nearly Kaehlerian manifold}
+....
+
+\section{\texorpdfstring{$\phi$}{phi}-Connections on a CR-Submanifold and CR-Products of Almost Hermitian Manifolds} 
+
+\begin{definition}
+    A linear connection $\nabla$ on $M$ is called a \textbf{$\phi$-connection} if $\phi$ is covariantly constant with respect to this connection, that is, we have
+    \begin{equation}
+        \nabla_X \phi =0, \forall X\in TM
+    \end{equation}
+\end{definition}
+
+\begin{theorem}
+    Both distributions $D$ and $D^{\perp}$ on a CR submanifold of an almost Hermitian manifold are parallel with respect to any $\phi$-connection.
+\end{theorem}
+
+\begin{definition}
+    We say that a CR-submanifold \( M \) of an almost Hermitian manifold \( N \) 
+is a \textbf{CR-product} if both distributions \( D \) and \( D^{\perp} \) are integrable 
+and \( M \) is locally a Riemannian product \( M_1 \times M_2 \), where \( M_1 \) 
+is a leaf of \( D \) and \( M_2 \) is a leaf of \( D^{\perp} \). 
+A CR-product with \( D \neq \{0\} \) and \( D^{\perp} \neq \{0\} \) is called a 
+\textbf{proper CR-product.}
+\end{definition}
+
+\begin{example}[An counterexample]
+    There exist no proper CR submanifolds of $S^6$ with both distributions $D$ and $D^{\perp}$ parallel with respect to Levi-Civita connection. However, Sekigawa constructed  an example of a 3-dimensional proper CR-submanifold such that both distributions $D$ and $D^{\perp}$ are integrable.
+\end{example}
+
+\begin{theorem}
+    Let \( M \) be a CR-submanifold of an 
+almost Hermitian manifold \( N \). If the Levi-Civita connection 
+on \( M \) is a \( \phi \)-connection, then \( M \) is a CR-product.
+\end{theorem}
+Recall that
+\begin{theorem}
+    Both distributions $D$ and $D^{\perp}$ are parallel with respect to Levi-Civita connection  if and only if they are integrable and their leaves are totally geodesic in $N$.
+\end{theorem}
+
+\section{CR-submanifolds of Kaehlerian manifolds}
+
+\begin{theorem}
+  Let \( M \) be a CR-submanifold of a K\"ahlerian manifold \( N \). Then we have
+\begin{enumerate}
+    \item[(i)] the distribution \( D^{\perp} \) is integrable,
+    \item[(ii)] the distribution \( D \) is integrable if and only if the second fundamental form of \( M \) satisfies
+    \[
+    h(X, JY) = h(Y, JX), \text{ for any } X, Y \in \Gamma(D).
+    \]
+\end{enumerate}
+\end{theorem}
+\begin{remark}
+    Blair and Chen have constructed  an example of a CR-submanifold of a Hermitian manifold for which $D^{\perp}$ is not integrable.
+\end{remark}
+
+
