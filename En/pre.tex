@@ -1,0 +1,250 @@
+\usepackage{amsmath,amssymb,amsthm, amsfonts,mathrsfs}
+\usepackage{geometry}
+\usepackage{enumerate}
+\usepackage{pdfpages}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{tikz-cd}
+\usepackage{tikz}
+\usepackage{stix} %symbols and text fonts:formulas more clear
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage[many]{tcolorbox}
+\usepackage[dvipsnames]{xcolor}                             % Link color
+\usepackage{eso-pic} % 用于添加背景
+\usepackage{mdframed}
+% \usepackage{esint} %积分符号
+\newcommand{\aint}{
+	\mbox{
+		\tikz[baseline = (int.base)] { \node (int) {$\int$}; \node at (int) {$-$}; }
+	}
+}
+
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+	{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+	{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+
+\linespread{1.2} % 1.4-1.5x spacing
+
+\usepackage{etoolbox} % for hooks
+% Counter for numbered paragraphs
+\newcounter{parnum}[section]
+\renewcommand{\theparnum}{(\thesection.\arabic{parnum})}
+
+% Define the numbered paragraph environment
+\newcommand{\np}{\refstepcounter{parnum}\noindent\textbf{\theparnum}\quad}
+
+
+\usepackage{charter}  % context less tails
+\usepackage[T1]{fontenc}
+
+\usepackage{xcolor}                             % Link color
+ \definecolor{custom-blue}{RGB}{0,99,166} 
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, % 启用彩色链接
+    linkcolor=purple,  % 普通内部链接的颜色
+    citecolor=blue,  % 引用链接的颜色
+    filecolor=green,  % 打开本地文件的链接颜色
+    urlcolor=red    % 链接到URL的颜色
+}
+
+\usepackage{titlesec}  % 用于修改章节标题的格式
+
+% 使用 \titleformat 定义新的 \section 和 \subsection 样式
+\titleformat{\section}[block]
+  {\normalfont\Large\bfseries}    % 标题字体样式
+  {\S\ \thesection}               % 在标题前加上 \S 和节编号
+  {1em}                           % 标题和编号之间的间距
+  {}                               % 标题后面的内容
+
+\titleformat{\subsection}[block]
+  {\normalfont\large\bfseries}    % 子节标题字体样式
+  {\S\ \thesubsection}            % 在子节标题前加上 \S 和子节编号
+  {1em}                           % 标题和编号之间的间距
+  {}                               % 标题后面的内容
+
+  \titleformat{\chapter}[block]
+  {\centering\Huge\bfseries}    
+  {Chapter \thechapter }           % 居中
+  {1em}                           
+  {} 
+
+%%%%%%%%页面与页面对齐
+\textwidth=6.5in
+\textheight=8.7in
+\topmargin=0in
+\oddsidemargin=0in
+\evensidemargin=0in
+
+
+
+%%Bold the titles
+\makeatletter
+\def\th@plain{%
+  \thm@notefont{}% same as heading font
+  \itshape % body font
+}
+\def\th@definition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{question}{Question}[section]
+\renewcommand*{\thequestion}{\Alph{question}}
+
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\dimension}{dim}
+\DeclareMathOperator{\trace}{tr} 
+\DeclareMathOperator{\di}{div}
+\DeclareMathOperator{\ricci}{Ric}
+\DeclareMathOperator{\riem}{Riem}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\hess}{Hess}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\sing}{Sing}
+\DeclareMathOperator{\ind}{Ind}
+
+\DeclareMathOperator{\im}{Im}
+
+\def\zz{{\mathbb Z}}
+\def\rr{{\mathbb R}}
+\def\cc{{\mathbb C}}
+\def\qq{{\mathbb Q}}
+\def\nn{{\mathbb N}}
+\def\ss{{\mathbb S}}
+\def\oo{{\infty}}
+\def\aa{{\mathit A}}
+
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lap}{\Delta}
+
+
+\setlength{\headheight}{14.5pt}
+
+
+
+
+  \definecolor{headblue}{RGB}{0,102,204}  % 你可以换成你喜欢的颜色
+  \pagestyle{fancy}
+  \fancyhf{}
+  \renewcommand{\sectionmark}[1]{\markboth{#1}{}}  % 更新 leftmark
+  \lhead{\textcolor{headblue}{\nouppercase{\leftmark}}}  % 设置颜色
+  \rhead{\thepage}
+  
+  
+  \onehalfspacing
+  
+  \newcommand{\transparent}[1]{\color{black!#1}} % 定义替代命令
+  \definecolor{bgcolor}{RGB}{248, 248, 255} % 添加这行定义背景色
+  % 背景设置
+  \AddToShipoutPictureBG{%
+    \AtPageLowerLeft{%
+      \color{bgcolor}%
+      \rule{\paperwidth}{\paperheight}% 底色
+    }%
+    \AtPageCenter{%
+      \put(0,-300){%
+        \transparent{0.05}% 透明度
+      }%
+    }%
+  }  
+
+% 自定义定理框样式
+\mdfdefinestyle{theoremstyle}{
+  backgroundcolor=blue!5,
+  linecolor=blue!40,
+  linewidth=1pt,
+  topline=false,
+  bottomline=false,
+  rightline=false,
+  leftline=true,
+  leftmargin=10pt,
+  skipabove=10pt,
+  skipbelow=10pt,
+  innertopmargin=5pt,
+  innerbottommargin=5pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt
+}
+
+
+% 定义类：黄色
+\mdfdefinestyle{definitionstyle}{
+  backgroundcolor=yellow!3,  
+  linecolor=yellow!40,
+  linewidth=1pt,
+  topline=false, bottomline=false, rightline=false, leftline=true,
+  leftmargin=10pt,
+  skipabove=10pt, skipbelow=10pt,
+  innertopmargin=5pt, innerbottommargin=5pt, innerleftmargin=10pt, innerrightmargin=10pt
+}
+
+% 备注类：灰色
+\mdfdefinestyle{remarkstyle}{
+  backgroundcolor=gray!10,
+  linecolor=gray!50,
+  linewidth=1pt,
+  topline=false, bottomline=false, rightline=false, leftline=true,
+  leftmargin=10pt,
+  skipabove=10pt, skipbelow=10pt,
+  innertopmargin=5pt, innerbottommargin=5pt, innerleftmargin=10pt, innerrightmargin=10pt
+}
+
+% 练习类：橙色
+\mdfdefinestyle{exercisestyle}{
+  backgroundcolor=orange!10,
+  linecolor=orange!50!black,
+  linewidth=1pt,
+  topline=false, bottomline=false, rightline=false, leftline=true,
+  leftmargin=10pt,
+  skipabove=10pt, skipbelow=10pt,
+  innertopmargin=5pt, innerbottommargin=5pt, innerleftmargin=10pt, innerrightmargin=10pt
+}
+
+% 问题类：红色
+\mdfdefinestyle{problemstyle}{
+  backgroundcolor=red!5,
+  linecolor=red!50,
+  linewidth=1pt,
+  topline=false, bottomline=false, rightline=false, leftline=true,
+  leftmargin=10pt,
+  skipabove=10pt, skipbelow=10pt,
+  innertopmargin=5pt, innerbottommargin=5pt, innerleftmargin=10pt, innerrightmargin=10pt
+}
+
+
+
+% 创建包裹定理的环境
+\surroundwithmdframed[style=theoremstyle]{theorem}
+\surroundwithmdframed[style=theoremstyle]{lemma}
+\surroundwithmdframed[style=theoremstyle]{corollary}
+\surroundwithmdframed[style=theoremstyle]{proposition}
+
+\surroundwithmdframed[style=definitionstyle]{definition}
+\surroundwithmdframed[style=remarkstyle]{remark}
+\surroundwithmdframed[style=exercisestyle]{exercise}
+\surroundwithmdframed[style=exercisestyle]{problem}
