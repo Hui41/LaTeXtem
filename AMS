@@ -1,0 +1,310 @@
+\documentclass[12pt,reqno]{amsart}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{tikz-cd}
+\parindent 15pt
+\parskip 4pt
+
+\usepackage{enumerate}
+
+\textwidth=6.5in
+\textheight=8.7in
+\topmargin=0in
+\oddsidemargin=0in
+\evensidemargin=0in
+
+\usepackage{xcolor}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{question}{Question}[section]
+\renewcommand*{\thequestion}{\Alph{question}}
+
+
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\dimension}{dim}
+\DeclareMathOperator{\trace}{tr} 
+\DeclareMathOperator{\di}{div}
+\DeclareMathOperator{\ricci}{Ricci}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\hess}{Hess}
+
+\def\zz{{\mathbb Z}}
+\def\rr{{\mathbb R}}
+\def\cc{{\mathbb C}}
+\def\qq{{\mathbb Q}}
+\def\oo{{\infty}}
+
+\def\st{{S_{\mathcal{H},\widetilde{\mathcal{H}}}(f)}}
+\def\dt{{df_{\mathcal{H},\widetilde{\mathcal{H}}}}}
+\def\dtu{{du_{\mathcal{H},\widetilde{\mathcal{H}}}}}
+\def\foli{{(M^{m+k},\mathcal{F}^k,g)}}
+\def\folin{{(N^{n+l}, \widetilde{\mathcal{F}}^l , \widetilde{g})}}
+\def\HH{{\mathcal{H},\widetilde{\mathcal{H}}}}
+
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+
+
+	
+\allowdisplaybreaks
+	
+	
+\begin{document}
+    \begin{abstract}
+        In this paper, we consider critical points of the
+        horizontal energy $E_{\HH}(f)$ for a smooth map $f$ between two Riemannian
+        foliations. These critical points are referred to as horizontally harmonic
+        maps. In particular, if the maps are foliated, they become transversally
+        harmonic maps. By utilizing the stress-energy tensor, we establish some
+        monotonicity formulas for horizontally harmonic maps from Euclidean spaces,
+        the quotients $K_{m}$ of Heisenberg groups and also for transversally
+        harmonic maps from Riemannian foliations with appropriate curvature pinching
+        conditions. Finally, we give Jin-type theorems for either horizontally
+        harmonic maps or transversally harmonic maps under some asymptotic
+        conditions at infinity.
+\end{abstract} %%%%%%%%%
+
+
+    
+    \title[Horizontal maps between Riemannian foliations]{On critical maps of the horizontal energy functional between Riemannian foliations}
+
+    \author{Tian Chong}
+    \date{\today}
+    \address{Department of Mathematics,
+Shanghai Polytechnic University, Shanghai 201209, PR China}
+    \email{chongtian@sspu.edu.cn}
+    
+    \author{Yuxin Dong}
+    \address{School of Mathematical Science  and  Laboratory of Mathematics for Nonlinear Science, Fudan University, Shanghai 200433, PR China}
+    \email{yxdong@fudan.edu.cn}
+    
+    \author{Xin Huang }
+    \address{School of Mathematics and Statistics, Nanjing University of Information Science and Technology,
+Nanjing 210044,
+PR China}
+    \email{17110180003@fudan.edu.cn}
+    
+    \author{Hui Liu}
+    \address{School of Mathematical Sciences, Fudan University, Shanghai 200433, PR China}
+    \email{21110180015@m.fudan.edu.cn and liuh45@univie.ac.at}
+    \maketitle
+    
+    \let\thefootnote\relax
+    \footnotetext{ \textbf{Mathematics Subject Classification} 58E20, 53C12, 53C43 } %%%%%%%%%%		
+
+  
+\section{Introduction}
+
+    Harmonic maps between Riemannian manifolds are an important object of study in
+	geometric analysis. Over the decades, several generalized harmonic maps have
+	appeared in the literature, playing an important role in geometry and
+	topology. These generalizations include some generalized harmonic maps from
+	Riemannian foliations, CR manifolds and contact manifolds (see \cite{konderakREMARKSTRANSVERSALLYHARMONIC2008, konderakTransversallyHarmonicMaps2003}, \cite{chenBochnertypeFormulasTransversally2012a}, 
+	\cite{dragomirHarmonicMapsFoliated2013a},
+	\cite{barlettaTransversallyHolomorphicMaps1998a}, \cite{barlettaPseudoharmonicMapsNondegenerate2001},
+	\cite{petitMokSiuYeungTypeFormulas2009},
+	\cite{dragomirLeviHarmonicMaps2014},
+	\cite{renPseudoharmonicMapsClosed2018}, \cite{chongHARMONICPSEUDOHARMONICMAPS2019},
+	etc.).
+	
+	Riemannian foliations are a natural generalization of Riemannian manifolds.
+	Let $(M,g,\mathcal{F})\ $ and $(\widetilde{M},\widetilde{g},\widetilde{%
+	\mathcal{F}})$ be two Riemannian foliations and $f:M\rightarrow \widetilde{M}
+	$ be a smooth map. We say that $f$ is foliated if it maps leaves of $%
+	\mathcal{F}$ to leaves of $\widetilde{\mathcal{F}}$. Then a foliated map $f$
+	induces a map $\widehat{f}:M/\mathcal{F\rightarrow }\widetilde{M}/\widetilde{%
+	\mathcal{F}}$ between the leaf spaces. Since the leaf spaces can be very
+	complicated topological spaces, it is difficult to investigate $\widehat{f}$
+	directly. One has to study related problems about the map $f$ on the upstairs
+	spaces. In order to generalize the theory of harmonic maps to Riemannian
+	foliations, Konderak and Wolak (cf. \cite{konderakTransversallyHarmonicMaps2003,konderakREMARKSTRANSVERSALLYHARMONIC2008}) constructed a global
+	transversal tension field for a foliated map $f$ in terms of the transversal
+	second fundamental form, and then they defined transversally harmonic maps
+	as those smooth maps for which this tension field vanishes. However, S.
+	Dragomir and A. Tommasoli (\cite{dragomirHarmonicMapsFoliated2013a}) pointed out that such maps do not, in
+	general, extremize the natural transverse energy functional that will be
+	described below.
+	
+	Let $\mathcal{V}(\mathcal{F})$ and $\mathcal{V}(\widetilde{\mathcal{F}})$ be
+	the distributions that are determined by the foliations $\mathcal{F}$ and $%
+	\widetilde{\mathcal{F}}$ respectively. Then we have the quotient bundles $Q(%
+	\mathcal{F}):=T(M)/\mathcal{V}(\mathcal{F})$ and $Q(\widetilde{\mathcal{F}}%
+	):=T(\widetilde{M})/\mathcal{V}(\widetilde{\mathcal{F}})$, which are called
+	the transverse bundles of the foliations. These transverse bundles get
+	natural fiberwise metrics from $g$ and $\widetilde{g}$ respectively. The
+	differential map $df$ of $f$ induces the transverse differential $d_{T}f:Q(%
+	\mathcal{F})\rightarrow f^{-1}(Q(\widetilde{\mathcal{F}}))$ in a natural
+	way. Consequently we may define the norm $\Vert d_{T}f\Vert $ and the
+	following transverse energy functional $E_{T}(f)$ (cf. \cite{dragomirHarmonicMapsFoliated2013a} for details): 
+	\begin{equation}\label{tag1}
+	E_{T}(f)=\int_{M}e_{T}(f)dV_{g}.  
+	\end{equation}%
+	It turns out that the transversally harmonic maps defined by Konderak and
+	Wolak are not the critical points of the functional $E_{T}(f)$, but rather
+	the critical points of the following energy functional%
+	\begin{equation}\label{tag2}
+	E_{T}^{\ast }(f)=\int_{M}\frac{e_{T}(f)}{vol_{L}}dV_{g} , \tag{2}
+	\end{equation}%
+	where $vol_{L}$ denotes the volume of each fiber. In \cite{dragomirHarmonicMapsFoliated2013a}, S. Dragomir and
+	A. Tommasoli proposed a different definition of generalized harmonic maps,
+	which are exactly the extremals of $E_{T}(f)$ through any variation of $f$
+	by foliated maps. They call such maps $(\mathcal{F},\widetilde{\mathcal{F}})$%
+	-harmonic maps. It is easy to verify that the above two definitions of
+	generalized harmonic maps coincide when the foliation $\mathcal{F}$ is
+	harmonic (cf. \cite{chenBochnertypeFormulasTransversally2012a}, \cite{dragomirHarmonicMapsFoliated2013a}).
+	
+	In this paper, we introduce the horizontal energy functional $E_{\mathcal{H},%
+	\widetilde{\mathcal{H}}}(f)$ similar to \eqref{tag1} for any map $f:(M^{m+k},\mathcal{%
+	F},g)\rightarrow (N^{n+l},\widetilde{\mathcal{F}},\widetilde{g})$ (not
+	necessarily foliated) between the Riemannian foliations, and then define
+	horizontally harmonic maps as the critical points of $E_{\mathcal{H},%
+	\widetilde{\mathcal{H}}}(f)$ through any variation (see \S \ref{se:criticalmaps} for details).
+	The notion of horizontally harmonic maps slightly generalizes the notion of $%
+	(\mathcal{F},\widetilde{\mathcal{F}})$-harmonic maps in \cite{dragomirHarmonicMapsFoliated2013a}. Notice that
+	removing the foliated condition about the map in our definition allows the
+	notion to involve the subelliptic harmonic maps when the domain is a
+	Riemannian foliation and the target is a Riemannian manifold with the
+	trivial foliation by points. The main purpose of the present paper is to
+	study the properties of the horizontally harmonic maps, especially the
+	Liouville type theorems for them.
+	
+	As known, the stress-energy tensors are a useful tool for deriving
+	monotonicity formulas of harmonic maps or their generalizations (cf. \cite{price1983amono},
+	\cite{xin1986diff}, \cite{dongVanishingTheoremsVector2011a}, \cite{dlyLiou2016}, and the references therein). Since the stress-energy tensors
+	are naturally linked to the conservation laws of related energy functionals,
+	the monotonicity formulas of the energies follow from Stokes' theorem,
+	coarea formula and comparison theorems in Riemannian geometry. These
+	monotonicity formulas can be used to establish Liouville type theorems in
+	the following two ways. One way is to derive Liouville type theorems
+	directly from the monotonicity formulas by assuming the energy growth
+	conditions (cf. \cite{sealeysome1982}, \cite{hu1984anonexist}, \cite{ll2004theenergy}, \cite{dongVanishingTheoremsVector2011a}, \cite{rs2000energy}, and the references therein).
+	Another way is to establish Liouville type theorems by assuming suitable
+	asymptotic conditions of the maps at infinity (cf. \cite{jin_liouville_nodate}, \cite{dlyLiou2016}, \cite{rs2000energy}).
+	
+	For our purpose, we introduce the stress-energy tensor $S_{\mathcal{H},%
+	\widetilde{\mathcal{H}}}(f)$ associated with the energy functional $E_{%
+	\mathcal{H},\widetilde{\mathcal{H}}}(f)$ and derive the corresponding
+	conservation law formula for $(\di S_{\mathcal{H},\widetilde{\mathcal{H
+    	}}}(f))(X)$ with respect to any vector field $X\in \mathfrak{X}(M)$. It
+	turns out that a horizontally harmonic map $f:(M^{m+k},\mathcal{F}
+	,g)\rightarrow (N^{n+l},\widetilde{\mathcal{F}},\widetilde{g})$ does not
+	satisfy the conservation law in general, but if $f$ is a transversally
+	harmonic map, then it satisfies the conservation law. Even though in the
+	general case $f$ does not satisfy the conservation law, we find that the
+	conservation law formula becomes more manageable if  the domain
+	Riemannian foliation is simple. To illustrate this, we consider the
+	following two cases for horizontally harmonic maps: (i) $(M^{m+k},\mathcal{F%
+	},g)=(%
+	\mathbb{R}
+	^{m+k},%
+	\mathbb{R}
+	^{k},g)$ the Euclidean space foliated by Euclidean subspaces, where $g$ is
+	some mixed conformally flat metric on $%
+	\mathbb{R}
+	^{m+k}$ (see Example \ref{exam4}); (ii) $(M^{m+k},\mathcal{F},g)=(K_{m},S^{1},g)$
+	the quotient space of the Heisenberg group $H_{m}$ with the canonical metric 
+	$g$ (see Example \ref{ex:sasa}). The horizontal distribution of the former is
+	integrable, while the horizontal distribution of the latter is
+	non-integrable. They can be viewed respectively as the simplest models in
+	the two cases. Since the conservation law formula becomes simpler in
+	horizontal directions for these cases, it is more appropriate to apply the
+	formula on cylindrical regions defined by the distance function from a fixed
+	leaf. Consequently, we can establish some monotonicity formulas of the
+	horizontal energy on cylindrical regions for horizontally harmonic maps from
+	either $\rr^{m+k}$ or $K_{m}$. As mentioned above, a transversally harmonic
+	map  $f:(M^{m+k},\mathcal{F},g)\rightarrow (N^{n+l},\widetilde{\mathcal{F}},%
+	\widetilde{g})$ between two Riemannian foliations satisfies the conservation
+	law, that is, $(\di S_{\mathcal{H},\widetilde{\mathcal{H}}}(f))(X)=0$
+	in any direction $X$. This enables us to establish some monotonicity
+	formulas of the horizontal energy on geodesic balls for transversally
+	harmonic maps under suitable curvature pinching conditions of $(M,g)$.
+	Obviously, under the assumption of appropriate energy growth conditions, the
+	above monotonicity formulas for horizontally harmonic maps or transversally
+	harmonic maps give us directly Liouville type theorems for these maps.
+	
+	In \cite{jin_liouville_nodate}, Jin established several interesting Liouville type theorems for
+	harmonic maps from Euclidean spaces endowed with conformally flat metrics,
+	under an asymptotic condition of these maps at infinity. A special case of
+	his results is that if $u:(\rr^{m},g_{can})\rightarrow (N^{n},h)$ is a
+	harmonic map, and $u(x)$ converges to a fixed point $p_{0}\in N$ as $|
+	x| \rightarrow \infty $, then $u$ is a constant map. His method is based
+	on the following two steps for a non-constant harmonic map: first, deriving
+	a lower bound on the energy growth rate, and second, deriving an upper bound
+	on the energy growth rate under an asymptotic condition. If the two growth
+	rates are incompatible, this shows that $u$ can only be constant. Inspired
+	by Jin's method, we next investigate Jin-type Liouville theorems for a
+	horizontally harmonic map or transversally harmonic map $f:(M^{m+k},\mathcal{%
+	F},g)\rightarrow (N^{n+l},\widetilde{\mathcal{F}},\widetilde{g})$ by
+	assuming that the map approaches a fixed point $q$ at infinity. We will
+	establish Jin-type theorems for the following two cases: (i) $f:(
+	\mathbb{R}
+	^{m+k},
+	\mathbb{R}
+	^{k},g)\rightarrow (N^{n+l},\widetilde{\mathcal{F}},\widetilde{g})$ is a
+	horizontally harmonic map, where $g$ is a mixed conformally flat metric on $
+	\mathbb{R}
+	^{m+k}$; (ii) $f:(M^{m+k},\mathcal{F},g)\rightarrow (N^{n+l},\widetilde{%
+	\mathcal{F}},\widetilde{g})$ is a transversally harmonic map, where $g$ is a
+	complete Riemannian metric with radial curvature $K_{r}$ satisfying $-\alpha
+	^{2}\leq K_{r}\leq -\beta ^{2}$, $\alpha ,\beta >0$ and $(m+k-1)\beta
+	-2\alpha \geq 0$. Note that the monotonicity formulas we have already
+	established for these two cases in \S 5 actually give lower bounds on the
+	energy growth rate. This completes the first step in Jin's method. For the
+	second step, we may assume that the image of the map $f$ near infinity is
+	contained in a foliated coordinate chart $(U,\widetilde{\mathcal{F}}|_{U})$,
+	which induces a natural Riemannian submersion $\pi _{U}:U\rightarrow 
+	\mathcal{B}_{U}$. Clearly, estimating the horizontal energy of $f$ near
+	infinity is equivalent to estimating the horizontal energy of $\pi _{U}\circ
+	f$. Then we can apply Jin's method to give the upper bound on the energy
+	growth rate. Therefore, if the two growth rates are incompatible, we can
+	establish a Jin-type Liouville theorem (see \S \ref{se:Jintypethm} for details).
+	
+
+This paper is structured in the following manner. 
+In \S \ref{se:Riemfoli}, we collect some basic notions, propositions and some examples in Riemannian foliations. 
+In \S \ref{se:criticalmaps}, we introduce the horizontal energy $E_{\mathcal{H}, \widetilde{\mathcal{H}}}(f)$ for a smooth map $f$, and then deduce the first variation formula, and we also explore the geometric meaning of horizontally constant maps.
+In \S \ref{se:streeenergy}, we derive the divergence formula for the stress-energy tensor $S_{\HH}(f)$ and introduce the associated concepts of conservation laws.   
+In \S \ref{se:monoformula}, 
+we establish monotonicity formulas for horizontally harmonic maps from Euclidean spaces and the quotient space $K_m$ of the Heisenberg group $H_m$, as well as for transversally harmonic maps from Riemannian foliations under certain curvature pinching conditions.
+ Finally, in \S \ref{se:Jintypethm}, we present Jin-type theorems for horizontally harmonic maps from mixed conformally flat Euclidean spaces and transversally harmonic maps from  Riemannian foliations with a pole.
+
+
+
+
+~
+\section*{Acknowledgments}
+T was supported by National Natural Science Foundation of China (NSFC) No. xxx, 
+Y was supported by NSFC Grant No. xxxx,
+X was supported by the xxx  
+and H was supported by the China Scholarship Council (No. xxxx).
+The authors would like to thank Prof. V. B. for his valuable comments.
+
+\section*{Declarations}
+
+\textbf{Conflict of interest} The authors have no relevant financial or non-financial interests to disclose. The authors
+have no Conflict of interest to declare that are relevant to the content of this article.
+
+\textbf{Data Availability Statement} The authors did not collect
+or use any data for this work.
+
+\bibliographystyle{alpha}
+\bibliography{ref.bib}   
+
+\end{document}
