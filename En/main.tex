@@ -1,0 +1,440 @@
+\documentclass[a4paper,12pt]{article}
+
+\input{preambleS-en.tex}
+
+%%% 标题有数学符号, 请使用: \texorpdfstring{$\phi$}{name}
+
+
+
+\begin{document}
+
+\title{Harmonic Maps}
+\author{Hui}
+% \date{2025 Spring}
+\maketitle
+
+
+
+% 前置部分包含目录、中英文摘要以及符号表等
+% \frontmatter
+
+% 目录
+\tableofcontents
+
+
+\section{Mikhail Karpukhin and Daniel Stern's Paper}
+\np In this paper, 
+$$ \lap := d d^{*}, $$
+which is a positive operator.
+Therefore, for harmonic map $u:M \to \ss^k$, the E-L equation is 
+$$ \lap u =|du|^2u. $$ 
+
+\begin{example}[Second fundamental form of a level set]
+    Let $f:M \to \rr$ be a smooth function, then $M_c:= f^{-1}(c)$ is a hypersurface of $M$. Take $\nu=\grad f$, then the second fundamental form is 
+    $$ \begin{aligned}
+        A_{\nu }(X,Y)=&\la \nu ,\nabla _X Y  \ra\\
+        =& -\hess(f)(X,Y).
+    \end{aligned}  $$
+In particular, for the sphere $\ss^k(r)$, take $\nu =\frac{\partial }{\partial r}$, then 
+\begin{equation}
+    A_{\nu }(X,Y)=-r^{-1}\la X,Y  \ra.
+\end{equation}  
+\end{example}
+
+\begin{example}[Hessian of distance in space form]
+    Let $\rho $ be a distance function on space form $M(K_0),g$, then 
+    \begin{equation}
+        \hess (\rho )=\frac{f'(\rho )}{f(\rho )}(g-d \rho \otimes d \rho ),
+    \end{equation}   
+    where 
+    $$ f(r)= \begin{cases}
+        \sin(\sqrt{K_0}r)/ \sqrt{K_0} &\text{if } K_0 >0 \text{ and } r < \pi/\sqrt{K_0},\\
+        r &\text{if } K_0 =0, \\
+        \sinh(\sqrt{K_0}r)/ \sqrt{K_0} &\text{if } K_0 <0.
+    \end{cases}  $$
+\end{example}
+
+
+\np 
+For the system 
+$$ \lap u +  \frac{DW(u)}{\epsilon ^2}=0,$$
+since  the nonlinear term does not involve the gradient of $u$, every weak solution should be \textbf{smooth} once we know $DW$ is bounded.   (Hint: we can use bootstrap argument.)
+
+\np
+For a function $u \in C^2(\Omega ) \cap C(\bar{\Omega })$, we have \textbf{a priori estimates} 
+\begin{equation}
+    u(x) \leq \max_{\partial \Omega }|u| + C \max _{\Omega }|\lap u|
+\end{equation} 
+for any $x \in \Omega $. (see \cite{HanLin2000Elliptic}, Proposition 2.15.) 
+
+\np \textbf{Kato's type inequality:}
+
+Let $V \to M$ be a vector bundle with a metric $\left\langle ,  \right\rangle$  and a compatible linear connection $\nabla $. Let $\xi \in \Gamma (V)$ be a smooth section.
+Then it's easy to get the classical Kato's inequality 
+\begin{equation}
+    |\nabla \xi | \geq |d|\xi ||,
+\end{equation}
+since, by Cauchy-Schwarz inequality,
+$$ 2|\xi | \cdot( d|\xi |)=|d|\xi |^2|=2|\left\langle \nabla \xi ,\xi   \right\rangle| \leq 2|\nabla \xi ||\xi |.$$
+
+
+\begin{proposition}[\cite{LinWang2006Stable}]    
+    Let $\phi : \ss^m \to \ss^k$ be a nonconstant smooth harmonic map, then 
+    \begin{equation}\label{kato}
+        |\nabla ^2 \phi  |^2 \geq \frac{m}{m-1} |\nabla |\nabla \phi ||^2 
+    \end{equation}
+    with equality holds at a point $x \in \ss^m$  iff $\nabla ^2 \phi (x)=0$. 
+\end{proposition}
+\begin{remark}
+    Note that 
+    $$ |\nabla| \nabla \phi||^2=\frac{\left|\left\langle\nabla^2 \phi, \nabla \phi\right\rangle\right|^2}{|\nabla \phi|^2}, $$
+    where 
+    $$ |\la \nabla ^2 \phi ,\nabla \phi   \ra|^2=\sum_{\alpha=1}^m\left[\sum_{i=1}^k \sum_{\beta=1}^m \phi_{\alpha \beta}^i \phi_\beta^i\right]^2 .$$
+\end{remark}
+However, the iff part of the proposition has some problem.(?)
+For example, take $k=m=2$ and let  
+$$ (\phi _{\alpha \beta }^1)=\begin{bmatrix}
+ 1&0 \\ 
+ 0&-1 
+\end{bmatrix}, \quad
+(\phi _{\alpha \beta }^2)=\begin{bmatrix}
+ 2&0 \\ 
+ 0&-2 
+\end{bmatrix}, \quad 
+(\phi _{\alpha }^1)= \begin{bmatrix}
+ 1  \\ 
+ 0 
+\end{bmatrix},\quad
+(\phi _{\alpha }^2)= \begin{bmatrix}
+ 2  \\ 
+ 0 
+\end{bmatrix}
+$$
+hold at a point $x_0$, then the equality holds in \eqref{kato}, but $\nabla ^2 \phi \neq 0$.  Or consider the harmonic function $\phi :\rr^2 \to \rr$ given by $\phi (x,y)=x^2-y^2$.   
+
+\begin{remark}
+    From the proof, it seems that the geometry of domain or target does not play a role, so it's still valid for general setting: 
+$$ |\hess \phi |^2 \geq \frac{m}{m-1}|d|d \phi ||^2 $$
+holds for any harmonic map $\phi :M^m \to N$.
+\end{remark}
+
+
+\np  \textbf{Mean value inequality}
+
+First of all, recall some facts:
+\begin{remark}
+    \textbf{1. Change of Variables Formula}: Suppose $D$ and $E$ are open domains of integration in $\mathbb{R}^n$, and $G: \bar{D} \rightarrow \bar{E}$ is smooth map that restricts to a diffeomorphism from $D$ to $E$. For every continuous function $f: \bar{E} \rightarrow \mathbb{R}$,
+    \begin{equation}
+        \int_E f d V=\int_D(f \circ G)|\operatorname{det} D G| d V.
+    \end{equation}
+\textbf{2. Laplacian acting on distance on space form:} (Here $\lap = -d d^{*}$ )
+\begin{equation}
+    \Delta r(x) =\left\{\begin{aligned}
+(m-1) \sqrt{K} \cot (\sqrt{K} r) & \text { for } \quad K>0, \\
+(m-1) r^{-1} & \text { for } \quad K=0, \\
+(m-1) \sqrt{-K} \operatorname{coth}(\sqrt{-K} r) & \text { for } \quad K<0
+\end{aligned}\right.
+\end{equation}
+\textbf{3.} $\lap r = H$, where $H(x)= \la -\nabla _{e_i}e_{i}, \frac{\partial }{\partial r} \ra$ is the mean value curvature of $\partial B_r$ at $x$.    
+\end{remark}
+
+Suppose $f \in C^{\infty }(M^n)$,   $B_{s}:=B_{s}(x_0)$  is a geodesic ball and set $\Sigma _s:= \partial B_s$.. First, according to the first variation formula, we have 
+$$ \begin{aligned}
+  \frac{d}{ds} \int_{\Sigma _{s}}^{} f dA_s=& \frac{d}{ds} \int_{\Sigma }^{} f \circ \phi \cdot  J(x,s) dA_s   \\
+  =&  \int_{\Sigma _{s}}^{} \left( \frac{\partial f}{\partial \nu }+f \di_{\Sigma _s}(\nu ) \right)\\
+  =&  \int_{\Sigma _{s}}^{} \left( \frac{\partial f}{\partial \nu }-f \lap (d_{x_0}) \right). \\
+\end{aligned}  $$
+See \cite{Li2012Geometric}. Here we can set $\phi : \Sigma \times (-\epsilon ,\epsilon ) \to M$, and the variation field is the unit outer normal $\nu = d \phi (\frac{d}{ds} )$.   
+
+
+$$ \begin{aligned}
+    &\frac{d}{ds} \left( s^{1-n} \int_{\partial B_s}^{} f\right) \\
+    =& (1-n)s^{-n}\int_{\partial B_s}^{}f + s^{1-n} \int_{\partial B_{s}}^{} \left( \frac{\partial f}{\partial \nu }-f \lap (d_{x_0}) \right)\\
+    =& (1-n)s^{-n}\int_{\partial B_s}^{}f - s^{1-n} \int_{ B_{s}}^{} \lap f-\int_{\partial B_s}^{} f \lap (d_{x_0}) \\
+    =&  - s^{1-n} \int_{ B_{s}}^{} \lap f + s^{1-n} \int_{\partial B_s}^{} f \cdot \left( \frac{(1-n)}{d_{x_0}} -\lap d_{x_0} \right).
+\end{aligned}  $$ 
+By \textbf{Hessian} comparison theorem, we have 
+$$ \frac{(1-n)}{d_{x_0}} -\lap d_{x_0} \geq -C(n,K), $$
+where $K$ is the sectional curvature bound for $M$.
+Therefore,   
+\begin{equation}
+    \frac{d}{ds} \left( s^{1-n} \int_{\partial B_s}^{} f\right) \geq - s^{1-n} \int_{ B_{s}}^{} \lap f - C(n,K)s^{1-n} \int_{\partial B_s}^{} f .
+\end{equation}
+
+
+\np \textbf{Universal lower bound on the energy}
+\begin{proposition}
+    For any closed Riemannian manifold $(M,g)$, there exists positive constant $\beta (M)$, s.t. 
+    \begin{equation}
+        E(u) \geq \beta 
+    \end{equation}
+    for any nonconstant harmonic map 
+    $u:M \to \ss^k$ of any dimension $k \in \mathbb{N}$.    
+\end{proposition}
+
+The gradients of the proof includes monotonicity formula, Bochner formula and small energy regularity. 
+
+\np \textbf{Rayleigh principle}
+
+Reference: \cite[\S 6.5, \S 6.6, Appendix D]{evansPDE}, \hyperlink{https://www.mat.univie.ac.at/~has/spectral.pdf}{Spectral analysis, by F. Haslinger} and reference therein, 
+\cite[chap 11]{Helffer2013Spectrala},
+\cite{Rosenberg1997Laplacian}, \cite{Chavel1984Eigenvalues}, \cite[P84-86]{Thorpe1979Elementary}.
+
+In this paper, Karpukhin and Stern investigate
+the following variation form
+\begin{equation}\label{nu-eigen}
+    \nu _m:= \inf_{F_m} \sup_{u \in F_m,||u||=1}\la Lu, u \ra ,
+\end{equation}
+which is different from the usual form 
+\begin{equation}
+    \lambda _m= \sup_{F_m} \inf_{u \in (F_m)^{\perp },||u||=1}\la Lu, u \ra ,
+\end{equation}
+or 
+\begin{equation}
+    \lambda _m= \inf_{u \in (K_m)^{\perp },||u||=1}\la Lu, u \ra , \quad K_m:=span\{\lambda _1,\dots.\lambda _m\}.
+\end{equation}
+However, $\nu $ should coincide with $\lambda _m$: Take $F_m=K_m$, the span of first $m$ eigenfunctions $\{v_1,\dots,v_m\}$ . Writing $u=\sum_{i=1}^{m} u^i v_i$, then (since $||u||=1$ )
+$$ \la Lu,u  \ra= \sum_{i=1}^{m} (u^i)^2 \lambda _i \leq \lambda _m,$$     
+which implies $\sup_{K_m}\la Lu,u  \ra=\lambda _m$. Now it's easy to see this is the minima of 
+\eqref{nu-eigen}.
+
+
+
+\section{Lin-Wang, the analysis of harmonic maps and their heat flow}
+
+\np (\textbf{Minimizing harmonic maps in higher dimensions may have singularities.})
+\begin{proposition}
+    For $n \geq 3$, $\phi _0(x)=\frac{x}{|x|}:\mathbb{B}^n \to \ss^{n-1}$ is a minimizing harmonic map.  
+\end{proposition}
+Since
+$$ \phi^j=\frac{x_j}{|x|} , \quad \phi ^j_i = \frac{\delta _{ij}}{|x|}-\frac{x_j x_i}{|x|^3},\quad \phi ^j_{ik}=-\frac{\delta _{ij}x_k}{|x|^3}-\frac{\delta_{jk}x_i+\delta _{ik}x_j}{|x|^3}+3\frac{x_i x_j x_k}{|x|^5}, $$
+thus
+$$ |d \phi |^2 =\sum_{i,j}^{}(\frac{\delta _{ij}}{|x|}-\frac{x_j x_i}{|x|^3})^2=\sum_{j}^{}(\frac{1}{|x|^2}+\frac{x_j^2}{|x|^4}-2\frac{x_j^2}{|x|^4})=\frac{n}{|x|^2}-\frac{1}{|x|^2}$$
+$$ \lap \phi ^j=-\frac{x_j}{|x|^3}-\frac{x_j+nx_j}{|x|^3} + 3 \frac{x_j}{|x|^3}=(1-n)\frac{x_j}{|x|^3}=-|d \phi |^2 \phi^j (x).$$
+And
+$$ \di(\la \nabla \phi ,\phi   \ra)=\la \nabla_{e_i} (\nabla \phi )\phi, e_i \ra =\phi _{i}^j \phi _{j}^i+\phi _{ji}^i \phi ^j$$
+$$ \di(\di(\phi )\phi )=\di(\phi _i^i \phi ^j e_j) =\phi _i^i \phi ^j_j+\phi _{ij}^i \phi ^j$$
+since 
+$$ \nabla \phi ^j= \sum_{i}^{}\phi ^j_i e_i, \quad (\nabla \phi )\phi =\nabla _{\phi }\phi  =\phi ^j \nabla _{e_j} (\phi ^k e_{k})=\phi ^j \phi _j^k e_k$$
+And
+$$\sum_{i \neq j}^{} a_{ij}a_{ji} \geq -\sum_{i}^{}(\sum_{j}^{}(a_{ij})^2)^{\frac{1}{2}}(\sum_{j}^{}(a_{ji})^2)^{\frac{1}{2}}
+\geq -\left(\sum_{i}^{}(\sum_{j}^{}(a_{ij})^2)\right)^{\frac{1}{2}}\left(\sum_{i}(\sum_{j}^{}(a_{ji})^2)\right)^{\frac{1}{2}}.$$
+
+\np (\textbf{Optimal regularity})
+A slight modification of this example shows that a minimizing harmonic map from $\mathbb{R}^n, n \geq 3$, can have  $(n-3)$-dimensional singular set. In fact, $\phi(x, y)=\frac{x}{|x|}$ : $\mathbb{R}^3 \times \mathbb{R}^{n-3} \rightarrow S^2$ is a minimizing harmonic map whose singular set is $\{0\} \times \mathbb{R}^{n-3}$. In general, Schoen and Uhlenbeck have shown in their pioneering work  that Hausdorff dimension of the singular set of any minimizing harmonic map is of at most $(n-3)$-dimension.
+
+\np \label{ite} (\textbf{Iteration})
+On Lemma 2.2.7, P18: 
+The lemma states that, for some $\epsilon >0, \theta _0 \in (0,\frac{1}{2})$,  
+\begin{equation}\label{small}
+    E(u,B_1) \leq \epsilon _0^2 \Rightarrow  E(u_{\theta _0},B_1) \leq \frac{1}{2} E(u,B_1).
+\end{equation}
+Here we used 
+\begin{equation}
+    r^{2-n}E(u,B_r) = E(u_r,1), \quad u_r(x):=u(rx).
+\end{equation}
+For, 
+$$ \int_{B_1}^{}|\nabla u_r|^2(x) dx= \int_{B_1}^{}|\nabla u|^2(rx)r^{2}dx =r^{2-n}\int_{B_r}^{}|\nabla u|^2(y)dy . $$
+
+\begin{lemma}
+    Suppose 
+\[
+\phi(\rho r) \leq \theta \phi(r),
+\quad \text{for some fixed } \rho \in (0,1), \, \theta >0.
+\]
+and $\phi (r) <\infty .$ 
+Then 
+\[
+\phi(s) \leq C s^\alpha, \quad s \in (0,r].
+\]
+Here $\alpha =\frac{\log \theta}{\log \rho}$ (so if $\theta <1 \Rightarrow \alpha >0$ ), and $C=r^{-\alpha }\phi (r)$.  
+\end{lemma}
+\begin{proof}
+    By iterating this estimate, we get
+\[
+\phi(\rho^k r) \leq \theta^k \phi(r), \quad \text{for any } k \in \mathbb{N}.
+\]
+Now, for any \( s \in (0, r] \), we can write \( s = \rho^k r \), so that
+\[
+k = \frac{\log(s/r)}{\log \rho} = \log_{\rho}(s/r).
+\]
+Then,
+$$ \phi(s)=\phi\left(\rho^k r\right) \leq \theta^k \phi(r)=\phi(r) \cdot\left(\theta^{\log _{1 / \rho}(r / s)}\right)=\phi(r) \cdot\left(\left(\theta^{1 / \log (1 / \rho)}\right)^{\log (r / s)}\right) $$
+Define 
+\begin{equation}
+    \alpha := \frac{\log \theta}{\log \rho} ,
+\end{equation}
+then 
+$$ \theta ^k=(\rho ^k)^{\alpha }=(\frac{s}{r} )^{\alpha }.$$
+Thus,
+\[
+\phi(s) \leq \theta^{\log_{\rho}(s/r)} \phi(r) = \phi(r) \left( \frac{s}{r} \right)^{\alpha} = C s^\alpha.
+\]
+\end{proof}
+
+Go back to the book, Page 21, we know 
+$$ r_0^{2-n}E(u,B_{r_0})=E(u_{r_0},B_1) \leq \epsilon _0^2 .$$
+From \eqref{small}, we have 
+$$  E(u_{\theta _0 r_0},B_1) \leq \frac{1}{2} E(u_{r_0},B_1) \leq \frac{1}{2} \epsilon _0^2. $$
+Using \eqref{small} again, 
+$$  E(u_{\theta _0^2 r_0},B_1) \leq \frac{1}{4} E(u_{ r_0},B_1) \leq \frac{1}{4} \epsilon _0^2. $$
+Repeat this process, we have
+$$  E(u_{\theta _0^k r_0},B_1) \leq \left(\frac{1}{2}\right)^k E(u_{ r_0},B_1) . $$
+Letting $\rho =\theta _0, \theta =\frac{1}{2} $ in the above lemma, we get 
+$$ E(u_r,B_1) \leq Cr^{\alpha }. $$ 
+
+
+
+
+
+
+
+\section{Lin-Wang, Harmonic and quasi-harmonic spheres, Part I}
+
+\np \textbf{(Density of measure)}
+
+\np
+Why  
+$$ \frac{d}{dr}(r^{-m}\nu(B_R))=0  \quad \Rightarrow \nu(B_R)=0 \,?$$
+From small regularity property, we have 
+$$  $$
+
+
+
+
+\np (\textbf{The singular set $\Sigma $  is closed and locally finite})
+Suppose $\Sigma $ has infinite many points, then 
+$$ \liminf_{\epsilon \to 0} \int_{M}^{}|\nabla u_{\epsilon }|^2 \geq \sum_{}^{} \epsilon _0^2=\infty .$$ 
+
+\np (\textbf{Similar deriviation of the Pohozaev identity})
+$$ -\lap v +\frac{1}{c^2} f(v)=0, \quad \text{in } \rr^2. $$
+Multiplying it with $\phi _n(x) x \cdot  Dv$ and integrate them over $\rr^2$, 
+$$ \int_{\rr^2}^{} \lap v \phi _n x Dv +\frac{1}{c^2} D F(v)\phi _n x Dv dx =0. $$
+That is 
+$$ \int_{\rr^2}- v_{ii}^{\alpha }v_{k}^{\alpha }x^k\phi_n+\frac{1}{c^2} F_{\alpha } v_{k}^{\alpha }x^k\phi _n dx =0.$$
+Since 
+$$ \int_{\rr^2}^{} F_{\alpha } v_{k}^{\alpha }x^k\phi _n dx=\int_{\rr^2}^{} (F(v))_kx^k\phi _n dx=-\int_{\rr^2} F(v) x^kD_k \phi _n dx -2 \int_{\rr^2}^{}F(v)\phi _n $$
+
+$$ \begin{aligned}
+   -\int_{\rr^2} v_{ii}^{\alpha }v_{k}^{\alpha }x^k \phi_n=& \int_{B_{2n}} v_{i}^{\alpha }v_{ki}^{\alpha } x^k\phi_n+\int_{B_{2n}-B_{n}} v_{i}^{\alpha }v_{k}^{\alpha }x^k D_{i}\phi_n+\int_{\rr^2}^{} (v_{i}^{\alpha })^2 \phi _n\\
+    \leq &\frac{1}{2}\int_{B_{2n}}( v_{i}^{\alpha }v_{i}^{\alpha })_k x^k \phi_n +C \int_{B_{2n}-B_{n}} e(v) +\int_{\rr^2}^{} (v_{i}^{\alpha })^2 \phi _n\\
+    \leq & C \int_{B_{2n}\setminus B_{n}} e(v)
+\end{aligned} $$
+Thus,
+$$ \begin{aligned}
+  \frac{2}{c^2}\int_{\rr^2}^{}F(v)\phi _n =&- \frac{2}{c^2}\int_{B_{2n}\setminus{B_n}} F(v) x^kD_k \phi _n dx+
+  \int_{B_{2n}} v_{i}^{\alpha }v_{ki}^{\alpha } x^k\phi_n+\int_{B_{2n}-B_{n}} v_{i}^{\alpha }v_{k}^{\alpha }x^k D_{i}\phi_n+\int_{\rr^2}^{} (v_{i}^{\alpha })^2 \phi _n\\
+   \leq & \frac{2 \epsilon }{c^2}\int_{B_{2n}\setminus{B_n}} F(v) x^kD_k \phi _n dx  +C_2 \int_{B_{2n}\setminus B_{n}} e(v).
+\end{aligned}  $$
+Note that $e(v)$ in the paper includes $F(v)$ term!     
+
+\np (\textbf{On H\"older spaces})
+Recall the H\"older norm:
+\begin{equation}
+     \|u\|_{C^{k, \gamma}(\bar{U})}:=\sum_{|\alpha| \leq k}\left\|D^\alpha u\right\|_{C(\bar{U})}+\sum_{|\alpha|=k}\left[D^\alpha u\right]_{C^{0, \gamma}(\bar{U})}.
+\end{equation}
+There is a domain $\Omega $ such that $C^1(\bar{\Omega })\not \subset C^{\alpha }(\bar{\Omega })$, see Gilbarg-Trudinger's book, P53. However,  the mean value inequality 
+$$|f(x)-f(y)|\leq \max |Df| |x-y|$$
+ holds for \textbf{convex} domain.
+
+ First, one has the following compactness fact:
+\begin{proposition}[cf. Corllary 11.38 of Giaquinta-Martinazzi's book]
+    The immersion $C^{r,\alpha }(\bar{\Omega }) \to C^{r}(\bar{\Omega })$, for $\alpha \in (0,1], r \in \nn$ is compact.   
+\end{proposition}
+More generally:
+\begin{lemma}[cf. P136 of Gilbarg-Trudinger's book]
+     Let $\Omega$ be a $C^{k, x}$ domain in $\mathbb{R}^n$ (with $k \geqslant 1$ ) and let $S$ be a bounded set in $C^{k, \alpha}(\bar{\Omega})$. Then $S$ is precompact in $C^{j, \beta}(\bar{\Omega})$ if $j+\beta<k+\alpha$.
+\end{lemma}
+
+\np P404, $u_{\epsilon } \to u_*$ in $C^1(B_1 \setminus \Sigma ) \cap H^1(B_1 \setminus \Sigma )$:  
+By iteration \ref{ite}, we see that $\{u_{\epsilon }\}$    has a uniform $C^{\alpha }$ semi-norm bound, which implies the equicontinuity. We need the uniform bound of $\{\sup |u_{\epsilon }|\}$ to apply Arzelà-Ascoli theorem (or the Lemma above), which is promised by the assumption that $N$ is compact! 
+
+
+
+
+\section{f-harmonic maps}
+
+\begin{definition}[$f$-Laplacian, $\ricci_f$]
+    $$ \lap_f(u):=\lap u -\la \nabla u,\nabla f \ra  ,$$
+    $$ \ricci_f := \ricci +\hess f. $$
+\end{definition}
+
+\begin{proposition}[Bochner formula]
+ \begin{equation}
+   \frac{1}{2} \lap_f |\nabla u|^2=|\hess u|^2+\la \nabla u, \nabla \lap_f u\ra+\ricci_f(\nabla u,\nabla u). 
+ \end{equation}
+\end{proposition}
+Indeed, 
+$$ \begin{aligned}
+   \frac{1}{2} \lap_f |\nabla u|^2=& \frac{1}{2}\lap |\nabla u|^2-\hess u (\nabla u,\nabla f)\\
+   \la \nabla u,\nabla \lap_f u \ra=& \la \nabla u,\nabla \lap u \ra -\hess u(\nabla u,\nabla f)-\hess f(\nabla u,\nabla u).
+\end{aligned}  $$
+For the first inequality, recall 
+$$ \hess u (X,Y)= \la \nabla _X \nabla u,  Y \ra.  $$
+The second equality follows from 
+$$ \begin{aligned}
+    \la \nabla u,\nabla \la \nabla u,\nabla f \ra  \ra=&\nabla u \cdot \la \nabla u,\nabla f \ra  \\
+    =& \nabla u \cdot \nabla u \cdot f= \nabla u \cdot \nabla f \cdot u
+\end{aligned}  $$
+and 
+$$ \begin{aligned}
+   \hess u(\nabla u,\nabla f)+\hess f(\nabla u,\nabla u)=& \nabla u \cdot \nabla f \cdot u-(\nabla _{\nabla u}\nabla f) u+\nabla u \cdot \nabla   u \cdot f -(\nabla _{\nabla u}\nabla u) f\\
+   =&\nabla u \cdot \nabla f \cdot u+\nabla u \cdot \nabla   u \cdot f -(\nabla _{\nabla u}\nabla f) u-(\nabla _{\nabla u}\nabla u) f \\
+   =& 2 \la \nabla u,\nabla \la \nabla u,\nabla f \ra  \ra- \nabla u \cdot \la \nabla u,\nabla f \ra.
+\end{aligned}  $$
+
+
+\section{f-pseudoharmonic maps}
+
+\begin{equation}
+    E_{b,f}(u)=\frac{1}{2}\int_{M}|d_b u|^2 e^{-f} dv_{\theta }
+\end{equation}
+
+\np (\textbf{The first variation formula.})
+
+Let $u_t:M \to N$ be a family maps from pseudohermitian manifold $(M, H, \theta ) $ to Riemannian manifold $N$.
+Then 
+$$ \begin{aligned}
+    \frac{d}{dt} E_{b,f}(u_t)=& \int_{M} \la \nabla _{\frac{\partial }{\partial t}} d u_t(e_i),du_t(e_i)  \ra e^{-f} dv_{\theta }\\
+    =& \int_{M}^{} \la \nabla _{e_i} \frac{\partial u_t}{\partial t},du_t(e_i)  \ra e^{-f} dv_{\theta }\\
+    =& \int_{M}^{} e_i \la V,e^{-f}du(e_i)  \ra -\la V, \nabla _{e_i} (e^{-f}du(e_i))  \ra
+    dv_{\theta }\\
+    =& \int_{M}  e_i \la V,e^{-f}du(e_i)  \ra dv_{\theta }
+    +\int_{M} \la V,  e_i(f) du(e_i) -\nabla _{e_i} du(e_i)\ra e^{-f} 
+    dv_{\theta }.
+\end{aligned}  $$   
+Set 1-form $\eta (X):=\la V,e^{-f}du(X)  \ra$, then  
+$$\begin{aligned}
+    \delta (\eta )=&-\sum_{A=1}^{2m+1} (\nabla _{e_A} \eta) (e_A)\\
+    =& -e_A \la V, e^{-f}du(e_A)  \ra +\la V, e^{-f} du(\nabla _{e_A}e_A)  \ra .
+\end{aligned}   $$
+It follows that 
+$$ \begin{aligned}
+    \frac{d}{dt} E_{b,f}(u_t)=& -\int_{M} \delta (\eta )+T\la V , e^{-f}du(T) \ra -\la V , e^{-f} du(\nabla _{T}T) \ra dv_{\theta }\\
+    &-\int_{M} \la V, \tau _b (u) \ra e^{-f} dv_{\theta }+\int_{M} \la V, du(\nabla _b f) \ra e^{-f}dv_\theta \\
+    =& - \int_{M}\la V, \tau _b (u) -du(\nabla _b f)\ra e^{-f}dv_\theta .
+\end{aligned}  $$
+Thus $u$ is $f$-pseudoharmonic iff 
+\begin{equation}
+    \tau _b (u) -du(\nabla _b f)=0,
+\end{equation} 
+or, locally,
+\begin{equation}
+    u_{ii }^{\alpha  }-f_i u_{i }^{\alpha }=0, \quad \forall \alpha .
+\end{equation}
+
+\np (\textbf{Bochner formula}) 
+
+Note that $|d_b u|^2= \sum_{i,\alpha }^{} (u_{i}^{\alpha })^2$ 
+$$ \begin{aligned}
+    &\lap_b |d_b u|^2-\la d |d_b u|^2, d_b f \ra\\
+   =& \lap_b |d_b u|^2-2u_{ij}^{\alpha }u_{i}^{\alpha }f_j\\
+\end{aligned}  $$
+
+
+\section*{ }
+\newpage
+~~
+\bibliographystyle{alpha}
+\bibliography{reference}
+\end{document}
