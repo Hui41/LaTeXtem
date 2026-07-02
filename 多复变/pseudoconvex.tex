@@ -1,0 +1,751 @@
+\chapter{拟凸域}
+
+\section{拟凸域}
+\begin{definition}
+    设 $\Omega \subset \cc^n$ 区域, $\rho \in C(\Omega ,\rr)$. 若 $\forall c \in \rr$, 有 $\{z \in \Omega :\rho (z)<c\} \subset \subset \Omega $, 则称 $\rho $ 为 $\Omega $ 上一个穷竭函数. 
+    若 $\Omega $ 上存在一个 $\psh$ 穷竭函数, 则称 $\Omega $ 为一个\textbf{拟凸域(pseudoconvex domain)}.        
+\end{definition}
+
+\begin{example}
+    设 $\Omega \subset \cc$ 为区域, 则 $\Omega $ 为拟凸域. 因为 
+    $$ -\log \delta _{\Omega } \in \psh (\Omega ), \quad \delta _{\Omega }:=d(x,\partial \Omega ). $$
+    所以 $\rho (z):=\max\{|z|^2,-\log \delta _{\Omega }\}$ 为 $\Omega $ 上一个 $\psh$  穷竭函数(cf. 例 \ref{ex2.2}).    
+\end{example}
+
+\begin{example}
+    设 $\Omega \subset \cc^n$ 凸, 则 $\Omega $ 拟凸.  
+
+    \noindent\textbf{解}: $\Omega $ 凸 $\Rightarrow =\delta _{\Omega }$ 为 $\Omega $ 上凸函数. 
+    于是 $-\delta _{\Omega } \in \psh(\Omega )$ $$\Rightarrow -\log \delta _{\Omega }=-\log(-(-\delta _{\Omega })) \in \psh(\Omega ).$$ (因为 $-\log(-x)$ 在 $(-\infty ,0)$ 上凸增. )      
+    只需取 $\rho (z)=\max\{|z|^2,-\log \delta _{\Omega }(z)\}$. 
+\end{example}
+
+\begin{example}
+    设 $u \in C(\cc^n)\cap \psh(\cc^n)$. 设 $c \in \rr, \Omega _c:=\{u<c\}$, 则 $\Omega _c$ 拟凸.
+    
+    \noindent 解: $\rho (z):=\max \{|z|^2,-\log(c-u(z))\}$ 为 $\Omega_c $ 上一个 $\psh$ 函数.   
+\end{example}
+
+\noindent\textbf{性质} 
+\begin{enumerate}[(1)]
+    \item $\Omega _1,\Omega _2 \subset \cc^n$拟凸 $\Rightarrow \Omega _1 \cap \Omega _2$ 拟凸.  
+    \begin{proof}
+        设 $\rho _1, \rho _2$ 为 $\Omega _1,\Omega _2$ 的 $\psh$  穷竭函数, 则 $\rho :=\max \{\rho _1,\rho _2\}$ 为 $\Omega _1 \cap \Omega _2$ 的 $\psh$ 穷竭函数.   
+    \end{proof}
+    \item $\Omega _1 \subset \cc^n, \Omega _2 \subset \cc^m$ 拟凸 $\Rightarrow \Omega _1 \times \Omega _2 \subset \cc^{n+m}$ 拟凸.  特别地, 有限个平面区域的拓扑乘积为拟凸. 
+    \begin{proof}
+        设 $\rho _j$ 为 $\Omega _j$ 上的 $\psh$ 穷竭函数 ($j=1,2$). 令 $\rho (z',z''):=\rho_1 (z')+\rho_2 (z'')$ 即可. \textcolor{purple}{(不妨设 $\rho _1, \rho _2 \geq 0$.)}    
+    \end{proof}
+    \item 拟凸性为双全纯不变量.
+    \begin{proof}
+        设 $F: \Omega _1 \to \Omega _2$ 双全纯, $\rho _2$ 为 $\Omega _2$ 上的 $\psh$ 穷竭函数. 只要取 $\rho _1:=F^{*} \rho _2$.    
+    \end{proof}
+\end{enumerate}
+
+\begin{proposition}
+     $\Omega \subset \cc^n$ 拟凸 $\iff $  存在一个 $C^{\infty }$ 的 $\spsh$ 穷竭函数. 
+\end{proposition}
+\begin{proof}
+    取 $\rho $ 为 $\Omega $ 上 $\psh$ 穷竭函数. 
+    令 $\Omega _j=\{\rho <j\}$, 则 
+    $$ \Omega _0 \subset \Omega _1 \subset \cdots , \quad \Omega =\cup _{j=0}^{\infty } \Omega _j. $$    
+    取 $\overline{\Omega} _j$ 上 $C^{\infty }$ $\spsh$ 函数 $v_j$, s.t. 
+    $$ \rho <v_j<\rho +1, \quad \text{于 }~ \overline{\Omega} _j .$$  
+    将 $v_j$ 延拓为 $\Omega $ 上的 $C^{\infty } $ 函数. 
+    取 $\rr$ 上 $C^{\infty }$   函数 $\sigma $, s.t. 
+    $$ \sigma |_{(- \infty ,0]} =0, \quad \sigma ,\sigma ', \sigma '' >0 ~~ \text{于} ~~ (0,+\infty ).$$   
+    则有 
+    \begin{enumerate}
+        \item $\sigma (v_j+1-j)>0$ 于 $\overline{\Omega }_j \setminus \Omega_{j-1}$. ($v_j+1-j>\rho +1-j \geq 0$).
+        \item $\sigma (v_j+1-j)$ 在  $\overline{\Omega }_j \setminus \Omega_{j-1}$ 上 $C^{\infty } \spsh$.
+        \item $\sigma (v_j+1-j)=0$ 于 $\overline{\Omega} _{j-2}$. ($v_j+1-j < \rho +2-j \leq 0$).   
+    \end{enumerate}
+   归纳地, 可构造 $c_1,\dots,c_k>0$, s.t. 
+   $$ u_k:=v_0+\sum_{j=1}^{k} c_j \sigma (v_j+1-j) >\rho , \quad \text{于 }~ \overline{\Omega} _k $$ 
+   且在 $\overline{\Omega} _k$ 上  $C^{\infty } \spsh$.   
+
+   对 $\forall m \in \zz^{+}$, 当 $k,l \geq m+2$ 时, 
+   $$ \sigma (v_k+1-k)=0,\, \sigma (v_l+1-l)=0 \quad \text{于 } ~ \overline{\Omega }_m .$$  
+   $\Rightarrow u_k=u_l$ 于 $\overline{\Omega }_m$, $\forall k,l \geq m+2$.\\
+   $\Rightarrow u=\lim_{k \to \infty }u_k$ 存在, 且 $u=u_{m+1}$ 于 $\overline{\Omega }_m$.\\
+    $\Rightarrow u$ 为所求穷竭函数. 
+\end{proof}
+
+\begin{theorem}[Oka]\label{thm3.1}
+    $\Omega $ 拟凸 $\iff $ $-\log \delta _{\Omega } \in \psh(\Omega )$.   
+\end{theorem}
+\begin{remark}
+    \textcolor{blue}{``多复变是一门取对数的艺术!''}
+\end{remark}
+\begin{remark}
+    $\Omega $ 凸 $\Rightarrow -\delta _{\Omega }$ 在 $\Omega $ 上为凸函数. 反之是否成立?   
+\end{remark}
+
+\begin{definition}
+    设 $\Omega \subsetneq \cc^n$ 为一个区域, $a \in \Omega , \xi \in \cc^n \setminus \{0\}.$ 定义 
+    $$ \delta _{\xi }(a):= \sup \{r>0: a+\xi \cdot \Delta (0,r) \subset \Omega \} $$  
+    为 $a$ 沿 $\xi $  方向到 $\partial \Omega $ 的距离. 
+\end{definition}
+\begin{remark}
+    令 
+    $$ L:z=a+t \xi  ,$$
+    则  $\delta _{\xi }(a)=\delta _{\Omega \cap L}(a)$ \textcolor{purple}{(假定 $|\xi |=1$ ?)}. 
+    显然, $\delta _{\Omega }(a)=\inf_{\left| \xi  \right| =1} \delta _{\xi }(a)$.  
+\end{remark}
+
+\begin{lemma}[Oka]
+   若 $\Omega $ 拟凸, 则 $-\log \delta _{\xi } \in \psh (\Omega ), \forall \xi \in \cc^{n} \setminus \{0\}$.  
+\end{lemma}
+
+\begin{proof}[定理 \ref{thm3.1}]
+    $``\Leftarrow ''$: $\rho (z):=\max \{\left| z \right| ^2,-\log \delta _{\Omega }(z)\} $ 为 $\Omega $ 上 $\psh$ 穷竭函数.
+    
+    $``\Rightarrow'' $: $-\log \delta _{\Omega }=\sup_{\left| \xi  \right| =1} (-\log \delta _{\xi })$, 所以 $-\log \delta _{\Omega } \in \psh(\Omega )$.   
+\end{proof}
+
+\begin{proof}[Oka 引理]
+    (1) $\delta _{\xi }$ 为下半连续 ($\Rightarrow -\log \delta _{\xi }$ 为上半连续): 
+    首先, $$a+\xi \cdot  \Delta (0,\delta _{\xi }(a)) \subset \Omega .$$  
+    设 $\epsilon >0, a_j \to a$. 
+    则 当 $j>>1$ 时, 
+    $$ a_j+\xi \cdot \Delta (0,\delta _{\xi }(a)-\epsilon ) \subset \Omega ~ \Rightarrow \delta _{\xi }(a_j) \geq \delta _{\xi }(a)-\epsilon .$$  
+
+    (2) (验证肥皂泡原理) 设 $\Delta _r:=a+b \cdot \Delta (0,r) \subset \subset \Omega $. 
+    只要证: $\forall f \in \mathcal{O} \cap C(\overline{\Delta} _r)$, 若 
+    $$ -\log \delta _{\xi }(a+tb) \leq \Re f (t), \quad |t|=r, $$  
+    则上面不等式对 $|t|<r$ 也成立. 
+    不妨设 $|\xi |=1$. 考虑全纯曲线簇: 
+    $$ F(t,\lambda ):=a+tb+\lambda  e^{-f(t)} \cdot  \xi , \quad t,\lambda \in \cc .$$ 
+    那么 
+    $$ F(t,\lambda ) \in \Omega \iff \left| \lambda e^{-f(t)} \right| <\delta _{\xi }(a+tb)  $$
+    $$\iff \log |\lambda |-\log \delta _{\xi }(a+tb)<\Re f(t). \quad (*) $$
+    所以 
+    $$ F \left(  \overline{\Delta (0,r)} \times \{0\} \right) \subset \Omega, \quad F \left( \partial \Delta (0,r) \times \Delta  \right) \subset \Omega .$$
+    目标: $F \left( \overline{\Delta (0,r)} \times \Delta  \right) \subset \Omega $.(再在 $(*)$ 中令 $\lambda \to \partial \Delta $ 即可). 
+    令 
+    $$ R:=\sup \big\{s>0: F \left( \overline{\Delta (0,r) }\times \overline{\Delta (0,s)} \right)\subset \Omega \big\} ,$$
+    只需证 $R \geq 1$:  若不然, 假设 $R<1$. 取 $\Omega $ 上 $\psh$ 穷竭函数 $\rho $. 因为 $K:=F \left( \partial \Delta (0,r) \times \overline{\Delta (0,R)}   \right) \subset \Omega$ 为紧集, 所以 
+    $$ c:=\max_{K} \rho <\infty . $$   
+    令 $\Omega _c:=\{\rho <c\} (\subset \subset \Omega )$. 因为 
+    $$ \rho \circ F \in \psh \big( \Delta (0,r) \times \Delta (0,R) \big),$$   
+    由最大模原理\textcolor{purple}{(固定 $\lambda $ , $\rho |_{F(\cdot ,\lambda )}$)}, 
+    $$ \rho \circ F \leq c \quad \text{于}~  \overline{\Delta (0,r)} \times \overline{\Delta (0,R)} .$$
+    于是 $F \left( \overline{\Delta (0,r)} \times \overline{\Delta (0,R)} \right) \subset \overline{\Omega}_c \subset \subset \Omega \Rightarrow \exists 0<\epsilon <<1$, s.t. $$F \left( \overline{\Delta (0,r)} \times \overline{\Delta (0,R+\epsilon )} \right) \subset \Omega,$$
+     与 $R$ 的最大性矛盾.   
+\end{proof}
+
+\begin{corollary}
+    (1) 若 $\Omega _j \nearrow \Omega $, 且 $\Omega _j$ 拟凸. 则 $\Omega $ 拟凸. 
+    
+    (2) 设 $\Omega _{\alpha } \subset \cc^n$ 拟凸. 则 $\Omega :=\left( \cap _{\alpha } \Omega _{\alpha } \right)^{\circ }$ 拟凸.  
+\end{corollary}
+\begin{proof}
+    (1) 因为 $\Omega _j \nearrow \Omega $, 所以  $\delta _{\Omega _j} \nearrow \delta _{\Omega }\Rightarrow -\log \delta _{\Omega _j} \searrow -\log \delta _{\Omega } \Rightarrow -\log \delta _{\Omega } \in \psh (\Omega )$. 由 Oka 定理知 $\Omega $ 拟凸.  
+
+    (2) $-\log \delta _{\Omega }=\sup_{\alpha } (-\log \delta _{\Omega _{\alpha }}) \in \psh(\Omega )$. 
+\end{proof}
+
+\begin{example}[Hartogs域]
+    令 $\Omega =\{(z',z_n) \in D \times \cc: |z_n|<e^{-\varphi(z')}\}$, 其中 $D \subset \cc^{n-1}$ 为区域, $\varphi \in \usc (D)$. 则 $\Omega $ 拟凸 $\iff $ $D$ 拟凸 且 $\varphi \in \psh(D)$.       
+\end{example}
+\begin{proof}
+    $``\Rightarrow ''$: 设 $\rho : \Omega $ 上 $\psh$ 穷竭函数.   
+    则 $\rho (z',0):D$  上 $\psh$ 穷竭函数.   
+    由 Oka 引理, 
+    $ \varphi (z') = -\log \delta _{(0',1)} (z',0) \in \psh (D) .$
+
+    $``\Leftarrow ''$: 先设 $\varphi \in C(D)$. 取 
+    $$ \rho (z',z_n):=\max \big\{\rho _0(z'),-\log \left( 
+    -\left( \log |z_n|+\varphi (z') \right) \right)\big\} $$
+    为 $\Omega $ 上 $\psh$ 穷竭, 这里 $\rho _0:D$ 上$\psh$ 穷竭. 
+    一般地, 取 $D_j=\{\delta _D >1/j\} \nearrow D$.
+    令 
+    $$ \varphi _j =\varphi *\chi _{\frac{1}{j}}~ \in C^{\infty }, \psh \text{且 }~ \varphi _j \searrow \varphi . $$ 
+    因为 $\Omega _j:=\{z \in D \times \cc: |z_n|<e^{-\varphi _j(z')}\}$ 拟凸, 所以 $\Omega =\cup _j \Omega _j, \Omega _j \nearrow ~ \Rightarrow \Omega $ 拟凸. 
+\end{proof}
+
+
+
+
+\section{Levi 拟凸性}
+
+\begin{definition}
+    设 $\Omega \subset \cc^n$ 区域. 若 $\forall a \in \partial \Omega $, 存在邻域 $U \ni a$ 以及 $\rho \in C^{k}(U,\rr)$, s.t. 
+    $$ \Omega \cap U =\{z \in U: \rho <0\} ~\text{且}~ \left| d \rho  \right| >0 ~\text{于}~ \partial \Omega \cap U ,$$  
+    则称 $\Omega $ 具有 $C^k$ 边界, 称 $\rho $ 为 $a$ 处的一个 $C^k$-定义函数.        
+\end{definition}
+
+\noindent\textbf{性质 1}
+设 $\rho _1,\rho _2$ 为 $a$ 处的两个 $C^k$-定义函数, 则 $\rho _1=h \rho _2$ 于充分小的邻域, 其中 $h \in C^{k-1}$ 且 $h>0$. 
+\begin{proof}
+    令 $h=\rho _1/ \rho _2$, 则 $h \in C^k (U \setminus \partial \Omega )$ 且 $h>0$. 
+    只需考虑 $U \cap \partial \Omega $ 的情形.
+    不妨设 
+    $$a=0, \quad \frac{\partial \rho _2}{\partial x_{2n}}(0) \neq 0.$$    
+    作\textcolor{purple}{(坐标变换)} 
+    $$ \Phi := \begin{cases}
+        y_j=x_j &\text{} j<2n\\
+        y_{2n}=\rho _2(x) &\text{} j=2n\\
+    \end{cases}  $$ 
+    因为 $\rho _1$ 也为定义函数, 所以 
+    $$ \frac{\partial \rho _1}{\partial y_{2n}}(0) \neq 0, \quad \rho_1 (y',y_{2n}) = \int_{0}^{y_{2n}} \frac{\partial \rho _1(y',s)}{\partial s}ds.$$
+    于是
+    $$ \begin{aligned}
+         h(y',y_{2n})=& \frac{\rho _1 (y',y_{2n})}{y_{2n}} = \frac{1}{y_{2n}}\int_{0}^{y_{2n}} \frac{\partial \rho _1(y',s)}{\partial s}ds \\
+       (y_{2n}t=s)~=& \int_{0}^{1} \frac{\partial \rho _1}{\partial s} \bigg|_{s=t y_{2n}}dt ~ \to  \frac{\partial \rho _1}{\partial y_{2n}}(y',0) \neq 0 \quad (y_{2n}\to 0)
+       .
+    \end{aligned}  $$
+    ~~
+\end{proof}
+
+\noindent\textbf{性质 2} 
+设 $\Omega \subset \subset  \cc^n$ 具有 $C^k$ 边界, 则 存在整体$C^k$-定义函数.  
+\begin{proof}
+    取 $\partial \Omega $ 的有限开覆盖 $\{U_j\}_{j}^{m}$, 定义函数为 $\rho _j$. 取 $\{\chi _j\}$ 为从属于 $\{U_j\}$ 的单位分解. 取 $U \supset \partial \Omega $, s.t. 
+    $$ \sum \chi _j =1 \quad \text{于}~ U.$$   
+    令 $\rho :=\sum \chi _j \rho _j$. 
+    则 
+    $$ \Omega \cap U=\{z \in U: \rho (z)<0\} .$$
+    另一方面, $\forall a \in \partial \Omega $, 存在 $j_0$, s.t. $\rho _{j_0}$ 在 $a$ 处的方向导数大于零, 而对其余 $U_j \ni a$, $\rho _j$ 在 $a$ 处方向导数 $\geq 0$.
+    所以有 
+    $$ d \rho (a)=\sum \chi _j (a) \rho _j (a) \neq 0. $$
+    即 $\rho $ 为定义函数.            
+\end{proof}
+
+\begin{proposition}
+    设 $\Omega \subset \cc^n=\rr^{2n}, a \in \partial \Omega $, $\rho $为 $a$ 处 $C^2$ 定义函数. 则 $\Omega $ 在 $a$ 处 凸 $\iff $ 
+    $$ \sum_{j=1}^{2n} \frac{\partial^2 \rho  }{\partial x_j \partial x_k} \xi _j \xi _k \geq 0, \quad \forall \xi =(\xi _1,\dots,\xi _{2n}) \in T_{a}(\Omega ).$$
+    这里  
+    $$T_a (\Omega ):=\big\{\xi \in \rr^{2n}: \sum_{j=1}^{2n}\frac{\partial \rho }{\partial x_j}(a)\xi _j=0\big\}$$
+    为 $\Omega $ 在 $a$ 处的切平面.        
+\end{proposition}
+\begin{proof}
+    由于凸性关于仿射变化保持不变, 所以不妨设 $a=0$ 且 $$\frac{\partial \rho }{\partial x_j}(0)=0, \forall j <2n, \quad \frac{\partial \rho }{\partial x_{2n}}(0)=-1.$$  
+    此时, $T_{0}(\Omega )=\{x:x_{2n}=0\}$.
+    因为 $\frac{\partial \rho }{\partial x_{2n}}(0)\neq 0$, 由隐函数定理, 局部地从 $\rho =0$ 可以解出 
+    $$ x_{2n}=\sigma (x'), \sigma \in C^2, \quad \text{i.e.}~\rho (x',\sigma (x'))=0. $$  
+    $\Omega $ 在 $0$ 处凸 $\iff $ 过 $x_{2n}$-轴的任一平面与 $\partial \Omega $ 相截为一条在 $0$ 处下凸的曲线. 
+    设平面的参数方程为 
+    $$ \begin{cases}
+        x_j=\xi _j t &\text{} t \in \rr, j<2n\\
+        x_{2n}=x_{2n} &\text{} \\
+    \end{cases}  $$      
+    此时截得曲线的方程为 
+    $$ x_{2n}=\sigma (\xi _1 t, \cdots ,\xi _{2n-1}t). $$
+    $\Rightarrow \Omega $ 在 $0$ 处凸 $\iff $
+    $$ \sigma ''_t(0)=\sum_{j,k=1}^{2n-1} \frac{\partial^2 \sigma  }{\partial x_j \partial x_k}(0) \xi _j \xi_k \geq 0, \forall \xi ' \in \rr^{2n-1}. $$
+    即对任意 $\xi =(\xi ',0) \in T_0(\Omega )$, 有 
+        $$ \sum_{j,k=1}^{2n} \frac{\partial^2 \sigma  }{\partial x_j \partial x_k}(0) \xi _j \xi_k \geq 0. $$
+    对 $\rho (x',\sigma (x'))=0$ 沿 $x_j$ 求导 ($j<2n$) 得 
+    $$ \frac{\partial \rho }{\partial x_j}(0)=\frac{\partial \sigma  }{\partial x_j}(0). $$  
+    再对 $x_k$ 求导得 
+    $$ \frac{\partial^2 \rho }{\partial x_j \partial x_k}(0)=\frac{\partial^2 \sigma  }{\partial x_j \partial x_k}(0), \quad \forall j,k <2n. $$ 
+    ~~
+\end{proof}
+
+\begin{definition}
+    设 $\Omega \subset \cc^n$ 为一区域, $\rho $ 为 $a \in \partial \Omega $ 处一个 $C^2$ 定义函数. 称 
+    $$ T_{a}^{h}(\Omega ):=\big\{\xi \in \cc^n:\sum_{j=1}^{n}\frac{\partial \rho }{\partial z_j}(a) \xi _j=0 \big\}$$
+    为 $\Omega $ 在 $a$ 处的全纯切平面.     
+\end{definition}
+\begin{definition}
+    若 $\xi \in T_{a}^{h}(\Omega )$ 有 
+    $$ \mathcal{L}\rho (a;\xi )=\sum_{j,k}^{n} \frac{\partial^2 \rho  }{\partial z_j \partial \bar{z}_k}\big(a\big) \xi _j \bar{\xi} _k \geq 0,$$ 
+    则称 $\Omega $ 在 $a$ 处 \textbf{Levi 拟凸}.  
+    若 $\mathcal{L}\rho (a;\xi )>0, \forall \xi \neq 0 \in T_{a}^{h}(\Omega )$, 
+    则称 $\Omega $ 在 $a$ 处 Levi 强拟凸. 
+\end{definition}
+
+\begin{remark}
+    当 $n \geq 2$ 时, $T_{a}^{h}(\Omega )$ 非平凡;  当 $n =1 $ 时, $T_{a}^{h}(\Omega )$ 为一个点.
+\end{remark}
+
+\begin{proposition}
+    Levi 拟凸 (强拟凸) 不依赖于全纯坐标的选取, 也不依赖于定义函数的选取.
+\end{proposition}
+\begin{proof}
+设 \(w=F(z)\) 为一全纯坐标变换，\(\rho\) 为定义函数。由链式法则，
+\[
+\frac{\partial \rho}{\partial z_j}
+=
+\sum_{\alpha}
+\frac{\partial \rho}{\partial w_\alpha}
+\frac{\partial w_\alpha}{\partial z_j}.
+\]
+因此
+\[
+\sum_j \frac{\partial \rho}{\partial z_j}\xi_j
+=
+\sum_\alpha
+\frac{\partial \rho}{\partial w_\alpha}
+\left(
+\sum_j
+\frac{\partial w_\alpha}{\partial z_j}\xi_j
+\right).
+\]
+进一步，由于 \(F\) 是全纯的，
+\[
+\frac{\partial^2\rho}
+     {\partial z_j\,\partial\overline{z_k}}
+=
+\sum_{\alpha,\beta}
+\frac{\partial^2\rho}
+     {\partial w_\alpha\,\partial\overline{w_\beta}}
+\frac{\partial w_\alpha}{\partial z_j}
+\overline{
+\frac{\partial w_\beta}{\partial z_k}
+}.
+\]
+从而
+\[
+\sum_{j,k}
+\frac{\partial^2\rho}
+     {\partial z_j\,\partial\overline{z_k}}
+\xi_j\overline{\xi_k}
+=
+\sum_{\alpha,\beta}
+\frac{\partial^2\rho}
+     {\partial w_\alpha\,\partial\overline{w_\beta}}
+\left(
+\sum_j \xi_j\frac{\partial w_\alpha}{\partial z_j}
+\right)
+\overline{
+\left(
+\sum_k \xi_k\frac{\partial w_\beta}{\partial z_k}
+\right)
+}.
+\]
+
+设 \(\tilde{\rho }\) 为另一定义函数，则
+\[
+\widetilde{\rho}=h\rho,
+\qquad h>0,\quad h\in C^1.
+\]
+于是
+\[
+\frac{\partial\widetilde{\rho}}{\partial z_j}
+=
+\frac{\partial h}{\partial z_j}\rho
++
+h\frac{\partial\rho}{\partial z_j}.
+\]
+因此，在边界点 \(a\in\partial\Omega\) 处，
+\[
+\frac{\partial\widetilde{\rho}}{\partial z_j}(a)
+=
+h(a)\frac{\partial\rho}{\partial z_j}(a).
+\]
+故 \(\rho\) 与 \(\widetilde{\rho}\) 所定义的复切空间
+\[
+T_a^{\,h}(\Omega)
+\]
+相同。
+事实上，若 \(\xi\in T_a^{\,h}(\partial\Omega)\)，则
+\[
+\sum_k
+\frac{\partial\rho}{\partial\overline{z_k}}(a)
+\overline{\xi_k}
+=
+\overline{
+\sum_k
+\frac{\partial\rho}{\partial z_k}(a)\xi_k
+}
+=0.
+\]
+
+首先设 \(h\in C^2\)。由乘积法则，
+\[
+\frac{\partial^2\widetilde{\rho}}
+     {\partial z_j\,\partial\overline{z_k}}
+=
+\frac{\partial^2h}
+     {\partial z_j\,\partial\overline{z_k}}\rho
++
+\frac{\partial h}{\partial z_j}
+\frac{\partial\rho}{\partial\overline{z_k}}
++
+\frac{\partial h}{\partial\overline{z_k}}
+\frac{\partial\rho}{\partial z_j}
++
+h\frac{\partial^2\rho}
+       {\partial z_j\,\partial\overline{z_k}}. \quad
+(*)
+\]
+于是
+\[  
+\mathcal{L} \widetilde{\rho}(a;\xi)
+=
+h(a)\mathcal{L}\rho(a;\xi),
+\qquad
+\forall\,\xi\in T_a^{\,h}(\Omega).
+\]
+
+对于一般的 \(h\in C^1\)，令
+\[
+\psi_j
+=
+\frac{\partial h}{\partial z_j}\rho.
+\]
+则
+\[
+\psi_j
+=
+\frac{\partial\widetilde{\rho}}{\partial z_j}
+-
+h\frac{\partial\rho}{\partial z_j}
+\in C^1.
+\]
+因此
+\[
+\frac{\partial\psi_j}{\partial\overline{z_k}}
+=
+\frac{\partial^2\widetilde{\rho}}
+     {\partial z_j\,\partial\overline{z_k}}
+-
+\frac{\partial h}{\partial\overline{z_k}}
+\frac{\partial\rho}{\partial z_j}
+-
+h\frac{\partial^2\rho}
+       {\partial z_j\,\partial\overline{z_k}}.
+\]
+令
+\[
+\widetilde{z}_k
+=
+(a_1,\ldots,a_{k-1},z_k,a_{k+1},\ldots,a_n).
+\]
+由于 \(\rho(a)=0\)，故 \(\psi_j(a)=0\)，从而
+\[
+\begin{aligned}
+\frac{\partial\psi_j}{\partial\overline{z_k}}(a)
+&=
+\lim_{z_k\to a_k}
+\frac{\psi_j(\widetilde{z}_k)-\psi_j(a)}
+     {\overline{\tilde{z}_k}-\overline{a}}  \\
+&=
+\lim_{z_k\to a_k}
+\frac{
+\dfrac{\partial h}{\partial z_j}(\widetilde{z}_k)
+\,\rho(\widetilde{z}_k)
+}{
+\overline{\tilde{z}_k}-\overline{a}
+} \\
+&=
+\frac{\partial h}{\partial z_j}(a)
+\frac{\partial\rho}{\partial\overline{z_k}}(a).
+\end{aligned}
+\]
+因此，公式 \((*)\) 在 \(a\) 处仍然成立。
+\end{proof}
+
+\begin{theorem}\label{thm3.2}
+    设 $\Omega \subset \subset \cc^n$, 且 $\partial \Omega \in C^2$. 那么 $\Omega $ 拟凸 $\iff $ $\Omega $ 为Levi 拟凸.     
+\end{theorem}
+
+\begin{lemma}\label{lem3.2}
+    设 $\Omega \subset \subset \cc^n$, 且 $\partial \Omega \in C^2$. 
+    定义 
+    $$ \delta (z):= \begin{cases}
+        -d(z,\partial \Omega ) &\text{} \forall z \in \Omega ^c \\
+       d(z, \partial \Omega )  &\text{} \forall z \in \Omega \\
+    \end{cases}  $$
+    则 $\delta $ 在 $\partial \Omega $  的某邻域内是 $C^2$  的. 
+\end{lemma}
+
+\begin{proof}[定理 \ref{thm3.2}]
+$``\Rightarrow ''$:     
+令
+\[
+\rho=-\delta.
+\]
+由引理 4, \(\rho\) 是 \(\Omega\) 的定义函数，并且
+\[
+|d\rho|=1.
+\]
+当 \(z\) 充分接近 \(\partial\Omega\) 时，由 Oka 引理可知
+\[
+\mathcal{L}(-\log(-\rho))(z;\xi)\geq 0.
+\]
+事实上，
+\begin{align*}
+\mathcal{L}(-\log(-\rho))(z;\xi)
+&=
+\sum_{j,k}
+\frac{\partial^2(-\log(-\rho))}
+     {\partial z_j\,\partial\overline{z_k}}
+\xi_j\overline{\xi_k} \\
+&=
+\sum_{j,k}
+\left(
+-\frac{\rho_{j\overline{k}}}{\rho}
++
+\frac{\rho_j\rho_{\overline{k}}}{\rho^2}
+\right)
+\xi_j\overline{\xi_k} \\
+&=
+-\frac{\mathcal{L}(\rho )(z;\xi)}{\rho}
++
+\frac{
+\left|
+\displaystyle\sum_j
+\frac{\partial\rho}{\partial z_j}(z)\xi_j
+\right|^2
+}{\rho^2}
+\geq 0.
+\end{align*}
+当
+\(
+\sum_j
+\frac{\partial\rho}{\partial z_j}(z)\xi_j=0
+\)
+时，由于 \(\rho<0\)，可得
+\[
+\mathcal{L}(\rho )(z;\xi)\geq 0.
+\]
+令 \(z\to a\in\partial\Omega\)，即得 \(\Omega\) 在 \(a\) 处是
+Levi 拟凸的。
+
+``\(\Leftarrow\)'':
+假设 \(\Omega\) 非拟凸。则由 Oka 定理，
+\(
+-\log\delta
+\)
+在 \(\partial\Omega\) 的任意邻域内都非 $\psh$。
+因此，存在充分接近 \(\partial\Omega\) 的点 \(a\)，以及
+\(0\neq \xi\in\mathbb{C}^n\)，使得
+\[
+C
+:=
+\left.
+\frac{\partial^2}{\partial t\,\partial\overline{t}}
+\log\delta(a+t\xi)
+\right|_{t=0}
+>0.
+\]
+考虑 \(\log\delta(a+t\xi)\) 关于 \(t\) 的 Taylor 展开：
+\[
+\log\delta(a+t\xi)
+=
+\log\delta(a)
++
+\Re\!\left(At+Bt^2\right)
++
+C|t|^2
++
+o(|t|^2).
+\]
+取 \(a_0\in\partial\Omega\)，使得
+\[
+\delta(a)=|a-a_0|.
+\]
+构造全纯曲线
+\[
+h(t)
+:=
+a+t\xi
++
+e^{At+Bt^2}(a_0-a).
+\]
+于是
+\(
+h(0)=a_0.
+\)
+且
+\begin{align*}
+\delta(h(t))
+&\geq
+\delta(a+t\xi)
+-
+\left|e^{At+Bt^2}\right|\delta(a) \\
+&=
+\delta(a)\left|e^{At+Bt^2}\right|
+\left(
+e^{C|t|^2+o(|t|^2)}-1
+\right) \\
+&\geq
+\frac{C}{2}|t|^2,
+\qquad \text{若 } |t| \leq \epsilon  \ll 1.
+\end{align*}
+因此, \(\delta(h(t))\) 在 \(t=0\) 处达到严格局部极小值，从而
+\[
+0
+=
+\left.
+\frac{\partial \delta(h(t))}{\partial t}
+\right|_{t=0}
+=
+\sum_j
+\frac{\partial \delta}{\partial z_j}(a_0)\,
+h_j'(0),
+\]
+以及
+\[
+0<
+\left.
+\frac{\partial^2 \delta(h(t))}
+{\partial t\,\partial\overline{t}}
+\right|_{t=0}
+=
+\sum_{j,k}
+\frac{\partial^2\delta}
+{\partial z_j\,\partial\overline{z_k}}(a_0)
+h_j'(0)\overline{h_k'(0)}.
+\]
+所以，\(-\delta\) 为一个定义函数。
+因此，与 Levi 拟凸性矛盾。
+\end{proof}
+
+\begin{proof}[引理 \ref{lem3.2}]
+    设 $x \in \partial \Omega $ 处的法向 $\nabla \rho (x)=\left( \frac{\partial \rho }{\partial x_1}(x),\cdots ,\frac{\partial \rho }{\partial x_{2n}}(x) \right)$. 作映射 
+    $$ \begin{aligned}
+        F:\partial \Omega  \times \rr &\to \rr^{2n}\\
+        (x,t) &\mapsto x+t \nabla \rho (x).\\
+    \end{aligned}  $$
+   因为 $\left| \nabla \rho  \right| \neq 0$ 于 $\partial \Omega $, (由隐函数定理)存在 $\epsilon _0 \ll 1$, s.t. 
+   $$ F: \partial \Omega \times (-\epsilon _0,\epsilon _0) \to U_{\epsilon _0}=  F (\partial \Omega \times (-\epsilon _0,\epsilon _0)) $$   
+    为 $C^1$ 微分同胚.  
+    
+    记 $\pi $ 为相应的法向投影, 其为 $C^1$ 映射.  
+    对于 $y \not \in \partial \Omega $, 则 $\delta (y)=\pm \left| y-\pi (y) \right| $ $\Rightarrow \delta \in C^1(U_{\epsilon _{0}} \setminus \partial \Omega )$.   
+    对于 $y \in U_{\epsilon _0} \setminus \partial \Omega $, 
+    $$ \begin{aligned}
+         \frac{\partial \delta (y)}{\partial y_j} =& \frac{1}{\delta (y)} \sum_{k} \left( (y_k-\pi _k(y)) \frac{\partial }{\partial y_j}(y_k-\pi _k(y)) \right)\\
+        =& \frac{1}{\delta (y)} \left[ (y_j-\pi _j(y))-\sum_{k}^{}(y_k-\pi _k(y)) \frac{\partial \pi _k(y)}{\partial y_j} \right].\\
+    \end{aligned} $$ 
+因为 $\rho (\pi (y))=0$, 两边作用 $\frac{\partial }{\partial y_j}$: 
+$$ \sum_{k}^{} \frac{\partial \rho }{\partial x_k}(\pi (y)) \frac{\partial \pi _k (y)}{\partial y_j}=0.$$ 
+因为 $y-\pi (y)=t \nabla \rho (\pi (y))$, 所以 
+$$ \frac{\partial \delta (y)}{\partial y_j} = \frac{y_j-\pi _j(y)}{\delta (y)} \quad \text{且}~ \left| \nabla \delta  \right| =1.$$  
+所以 
+\[ \nabla \delta (y)=-\frac{\nabla \rho (\pi (y))}{\left| \nabla \rho (\pi (y)) \right| } \in C^1 (U_{\epsilon _0}) \quad \Rightarrow \delta \in C^2 .\]
+\end{proof}
+
+
+
+\section{强拟凸域}
+
+\begin{lemma}\label{lem3.3}
+    设 $\Omega $ 在 $a \in \partial \Omega $ 处强拟凸, $\rho $ 为 $a$ 处一个定义函数. 
+    则存在 $U \ni a$ 以及 $A_0>0$, s.t. 
+    $$ \tilde{\rho }:=\rho +A \rho ^2 \in \spsh (U), \quad \forall A \geq A_0. $$  
+    特别地, $\Omega $ 在 $\partial \Omega \cap U$ 的每一点均强拟凸.      
+\end{lemma}
+\begin{proof}
+    首先,  
+    $$ \mathcal{L}\tilde{\rho }(a;\xi )=\sum_{j,k} \frac{\partial^2 \tilde{\rho }}{\partial z_j \partial \bar{z}_k}(a) \xi _j \bar{\xi }_k=\mathcal{L} \rho (a;\xi )+2A \big|\sum_{j}^{}\frac{\partial \rho }{\partial z_j}\xi _j\big|^2 .$$
+    只需在 $\left| \xi  \right| =1$ 时验证 $\mathcal{L}\tilde{\rho }(a;\xi )>0$.
+    
+    (1) 若 $\sum_{j}^{}\frac{\partial \rho }{\partial z_j}\xi _j=0$, 则 $\mathcal{L}\tilde{\rho} (a;\xi )>0$ 对 $A=1$ 成立. 由连续性, 存在 $V_{\xi } \ni \xi $, s.t. $V_{\xi } \subset \mathbb{S}^n:=\{|\xi |=1\}$ 以及 $\mathcal{L}\tilde{\rho }(a;\xi )>0, \forall \xi \in V_{\xi }$.   
+    
+    (2) 若 $\sum_{j}^{}\frac{\partial \rho }{\partial z_j}\xi _j \neq  0$, 则存在 $A_{\xi }>1$, s.t. $\forall A \geq A_{\xi }$ 有 $\mathcal{L}\tilde{\rho }(a;\xi )>0$. 
+    于是
+    $$ \exists V_{\xi } \ni \xi, V_{\xi } \subset \mathbb{S}^n ,~ s.t.~ \mathcal{L}\tilde{\rho }(a;\xi )>0, \forall \xi \in V_{\xi }. $$   
+    由Heine-Borel定理, 存在 $\mathbb{S}^n$ 的有限开覆盖 $\{V_{\xi _j}\}_{j=1}^{m}$. 令 $A_0:=\max_{1 \leq j \leq m} A_{\xi _j}$, 则 $\forall A \geq A_0$, $\mathcal{L}\tilde{\rho }(a;\xi )>0, \forall \xi \in \mathbb{S}^n$. 由连续性, 存在 $U \ni a$, s.t. $\tilde{\rho } \in \spsh(U)$.        
+\end{proof}
+
+\begin{proposition}
+    设 $\Omega  \subset \subset \cc^n$ 为Levi强拟凸. 
+    则 在$\overline{\Omega} $ 的某邻域上存在 $\spsh$ 函数 其同时为 $\Omega $ 的定义函数.  
+\end{proposition}
+\begin{proof}
+    由引理以及Heine-Borel定理, 存在领域 $U \ni \partial \Omega , \exists A >>1$, s.t. 
+    $$ \tilde{\rho }:=\rho +A^2 \rho ^2 \in \spsh(U) $$
+    且其为 $\Omega $ 的定义函数.  
+    存在 $\epsilon >0$, s.t. 
+    $$ \{z \in \Omega : \tilde{\rho }>-\epsilon \} \subset \Omega \cap U. $$  
+    取 $\rr$ 上 $C^{\infty } $ 凸增 函数 $\lambda $ s.t. 
+    $$ \lambda |_{(-\infty ,-\epsilon ]} =-\frac{3 \epsilon }{4},\quad \lambda (t)=t, t \geq -\frac{\epsilon}{2}. $$  
+    定义 
+    $$ \hat{\rho }:= \begin{cases}
+        \lambda \circ \tilde{\rho } &\text{若}~ \tilde{\rho } \geq -\epsilon \\
+        - \frac{3 \epsilon }{4} &\text{若} ~ \Omega \setminus \{\tilde{\rho }>-\epsilon \}\\
+    \end{cases}  $$
+    于是 $\hat{\rho }\in C^2 \cap \sh(\Omega )$. 取 $\chi \in C_{0}^{\infty }(\Omega )$ s.t. $\chi \equiv 1$ 于 $\Omega \setminus \{\tilde{\rho }>-\frac{\epsilon }{2}\}$. 
+    最后, 只要取 
+    \[ \hat{\hat{\rho }}:=\hat{\rho }+\eta \chi |z|^2, \quad \text{其中}~ \eta <<1 .\]    
+\end{proof}
+
+
+\begin{proposition}[Narasimhan 引理]
+    设 $\Omega $ 在 $a$ 处强Levi拟凸. 则在适当的全纯坐标下, $\Omega $ 在 $a$ 处强凸.    
+\end{proposition}
+\begin{proof}
+    由 引理 \ref{lem3.3}, 可取 $a$ 处一个 $\spsh$ 定义函数 $\rho $. 通过一个复仿射变换后, 不妨设 $a=0$, 且 $\frac{\partial \rho }{\partial z_j}(0)=0, \forall j<n$ 且 $\frac{\partial \rho }{\partial z_n}(0)=1$.
+    
+    考虑 \(\rho\) 在 \(0\) 处的 Taylor 展开：
+\begin{align*}
+\rho(z)
+={}&
+\rho(0)
++2\Re\sum_j
+\frac{\partial\rho}{\partial z_j}(0)z_j
++\Re\sum_{j,k}
+\frac{\partial^2\rho}{\partial z_j\partial z_k}(0)z_jz_k 
++\sum_{j,k}
+\frac{\partial^2\rho}
+{\partial z_j\partial\overline{z_k}}(0)
+z_j\overline{z_k}
++o(|z|^2) \\
+={}&
+2\Re\left\{
+z_n+\frac12\sum_{j,k}
+\frac{\partial^2\rho}
+{\partial z_j\partial z_k}(0)z_jz_k
+\right\} 
++\sum_{j,k}
+\frac{\partial^2\rho}
+{\partial z_j\partial\overline{z_k}}(0)
+z_j\overline{z_k}
++o(|z|^2).
+\end{align*}
+作坐标变换
+\[
+\begin{cases}
+w_j=z_j, & j<n, \\[4pt]
+\displaystyle
+w_n=z_n+\frac12\sum_{j,k}
+\frac{\partial^2\rho}
+{\partial z_j\partial z_k}(0)z_jz_k.
+\end{cases}
+\]
+于是
+\[
+\rho(w)
+=
+2\Re w_n
++
+\sum_{j,k}
+\frac{\partial^2\rho}
+{\partial z_j\partial\overline{z_k}}(0)
+w_j\overline{w_k}
++
+o(|w|^2).
+\]
+记 \(x\) 为 \(w\) 的实坐标，
+\[
+w_j=x_j+i x_{j+n}.
+\]
+考虑 Taylor 展开
+\[
+\rho(x)
+=
+2x_n
++
+\frac12\sum_{\alpha,\beta}
+\frac{\partial^2\rho}
+{\partial x_\alpha\partial x_\beta}(0)
+x_\alpha x_\beta
++
+o(|x|^2).
+\]
+比较二次项即得。
+\end{proof}
+
+\noindent \textbf{问题 1}: $\Omega $ 在 $a$ 处Levi拟凸, 是否在适当的全纯坐标下,   $\Omega $ 在 $a$ 处凸? 
+
+\noindent \textbf{问题 2}: $\Omega \subset \subset \cc^n$ Levi拟凸, 是否存在 $\psh$ 定义函数? 
+
+两个问题均存在反例! (C.Fefferman, 1974, Inv. Math).
+
+
+      

@@ -1,0 +1,888 @@
+\chapter{多次调和函数}
+\section{上半连续函数}
+
+\begin{definition}
+    $\Omega \subset \rr^n$ 区域. 称函数 $u:\Omega \to [-\infty ,\infty )$ 为上半连续的, 若对 $\forall c \in \rr$, 有 $\{u<c\} \subset \Omega $ 为开集($\iff \limsup_{z \to a}u(z)=u(a), \forall a \in \Omega $ ).  
+    记 $\usc(\Omega )$ 为 $\Omega $ 上的上半连续函数的全体(upper semi-continuous).     
+\end{definition}
+\begin{remark}
+    \textcolor{purple}{若按微积分中的上极限定义, 趋于 $a$ 的点列不含 $a$ 本身, 则上述定义中的 $\limsup_{z \to a}u(z) = u(a)$ 应改为 $\limsup_{z \to a}u(z)\leq u(a)$; 若趋于$a$的点列可以包含 $a$, 则自然有 $\limsup_{z \to a}u(z)\geq u(a)$; 上半连续也等价于: 对任意的 $x \in \Omega, f(x)\neq -\infty  $以及 任意的 $\epsilon >0$, 存在邻域 $U \ni x$ s.t. $f(y)<f(x)+\epsilon, \forall y \in U$.    }
+\end{remark}
+\textbf{基本性质}:
+\begin{enumerate}[(1)]
+    \item $u \in \usc(\Omega )$ $\Rightarrow $ 对任意的紧集 $K \subset \Omega $, $u$ 在 $K$ 上可取到最大值;
+    \item (\textbf{Dini}): $\{u_{j}\} \subset \usc(\Omega ), u_{j} \searrow 0$ $\Rightarrow $ 对任意的紧集 $K \subset \Omega $ 有 $u_{j} \rightrightarrows 0$ 于 $K$;
+    \item $u \in \usc(\Omega )$ 且有上界 $\Rightarrow \exists u_{j} \in C(\Omega )$ s.t. $u_{j} \searrow u$.             
+\end{enumerate}
+\begin{proof}
+    (1): 令 $U_{j}:=\{u <j\}$, 则 $U_j \nearrow$,  且为开集, 且 $\cup _{j}U_j \supset K$,
+    于是 $\exists j_0$ s.t. $K \subset U_{j_0}$. $\Rightarrow S:=\sup_K u \leq j_0<\infty $, 取 $\{x_j\} \subset K, u(x_j) \to S$ $\Rightarrow \exists $ 子列 $x_{j_k} \to x_0 \in K$.
+    则 $S=\lim u(x_{j_k}) \leq u(x_0)$ (上半连续性) $\leq S$, 所以 $u(x_0)=S$.   
+    
+    (2): $\forall \epsilon >0$, 取 $U_j:=\{u_j <\epsilon \}$, 则 $U_j$ 为开集 且 $U_j \nearrow$. 因为 $u_j \searrow 0,$ 所以 $K \subset \cup _j U_j$. 于是存在 $j_0$ s.t. $K \subset U_{j} \forall j \geq j_0$, 即$0 \leq u_j(x) <\epsilon, \forall x \in K, \forall j \geq j_0 $. 
+    
+    (3): 令 $u_j:=\sup_{y \in \Omega } \{u(y)-j |x-y|\}$. \\
+    $u_j \in C(\Omega )$:  设 $x,y \in \Omega .$ 则$ \forall z \in \Omega $ 有 
+    $$ \begin{aligned}
+       & u(z)-j|x-z| \leq u(z)-j |y-z|+j |x-y| \\
+       \Rightarrow \quad & u_{j}(x) \leq u_j (y)+j |x-y| \\
+       \Rightarrow \quad & u_{j}(y) \leq u_j (x)+j |x-y| \\
+       \Rightarrow \quad& | u_j(x)-u_j(y) | \leq j|x-y|.
+    \end{aligned}  $$
+  另外, $u_j \searrow $ 且 $u_j(x) \geq u(x)$. 设 $u \leq M$, $u(x) \neq -\infty $. 则 $\forall \epsilon >0, \exists \delta >0$, s.t. 
+  $$ u(y)<u(x)+\epsilon , \quad \forall y \in B_{\delta }(x). $$     
+  当 $|x-y| \geq \delta $时, 
+  $$ u(y)-j|x-y| \leq M-j \delta  < u(x), \quad (j \geq j_0(x,\epsilon )>>1) $$
+  $$ \Rightarrow \quad u(x) \leq u_j(x) \leq u(x)+\epsilon  $$
+   $$ \Rightarrow \quad u_j (x) \to u(x).$$
+若 $u(x)=-\infty $. 则 $\forall N>0, \exists \delta >0$, s.t. 
+$$ u(y)<-N, \quad \forall y \in B_{\delta }(x). $$  
+当 $|x-y| \geq \delta $ 时, 
+$$ u(y)-j|x-y| \leq M -j \delta  \leq -N, \quad (j \geq j_0>>1) $$
+$$\Rightarrow \quad u_j(x ) \leq -N  \quad \Rightarrow \quad u_j(x) \to -\infty =u(x).$$
+~~
+\end{proof}
+
+\begin{definition}
+    设函数 $u:\Omega \to [-\infty ,+\infty )$, 局部有\textcolor{purple}{(上)}界. 称 $u^{*}(x):=\limsup _{y \to x}u(y)$ 为 $u$ 的上半连续化.   
+\end{definition}
+(4)(\textbf{续}) $u \in \usc(\Omega ) \iff u=u^{*}$. 
+\begin{proof}
+    $\Rightarrow $: 设 $u(x) \neq -\infty $, $\forall \epsilon >0, \exists \delta >0$, s.t. $u(y) <u(x)+\epsilon , \forall y \in B_{\delta }(x)$. $\Rightarrow u^*(x) \leq u(x)+\epsilon $.  由 $\epsilon $ 的任意性知, $u^*(x) \leq u(x)$. 又 $u^*(x) \geq u(x) \Rightarrow u^*(x)=u(x)$.
+    
+    $\Leftarrow $: 只需证 $u^*$ 为上半连续. 
+    设 $u^*(x) \neq -\infty $ (\textcolor{red}{$-\infty $ 的情况作为练习}).   
+    $\forall \epsilon >0, \exists \delta >0,$ s.t. 
+    $$ u(y)<u^*(x)+\frac{\epsilon }{2}, \quad \forall y \in B_{\delta  }(x) .$$ 
+    设 $z:|z-x|< \frac{\delta }{2}$, 取 $y \in B_{\delta }(x)$ s.t. 
+    $$ u^*(z) < u(y)+\frac{\epsilon }{2} < u^*(x)+\epsilon  $$
+    $\Rightarrow $ $u^*$ 在 $x$ 处USC.     
+\end{proof}
+
+
+
+
+\section{次调和函数}
+
+\paragraph{A. 调和函数}
+\begin{definition}
+    设 $\Omega \subset \cc$ 为区域, $u \in C(\Omega , \rr)$, 若 $a \in \Omega $ 以及 $\Delta (a,r) \subset \subset \Omega $: 
+    $$ u(a)=\frac{1}{2 \pi } \int_{0}^{2 \pi } u(a+r e^{i \theta }) d \theta \quad (\text{均值性质}) ,$$    
+    则 $u$ 为 $\Omega $ 上的调和函数, 其全体记为 $H(\Omega )$.   
+\end{definition}
+
+\noindent\textbf{基本性质}:
+\begin{enumerate}
+  \item 最大值原理：
+  \(
+    u \in H(\Omega) \text{ 不能在内部取最大值}.
+  \);
+  \item
+  \(
+    u \in H(\Omega)
+    \Longleftrightarrow
+    u \in C^{\infty }(\Omega) \text{ 且 } \,\Delta u = 0;
+  \)
+  \item Dirichlet 问题：
+  设
+  \(
+    f \in C(\partial \Delta(a,r), \mathbb{R}),
+  \)
+  则
+  \[
+    u(z)
+    :=
+    \frac{1}{2\pi}
+    \int_0^{2\pi}
+    f(a+re^{i\theta})
+    \frac{r^2 - |z-a|^2}{|re^{i\theta}-(z-a)|^2}
+    \, d\theta , \quad (\text{Poisson 积分})
+  \]
+满足
+  \(
+    u \in H(\Delta(a,r)) \cap C(\overline{\Delta(a,r)}),
+    \,
+    u|_{\partial \Delta(a,r)} = f 
+  \);
+  \item
+  \(
+    u \in H(\Omega)
+    \Longleftrightarrow
+    u \text{ 局部表示为一个全纯函数的实部}
+  \)
+   ($\Rightarrow  u$ 为实解析); 
+  \item Harnack 定理：
+  若
+  \(
+    u_j \in H(\Omega)
+  \)
+  且
+  \(
+    u_j \to  u (\text{内闭匀敛}),
+  \)
+  则
+  \(
+    u \in H(\Omega).
+  \)
+\end{enumerate}
+
+\paragraph{B. 次调和函数}
+
+\begin{definition}
+设 \(\Omega \subset \mathbb{C}\) 为区域， \(u \in \operatorname{USC}(\Omega)\)。
+若对任意 \(a \in \Omega\) 以及任意
+\[
+  \Delta(a,r) \subset \subset  \Omega,
+\]
+有
+\[
+  u(a)
+  \leq
+  \frac{1}{2\pi}
+  \int_0^{2\pi}
+  u(a+re^{i\theta})\, d\theta \quad (\text{次均值性}),
+\]
+则称 \(u\) 在 \(\Omega\) 上次调和，记为
+\(
+  u \in \sh(\Omega).
+\)
+\end{definition}
+
+\begin{example}
+若 \(u \in H(\Omega)\)，则
+\(
+  |u|^\alpha \in \sh(\Omega),
+  \forall \alpha \geq 1.
+\)
+\end{example}
+\begin{proof}
+    $$ \begin{aligned}
+        \left|u(a)\right|
+\leq &
+\frac{1}{2\pi}
+\left|
+\int_0^{2\pi} u(a+re^{i\theta})\, d\theta
+\right|\\
+  \leq &
+\frac{1}{2\pi}
+\left(
+\int_0^{2\pi}
+\left|u(a+re^{i\theta})\right|^\alpha
+\, d\theta
+\right)^{1/\alpha}
+\cdot
+(2\pi)^{1-1/\alpha}.     
+    \end{aligned}  $$
+    ~~
+\end{proof}
+
+\subsubsection{基本性质}
+\begin{enumerate}[(1)]
+  \item $u_1,u_2 \in \sh(\Omega ), \alpha _1,\alpha _2 \geq 0$ $\Rightarrow \alpha _1 u_1+\alpha _2 u_2 \in \sh(\Omega )$ (\textcolor{red}{锥});
+  \item   $u_1,u_2 \in \sh(\Omega )$ $\Rightarrow \max\{u_1,u_2\} \in \sh(\Omega )$;
+  \item $\mathcal{F} \subset \sh(\Omega )$, 若 $v:=\sup_{u \in \mathcal{F}}u$ 局部有上界 $\Rightarrow v^{*} \in \sh(\Omega )$. 
+\end{enumerate}
+\begin{proof}
+  (3): 设 $\Delta (a,r) \subset \subset \Omega $: 
+  $$ u(a) \leq  \frac{1}{2 \pi } \int_{0}^{2 \pi } u(a+r e^{i \theta }) d \theta \leq \frac{1}{2 \pi } \int_{0}^{2 \pi } v^{*}(a+r e^{i \theta }) d \theta ,$$ 
+  于是
+  $$  \quad v(a )\leq \frac{1}{2 \pi } \int_{0}^{2 \pi } v^{*}(a+r e^{i \theta }) d \theta .$$
+  取 $a_j \to a$, s.t. $v(a_j) \to v^*(a)$, 则 
+  $$ \begin{aligned}
+    v^*(a)=\lim v(a_j) \leq & \limsup _{j \to \infty } \frac{1}{2 \pi } \int_{0}^{2 \pi } v^{*}(a_j+r e^{i \theta }) d \theta \\
+    \textcolor{red}{(\text{Fatou:利用} c-v^* \geq 0)} \leq &  \frac{1}{2 \pi } \int_{0}^{2 \pi } \limsup _{j \to \infty } v^{*}(a_j+r e^{i \theta }) d \theta \\
+    =& \frac{1}{2 \pi } \int_{0}^{2 \pi } v^{*}(a+r e^{i \theta }) d \theta.
+  \end{aligned}  $$  
+  ~~
+\end{proof}
+
+\begin{example}\label{ex2.2}
+  设 $\Omega \subsetneq \cc$ 为一区域, 令 $\delta (z):=d(z, \partial \Omega )$. 则 $-\log \delta  \in \sh (\Omega )$.
+  
+  \textbf{解}: $$\delta (z)=\inf_{w \in \partial \Omega }|z-w| \Rightarrow -\log \delta (z)=\sup_{w \in \partial \Omega }\log \frac{1}{|z-w|}.$$
+  因为对每个 $w \in \partial \Omega , \log \frac{1}{|z-w|} \in H(\Omega )$, 且 $-\log \delta \in C(\Omega )$, 所以由基本性质(3) 得   $-\log \delta  \in \sh (\Omega )$.
+\end{example}
+\begin{remark}
+  $\Omega $ 凸 $\Rightarrow -\delta $ 凸函数(\textcolor{red}{反之是否成立?}).    
+\end{remark}
+\begin{remark}
+  $\log |f| \in H(\Omega )$: 
+  $$ \log|f|=\frac{1}{2}\underbrace{\log f}_{\text{全纯}} + \frac{1}{2}\underbrace{\overline{\log f}}_{\text{反全纯}} ,$$
+  而 $\Delta =4 \partial \bar \partial $. 
+\end{remark}
+
+
+\noindent (4)
+$\{u_j\} \subset \sh (\Omega )$ 且 $u_j \searrow u, \Rightarrow u \in \sh(\Omega )$.
+  \begin{proof}
+    $u \in \usc:$
+    $$ \begin{aligned}
+     & \limsup _{z \to a} u(z) \leq \limsup _{z \to a} u_j(z )=u_j(a) \to u(a)\\
+     & \Rightarrow \quad \limsup _{z \to a} u(z)=u(a) .
+    \end{aligned}  $$ 
+    设 $\Delta (a,r) \subset \subset \Omega $, 则 
+    $$ u_j(a) \leq \frac{1}{2 \pi }\int_{0}^{2 \pi } u_j(a+r e^{i \theta }) d \theta  .$$ 
+    令 $j \to \infty $, 由 Levi定理以及 $u_j$ \textcolor{purple}{(上)}有界得 
+    $$ u(a) \leq \frac{1}{2 \pi }\int_{0}^{2 \pi } u(a+r e^{i \theta }) d \theta  .$$ 
+    ~~
+  \end{proof}
+
+\noindent (5) $\lambda$ 为 $\rr$ 上的凸增函数, $u \in \sh(\Omega ) \Rightarrow \lambda \circ u \in \sh(\Omega )$.  
+\begin{proof}
+  因为 $\lambda $ 连续, 所以 $\lambda \circ u \in \usc(\Omega )$.   因为 $\lambda $ 凸, 所以 $\forall (x_0,\lambda (x_0))$, 存在直线 $y=\lambda (x_0)+k(x-x_0)$, s.t. 曲线 $y=\lambda (x)$位于直线上方. 
+  $$ \Rightarrow \lambda (x) \geq \lambda (x_0)+k(x-x_0) .$$
+  设 $\Delta (a,r) \subset \subset \Omega $. 取 $x=u(a+r e^{i \theta })$ 代入上式, 再积分: 
+  $$ \frac{1}{2 \pi }\int_{0}^{2 \pi } \lambda \circ u(a+r e^{i \theta }) d \theta  \geq \lambda (x_0)+ k \big\{\frac{1}{2 \pi } \int_{0}^{2 \pi } u(a+r e^{i \theta }) d \theta -x_0 \big\} .$$      
+  取 $x_0= \frac{1}{2 \pi } \int_{0}^{2 \pi } u(a+r e^{i \theta }) d \theta $ $(\geq u(a))$, 
+  $$ \Rightarrow \quad  \frac{1}{2 \pi }\int_{0}^{2 \pi } \lambda \circ u(a+r e^{i \theta }) d \theta \geq \lambda \circ u(a).$$ 
+  ~~
+\end{proof}
+
+
+\begin{definition}
+  设 $u \in \usc(\Omega )$, 若 $\forall a \in \Omega $, 存在邻域 $U_a \ni a$, s.t. $u \in \sh(U_a)$, 则称 $u$ 为局部次调和的, 记全体为 $\sh_{loc}(\Omega )$.      
+\end{definition}
+
+\noindent (6)
+若 $u \in \sh_{loc}(\Omega )$, 在 $\Omega $ 内部达到最大值, 则 $u$ 为常数. ($\Rightarrow $ 最大模原理: $|f|^2=(\Re f)^2+(\Im f)^2 \in \sh, (f \in \mathcal{O})$ .)   
+\begin{proof}
+  设 $a \in \Omega $, s.t. $u(a)=\max_{\Omega }u$.
+  取 $r_a >0$, s.t. $u\in \sh(\Delta (a,r_a))$.
+  下证 $u|_{\partial \Delta (a,r)}=u(a), \forall a<r<r_a$:   
+  若 存在 $\theta _0$ s.t. 
+  $$ u(a+re^{i \theta _0})<u(a) ,$$ 
+  由 $\usc$ 性, $\exists \epsilon _0 <<1$ s.t. 
+  $$ \frac{1}{2 \pi } \int_{\theta _0 -\epsilon }^{\theta_0 +\epsilon } u(a+re^{i \theta })d \theta  < \frac{2 \epsilon u(a)}{2 \pi }.$$  
+  于是 
+  $$ \begin{aligned}
+    u(a) \leq & \frac{1}{2 \pi }\left[  \int_{\theta _0 -\epsilon }^{\theta_0 +\epsilon } + \int_{[0,2 \pi ] \setminus [\theta _0-\epsilon ,\theta _0+\epsilon ]} \right] \cdot u(a+r e^{i \theta }) d \theta \\
+    < & \frac{1}{2 \pi }\big( 2 \epsilon u(a)+ (2 \pi -2 \epsilon )u(a)\big)\\
+    =& u(a),
+  \end{aligned}  $$
+矛盾. 
+
+设 $b \in \Omega $, 取 $\gamma $ 连接 $a,b$. 取 $r<<1, a=a_0 \to a_1 \to \cdots \to a_m=b$, s.t. $a_{j+1} \in \Delta (a_j,r)$ 且 $u \in \sh(\Delta (a_j,r))$. 
+于是 $u(b)=u(a)=\max_{\Omega }u$.       
+\end{proof}
+
+\noindent (7) 肥皂泡原理: 
+设 $u \in \usc(\Omega )$, 则 $u \in \sh(\Omega ) \iff \Delta (a,r) \subset \subset \Omega , \forall h \in H(\Delta (a,r)) \cap C(\overline{\Delta (a,r)})$, 若 $u \leq h$ 于 $\partial \Delta (a,r)$, 则 $u \leq h$ 于 $\Delta (a,r)$.      
+\begin{proof}
+  $\Rightarrow $: $u-h \in \sh (\Delta (a,r))$ 且 $u-h \leq 0$ 于 $\partial \Delta (a,r)$, 所以由 (6) 知 $u-h \leq 0$ 于 $ \Delta (a,r)$;
+  
+  $\Leftarrow $: 因为 $u \in \usc(\Omega )$, 所以存在 $\{u_j\} \subset C(\overline{\Delta (a,r)}), u_j \searrow u$. 
+  记 $P u_j$ 为以 $u_j|_{\partial \Delta (a,r)}$ 为边值得Dirichlet解. 则 $Pu_j|_{\partial \Delta (a,r)}=u_j \geq u$,
+  $$ \begin{aligned}
+    \Rightarrow \quad& u \leq Pu_j \quad \text{于} ~ \Delta (a,r),\\
+     \Rightarrow \quad& u(a) \leq Pu_j(a)=\frac{1}{2 \pi }\int_{0}^{2 \pi } u_j(a+r e^{i \theta }) d \theta .
+  \end{aligned}  $$      
+  令 $j \to \infty $, 利用Levi定理. 
+\end{proof}
+
+\noindent (8) $\sh=\sh_{loc}$.
+\begin{proof}
+  设 $\Delta (a,r) \subset \subset \Omega , h \in H(\Delta (a,r))\cap C(\overline{\Delta (a,r)})$, s.t. $u \leq h $ 于 $\partial \Delta (a,r)$, $u-h \in \sh_{loc} (\Delta (a,r))$.    
+  由 (6) 知 $u-h \leq 0$ 于 $\Delta (a,r)$. 由 (7) $\Rightarrow u \in \sh$.   
+\end{proof}
+ 
+\begin{remark}
+  $u \in \usc(\Omega )$, 则 $u \in \sh(\Omega )$ $\iff \forall f \in \mathcal{O}(\overline{\Delta (a,r)})$, 若 $u \leq \Re f$ 于 $\partial \Delta (a,r)$, 则    $u \leq \Re f$ 于 $\Delta (a,r)$. \textcolor{red}{(练习) }
+\end{remark}
+
+\begin{example}
+  $f \in \mathcal{O}(\Omega ) \Rightarrow \log|f|,|f|^{\alpha } \in \sh(\Omega ), \alpha >0$.
+  
+  \noindent 解: 设 $f \not \equiv 0$, 则 $f^{-1}(0)$ 离散. 则
+  $$ u:=\log|f| \in H(\Omega \setminus f^{-1}(0)) .$$ 
+  取 $u_j:=\max\{u,-j\}$, 则 $u_j \in \sh(\Omega \setminus f^{-1}(0))$, 且 $\{u<-j\}=\{|f|<e^{-j}\}$ 为 $f^{-1}(0)$ 的邻域. 在其上, $u_j=-j$ 为次调和 $\Rightarrow u_j \in \sh(\Omega )$且 $u_j \searrow u \Rightarrow u \in \sh (\Omega )$. 而 $|f|^{\alpha }=e^{\alpha \log|f|}$, 由 (5) $\Rightarrow |f|^{\alpha } \in \sh(\Omega )$.         
+\end{example}
+
+\noindent (9) $u \in H(\Omega ) \iff \pm u \in \sh(\Omega )$.
+\begin{proof}
+  $\Rightarrow $: 显然. 
+  
+  $\Leftarrow $: $\pm u \in \usc(\Omega ) \Rightarrow u \in C(\Omega )$. 
+  任取 $\Delta (a,r) \subset \subset  \Omega $, 令 $h=Pu$  为 $u|_{\partial \Delta (a,r)}$ 的Dirichlet问题解. 则 $\pm u=\pm h$ 于 $\partial \Delta (a,r)$, 由 (7) 知 $\pm u \leq \pm h$ 于 $\Delta (a,r)$, $\Rightarrow u=h$   于 $\Delta (a,r) \Rightarrow u \in H(\Omega )$.
+\end{proof}
+
+\noindent (10) $u \in C^2(\Omega )$. 则 $u \in \sh(\Omega ) \iff \Delta u \geq 0$.  
+\begin{proof}
+  $\Rightarrow $: 设 $a \in \Omega $, 考虑Taylor 展开 
+  $$ \begin{aligned}
+    u(a+r e^{i \theta })=&u(a) + \frac{\partial u}{\partial z}(a) \cdot  r e^{i \theta }+ \frac{\partial u}{ \partial \bar z}(a) \cdot  r e^{-i \theta }\\
+   &+ \frac{1}{2} \frac{\partial^2 u}{\partial z^2}(a) \cdot ( r e^{i \theta })^2+ \frac{1}{2} \frac{\partial^2 u}{\partial \bar z^2}(a) \cdot ( r e^{-i \theta })^2+ \frac{\partial^2 u}{\partial z \partial \bar z}(a) \cdot  r ^2+o(r^2).
+  \end{aligned}  $$
+ 两边作用 $\frac{1}{2 \pi }\int_{0}^{2 \pi }$ 得: 
+$$ \begin{aligned}
+  &\frac{1}{2 \pi }\int_{0}^{2 \pi } u(a+r e^{i \theta }) d \theta = u(a)+\frac{\partial^2 u}{\partial z \partial \bar z}(a) \cdot  r ^2+o(r^2)\\
+  \Rightarrow \quad & \frac{\partial^2 u}{\partial z \partial \bar z}(a) +o(1) \geq 0 \quad \Rightarrow \quad  \frac{\partial^2 u}{\partial z \partial \bar z}(a) \geq 0 .
+\end{aligned}  $$
+
+$\Leftarrow $:  
+首先设 $\Delta u >0$. 
+设 $\Delta (a,r) \subset \subset \Omega ,h \in H(\Delta (a,r)) \cap  C(\overline{\Delta (a,r)})$, s.t. $u \leq h$ 于 $\partial \Delta (a,r)$. 
+令 $v:=u-h$, 则 $v \leq 0$ 于 $\Delta (a,r)$: 若不然, $\exists b \in \Delta (a,r)$, s.t. $v(b)>0$, 则 
+$v$ 在 $\Delta (a,r)$ 中某点达到最大值, 于是 $\Delta  \leq 0$ 于该点, $\Rightarrow \Delta u \leq 0$, 矛盾. 于是由 (7) 知 $u \in \sh(\Omega )$. 
+一般地, 令 
+$$u_j=u+\frac{|z|^2}{j},$$
+则 $\Delta u_j >0 \Rightarrow u_j \in \sh (\Omega ) \Rightarrow u \in \sh (\Omega )$, 因为 $u_j \searrow u$. (cf. (4))   
+\end{proof}
+ 
+\noindent (11) \textbf{Hardy 定理}: 
+设 $u \in \sh (\Delta (0,R)), 0<R \leq + \infty $. 
+则 
+$$ \phi (r):=\frac{1}{2 \pi } \int_{0}^{2 \pi } u(r e^{i \theta }) d \theta  $$
+关于 $\log r \in [-\infty ,\log R)$ 为一个凸增函数 (即 $\phi (e^t)$ 关于 $t$ 凸增).  
+\begin{proof}
+  令 
+  $$ \Phi (z):= \frac{1}{2 \pi } \int_{0}^{2 \pi } u(z e^{i \theta }) d \theta , \quad z \in \cc.$$ 
+  下证 $\Phi \in \sh(\Delta (0,R))$: 
+  由 Fatou 引理知 $\Phi \in \usc$.  
+  设 $\Delta (a,r) \subset \subset \Delta (0,R)$, 则
+  $$ \begin{aligned}
+     &\frac{1}{2 \pi } \int_{0}^{2 \pi } \Phi  (a+ re^{i \theta }) d \theta\\
+    =& \frac{1}{(2 \pi )^2} \int_{0}^{2 \pi } \int_{0}^{2 \pi } u(a e^{i t }+r e^{ i (\theta +t)}) d t d \theta \\
+    (\text{Tonelli: 局部有上界})=& \frac{1}{(2 \pi )^2} \int_{0}^{2 \pi } \int_{0}^{2 \pi } u(a e^{i t }+r e^{ i (\theta +t)})  d \theta  d t\\
+    (\text{周期性})=& \frac{1}{(2 \pi )^2} \int_{0}^{2 \pi } \int_{0}^{2 \pi } u(a e^{i t }+r e^{ i \theta })  d \theta  d t\\
+    (u \in \sh) \geq & \frac{1}{2 \pi } \int_{0}^{2 \pi }  u(a e^{i t })    d t =\Phi (a).
+  \end{aligned}  $$ 
+
+  下证 $\phi (r) \to u(0)\, (r \to 0)$: 注意到 
+  $$ \Phi (z)= \frac{1}{2 \pi }\int_{0}^{2 \pi } u(|z| \cdot e^{i(\theta +\arg z)}) d \theta =\phi (|z|) ,$$
+  由最大模原理, 
+  $$ \Phi (z) \leq \max_{|\xi |=r} \Phi (\xi )=\phi (r), \quad \forall |z|<r .$$
+  若 $r'=|z|<r \Rightarrow \phi (r') \leq \phi (r)$, 即 $\phi (r) \nearrow $.  
+   注意到 
+  $$ \phi (r) \geq \phi (0)=u(0), $$ 
+  又 $\limsup _{r \to 0} \phi (r) \leq \limsup _{z \to 0} \Phi (z)=\Phi (0)=u(0)$. (因为 $\Phi \in \usc$.) 
+
+  最后证明 $\phi (r)$ 关于 $\log r $ 凸: 设 $0<r_1<r_2<R$. 取 $s,t \in \rr$, s.t. 
+  $$ t \log r_j +s =\phi (r_j) .$$    
+  定义 
+  $$ \psi (z):=\Phi (z)-(t \log |z|+s) \in \sh(\Delta _{r_2}\setminus \overline{\Delta _{r_1}}). $$
+  那么 $\psi =0$ 于 $\partial \Delta _{r_1} \cup \partial \Delta _{r_2}$, 由最大模原理, $\psi (z) \leq 0$.   令 $r=|z|$, $ \Rightarrow  \phi (r) \leq t \log r+s$, 即 $\phi (r)$ 关于 $\log r$ 凸.  
+  \textcolor{purple}{(设 $\log r=\lambda \log r_1+(1-\lambda )\log r_2$, 则上式等价于 $\phi (r) \leq \lambda \phi (r_1)+(1-\lambda )\phi (r_2)$.) }
+\end{proof}
+
+\begin{exercise}
+  设 $u \in \sh(\Delta (0,R)), 0<R \leq +\infty $. 
+  那么 $\phi (r):=\max_{|z|=r} u(z)$ 关于 $\log r \in [-\infty , \log R)$ 为一个凸增函数. (\textcolor{purple}{(弱)} Hadamard 三圆定理的推广: $M_j:=\max_{\partial \Delta _{r_j}}, r_1<r_2<r_3 \Rightarrow M_2^{\log \frac{r_3}{r_1}}\leq M_1^{\log \frac{r_3}{r_2}} M_3^{\log \frac{r_2}{r_1}}$.)   
+
+  \noindent \textcolor{purple}{(解: cf. Protter和Weinberger-1999-Maximum principles in differential equations. 推出弱三圆定理: 对 $-\log(a-u) \in \sh$ 运用强三圆定理?) }
+\end{exercise}
+
+\noindent (12) \textbf{Liouville 定理}: 
+ $u \in \sh(\cc), u \leq 0 \Rightarrow u \equiv const$. (\textcolor{red}{可以推出全纯函数的Liouville 定理: 令 $u:=|f|-\max|f| \Rightarrow |f| \equiv const$, 利用开映射定理 $\Rightarrow f \equiv const$. }) 
+\begin{proof}
+  因为 $\phi (r)$ 关于 $\log r$ 凸增, 且 $\phi \leq 0$, 所以 $\phi (r)=\phi (0)=u(0)$. 则
+  $$ \begin{aligned}
+    u(a) \leq & \frac{1}{\pi r^2} \int_{\Delta (a,r)} u\\
+    (u \leq 0) \leq & \frac{1}{\pi r^2} \int_{\Delta (0, r-|a|)} u\\
+    =& \frac{1}{\pi r^2} \int_{0}^{r-|a|} \underbrace{\int_{0}^{2 \pi } u(s e^{i \theta }) d \theta}_{2 \pi  \phi (s)=2 \pi u(0)} s ds\\
+    =& u(0) \frac{(r-|a|)^2}{r^2} \to u(0) \quad (r \to \infty ).
+  \end{aligned}  $$     
+  由 $a$ 的任意性, $u(0) = \max_{\cc}u \Rightarrow u \equiv u(0)$.  
+\end{proof}
+
+\begin{exercise}
+  设$u \in \sh(\Omega )$ 且 $u(z)=o(\log|z|)~ (z \to \infty )$, 则 $u \equiv const$.   
+\end{exercise}
+
+\noindent (13) \textbf{拼接原理}: $\Omega $: 区域, $D \subset \Omega $ 开集, $u \in \sh(\Omega ), v \in \sh(D)$ 且 
+$$ \varlimsup _{D \ni z \to \xi } v(z) \leq u(\xi ), \quad \forall \xi \in \partial D \cap \Omega  .$$   
+则 
+$$ \tilde{u}(z):= \begin{cases}
+  u(z) &\text{} z \in \Omega \setminus D\\
+  \max \{u(z),v(z)\} &\text{} z \in D
+\end{cases}  \quad \in \sh (\Omega ). $$
+\begin{remark}
+  $\sh$ 函数很柔软. 
+\end{remark}
+\begin{proof}
+  首先, $\tilde{u} \in \usc (\Omega \setminus \partial D)$. 
+  设 $a \in \Omega  \cap \partial D, \forall \epsilon >0, \exists \delta >0$, s.t. 
+  $$ \begin{aligned}
+    u(z) \leq& u(a)+\epsilon , \quad z \in \Delta (a,\delta )\\
+   v(z) \leq & \varlimsup_{D \ni w \to a} v(w)+\epsilon  \leq  u(a)+\epsilon, \quad z \in D \cap \Delta (a,\delta ).
+  \end{aligned}  $$  
+  于是 $\tilde{u} \leq u(a)+\epsilon =\tilde{u}(a)+\epsilon , \forall z \in \Delta (a,\delta )$ $\Rightarrow \tilde{u} \in \usc (\Omega )$.
+  
+  设 $\Delta (a,r) \subset \subset \Omega $. 不妨设 $\partial D \cap \Delta (a,r) \neq \emptyset $. 
+  下面验证肥皂泡原理\textcolor{purple}{(验证次均值性似乎更简单)}. 
+  设 $h \in C(\overline{\Delta (a,r)}) \cap H(\Delta (a,r))$, s.t. $\tilde{u} \leq h$ 于 $\partial \Delta (a,r)$.     
+  令 $D_a:=D \cap \Delta (a,r)$. 在 $\partial \Delta (a,r) \cap D$ 上, $v \leq \tilde{u} \leq h$; $\partial D \cap  \Delta (a,r) $ 上, $v \leq u \leq h$. 
+  因为 $v -h \in \sh(D_a)$, 由最大模原理, 
+  $v \leq h$ 于 $D_a$. 于是 $\tilde{u} \leq h$ 于 $D_a$ $\Rightarrow $  $\tilde{u} \leq h$ 于 $\Delta (a,r)$   $\Rightarrow \tilde{u} \in \sh(\Omega )$.      
+\end{proof}
+
+
+\noindent (14) 可去奇性: 
+设 $E=v^{-1}(-\infty ) \subset \Omega $ 为闭集, 其中 $v \in \sh (\Omega )$ 且 $v \not \equiv -\infty $.   设 $u \in \sh(\Omega \setminus  E)$ 且在 $\Omega $ 上局部有上界, 则 
+$$ \tilde{u}(z):= \begin{cases}
+  u(z) &\text{} z \in \Omega \setminus  E\\
+  \varlimsup \limits_{\Omega \setminus E \ni \xi \to z} u(\xi )&\text{} z \in E 
+\end{cases}  \quad \in \sh(\Omega ) .$$  
+
+\begin{proof}
+  由于 $\sh$ 函数为局部性质, 所以不妨设 $u,v <0$.
+  $\forall \epsilon >0$, 令 
+  $$ u_{\epsilon }(z)= \begin{cases}
+    u(z)+\epsilon v(z) &\text{} z \in \Omega \setminus E\\
+    - \infty  &\text{} z \in E.
+  \end{cases}  $$  
+
+  下证 $u_{\epsilon } \in \sh(\Omega )$: 令 $u_{\epsilon ,j}:=\max\{u_{\epsilon },-j\}$ $\Rightarrow u_{\epsilon ,j} \in \sh(\Omega \setminus E).$
+  由于 $\{\epsilon v <-j\}$ 为 $E$ 的邻域, 且其上 $u_{\epsilon ,j}=-j$ 为次调和 $\Rightarrow u_{\epsilon ,j} \in \sh (\Omega ) \Rightarrow u_{\epsilon ,j} \searrow u_{\epsilon } \in \sh(\Omega ).$       
+
+  下证 $\tilde{u}(z) = \big( \sup_{\epsilon >0}u_{\epsilon }(z) \big)^{*}$(cf. (3)):   
+  若 $z \in \Omega \setminus E, $ 则
+  $$ \sup_{\epsilon >0}u_{\epsilon }(z)=\lim_{\epsilon \to 0}u_{\epsilon }(z)=u(z)=\tilde{u}(z) .$$ 
+  由于 $\tilde{u}=u$ 于 $\Omega \setminus E$, 故 $\usc$ $\Rightarrow \tilde{u}(z) = \big( \sup_{\epsilon >0}u_{\epsilon }(z) \big)^{*}$.
+  若 $z \in E$, 则 
+  $$ \begin{aligned}
+    \big( \sup_{\epsilon >0}u_{\epsilon }(z) \big)^{*}=& \varlimsup_{\xi \to z} \sup_{\epsilon >0}u_{\epsilon }(\xi )\\
+    =& \varlimsup_{E \not\ni  \xi \to z} \sup_{\epsilon >0}u_{\epsilon }(\xi )\\
+    =& \varlimsup_{E \not\ni  \xi \to z} u(\xi )\\
+    =& \tilde{u}(z).
+  \end{aligned}  $$     
+  ~~
+\end{proof}
+
+\begin{corollary}
+  设 $E=v^{-1}(-\infty )$ 如上. 则 $\Omega \setminus E$ 连通.  
+\end{corollary}
+\begin{proof}
+  假设 $\Omega \setminus E=U_1 \cup U_2$, $U_1,U_2$ 为互不相交非空开集.
+  定义 
+  $$ u(z):= \begin{cases}
+    -1 &\text{} z \in U_1\\
+     0 &\text{} z \in U_2
+  \end{cases} \quad \in \sh(\Omega \setminus E) .$$  
+  因为 $u \leq 0$, 由 (14), 存在 $\tilde{u} \in \sh(\Omega )$ s.t. $\tilde{u}|_{\Omega \setminus E}=u$, 且 $\tilde{u} \leq 0$. 但是 $\tilde{u}|_{U_2}=0$, 由最大模原理 $\Rightarrow \tilde{u} \equiv 0$ 于 $\Omega $, 矛盾.       
+\end{proof}
+
+
+\section{多次调和函数}
+
+\begin{definition}[Oka, Lelong]
+  $\Omega \subset \cc^n$ 区域, $u \in \usc(\Omega )$. 若 $\forall a \in \Omega , \forall $ 经过 $a$ 的复线 $l_a$, 有 $u \in \sh(\Omega \cap l_a)$, 则 称 $u$ 为多次调和函数(\textbf{plurisubharmonic functions}), 记为 $\psh (\Omega )$.        
+\end{definition}
+
+\begin{remark}
+ (i) $v \equiv - \infty $ 可看成是 $\psh$; 
+ (ii) 此定义是最适合多复变的定义.
+\end{remark}
+
+\begin{remark}
+  $u \in \psh (\Omega ) \iff u \in \usc(\Omega )$ 且 $\forall a \in \Omega , \forall \xi \in \cc^{n}, \forall r >0$, 若 $a+\xi  \cdot  \overline{\Delta (0,r)} \subset \Omega $, 则 
+  $$ u(a) \leq \frac{1}{2 \pi } \int_{0}^{2 \pi } u(a+\xi \cdot  r e^{i \theta }) d \theta . $$   
+\end{remark}
+
+\begin{example}
+  设 $u \in \Omega $ 上是凸的(蕴含 $u$  是 Lipschitz 连续的), 则 $u \in \psh (\Omega )$.
+  
+ \noindent \textbf{解}: 
+  $$ \begin{aligned}
+    u(a) \leq & \frac{1}{2} [ u(a+\xi \cdot r e^{i \theta })+u(a-\xi \cdot e^{i \theta }) ]\\
+   \Rightarrow \quad u(a) \leq & \frac{1}{4 \pi } \int_{0}^{2 \pi } [ u(a+\xi \cdot r e^{i \theta })+u(a-\xi \cdot e^{i \theta }) ] d \theta \\
+   (\text{周期性})=&  \frac{1}{2 \pi } \int_{0}^{2 \pi }  u(a+\xi \cdot r e^{i \theta })d \theta .
+  \end{aligned}  $$
+\end{example}
+
+\begin{example}
+ 设 $f \in \mathcal{O}(\Omega )$, 则 $\log|f|,|f|^{\alpha }, \alpha >0 \in  \psh(\Omega )$.  
+\end{example}
+
+\begin{remark}
+  次调和函数的性质, 除(7), (9)-(11) 外, 可平行推广至高维或者从次调和情形推出. 
+  例如 (12) Liouville 定理: 设 $u \in \psh(\cc^n ), u \leq 0 \Rightarrow u \equiv const$. 证明: 设 $l $ 为过 $0$ 点的复线, 则 $u|_{l} \in \sh$ 且 $u \leq 0$, 所以 $u \equiv u(0)$ 于 $l$. 且对任意 $z \in \cc^n \setminus \{0\}$ 与 $0$ 点 可由一条复线连接, 所以 $u \equiv u(0)$ 于 $\cc^n$.          
+\end{remark}
+
+\begin{remark}
+  设 $P=\Pi_{\nu =1}^{n} \Delta (a_{\nu },r_{\nu }), u \in \psh (P)$.  
+  则 
+  $$ u(a) \leq \frac{1}{|P|} \int_{P}u. $$
+  证明: 
+  $$ \begin{aligned}
+    u(a) \leq & \frac{1}{2 \pi } \int_{0}^{2 \pi }u(a_1+ \xi _1 e^{i \theta },a_2,\cdots , a_{n}) d \theta _1\\
+    \leq & \frac{1}{(2 \pi)^2 } \int_{0}^{2 \pi }\int_{0}^{2 \pi }u(a_1+ \xi _1 e^{i \theta },a_2+\xi _2 e^{i \theta }, a_3 \cdots , a_{n}) d \theta _1 d \theta _2\\
+    \leq & \frac{1}{(2 \pi)^n } \int_{0}^{2 \pi } \cdots \int_{0}^{2 \pi } u(a_1+ \xi _1 e^{i \theta },\cdots , a_{n}+\xi _n e^{ i \theta }) d \theta _1 \cdots d \theta _n.
+  \end{aligned}  $$
+  两边作用 $\int_{0}^{r_1} \cdots \int_{0}^{r_n}s_1 \cdots s_n ds_1 \cdots ds_{n}$ 得  
+  $$ u(a) \cdot  \frac{r_{1}^{2} \cdots r_{n}^{2}}{2^n}  \leq \frac{1}{(2 \pi )^n} \int_{P}u.$$ 
+\end{remark}
+
+\begin{proposition}
+  设 $u \in \psh (\Omega ), u\not \equiv - \infty $. 则 $u \in L_{loc}^{1}(\Omega )$.  
+\end{proposition}
+\begin{proof}
+  不妨设 $u <0$. 
+  设 $E:=\{z \in \Omega : u ~\text{于 }~ z ~\text{某邻域可积 }\}$. \\
+  $E$ 为开集: 显然. \\
+  $E$ 非空:   因为 $u \not \equiv - \infty $, 所以 $\exists a \in \Omega $, s.t. $u(a)>-\infty $. 若 $\Delta (a,r) \subset \subset \Omega $, 则 
+  $$ \frac{1}{|\Delta (a,r)|^n}\int_{\Delta (a,r)^n}(-u) \leq -u(a) < \infty , \quad \Rightarrow a \in E .$$    
+  $E$ 为闭集: 设 $a \in \Omega \setminus E$. 则 $\forall r <<1$, 有 
+  $$ \int_{\Delta (a,r)} u =- \infty . $$  
+ 取  $r << 1,$ s.t. $\forall z \in \Delta (a,r)^n:\Delta (a,r)^n \subset \Delta (z,2r)^n \subset \Delta (a,3r)^n \subset \subset \Omega $. 则 
+ $$ \begin{aligned}
+  u(z) \leq & \frac{1}{| \Delta (z,2r) |^n } \int_{\Delta (z,2r)^n} u\\
+  (u <0)~\leq & \frac{1}{| \Delta (z,2r) |^n } \int_{\Delta (a,r)^n} u \\
+  =& -\infty .
+ \end{aligned}  $$    
+ 所以 $\Omega \setminus E$ 为开集. 
+ 
+ 因为 $\Omega $ 连通, 所以 $E=\Omega $.  
+\end{proof}
+
+
+\begin{definition}
+  设 $E \subset \Omega $, 若 $\forall a \in E$, $\exists U \ni a$, 以及 $u \in \psh(U)$, $u \not \equiv - \infty $, s.t. 
+  $$ E \cap U \subset  u^{-1}(-\infty ).$$
+  则 称 $E$ 是一个\textbf{多极集(pluripolar set)}. 
+  若进一步, 有 $E \cap U=u^{-1}(-\infty )$, 则称 $E$ 为完备多极集.       
+\end{definition}
+
+\begin{example}
+  解析超曲面为完备多极集.
+\end{example}
+
+\begin{corollary}
+  多极集为零测集. (\textcolor{red}{反之不对, $1/3$-Cantor 集为零测集, 但非多极集.})
+\end{corollary}
+
+\begin{example}
+  设 $\{w_n\} \subset \Delta $ 为一个稠密点列, $\{a_n\}$ 为一列正数, s.t. $\sum a_n <\infty $. 令 
+  $$ u(z):=\sum_{n}^{\infty } a_n \log |z-w_n|, \quad z \in \cc. $$  
+  则 
+  \begin{enumerate}[(1)]
+    \item $u \in \sh (\cc)$, 且 $u \not \equiv  - \infty $;
+    \item   $u^{-1}(-\infty )$ 包含 $\Delta $ 中一个第二纲稠密集;
+    \item $u$ 在 $\Delta $ 上 a.e. 不连续.    
+  \end{enumerate}
+   \begin{proof}
+    (1) 设 $R >0$. 当 $|z|<R$ 时,   
+    $$ \sum_{j=1}^{n} a_j \log \frac{\left| z-w_j \right| }{R+1} \searrow \sum_{j=1}^{\infty } a_j \log \frac{\left| z-w_j \right|}{R+1} , $$    
+    $$ \sum_{j=1}^{n}a_j \log(R+1) \to \sum_{j=1}^{\infty }a_j \log(R+1). $$
+   $\Rightarrow u \in \sh (\Delta (0,R)). $  
+   由 $R$  的任意性 $\Rightarrow u \in \sh(\cc)$. \\
+   若 $\left| z \right| >1 $, 则 $u(z) \geq \sum_{n}^{} \log (\left| z \right| -1 ) >- \infty $.  
+
+   (2) 令 $E=u^{-1}(-\infty )$, 则 
+   $$ \{w_n\} \subset E \subset \bar{\Delta }, \quad \bar{\Delta } \setminus E = \cup _{n} \{z \in \bar{\Delta }:u(z) \geq -n\}:= \cup F_n .$$
+   因为 $u \in \usc$, 所以 $F_n \subset \bar{\Delta }$ 闭.   
+   但 $\{w_j\} \cap F_n =\emptyset , \forall n$, 且 $\{w_j\} \subset \bar{\Delta }$ 稠密, 于是 $F_n$ 疏集. 所以 $\bar{\Delta } \setminus E$ 为第一纲集. 而 由 Baire 定理知, $\bar{\Delta }$ 为第二纲集, 所以 $E=\bar{\Delta }-(\bar{\Delta } \setminus E)$ 为第二纲集. 
+   
+   (3) $u$ 在 $\bar{E} \setminus E =\bar{\Delta } \setminus E$ 上不连续, 而 $\left| E \right| =0$, 所以 $u$ 在 $\bar{\Delta }$ 上a.e. 不连续.     
+   \end{proof}
+\end{example}
+
+\begin{remark}
+  设 $K \subset \cc$ 为紧集. 则 $K$ 为极集 $\iff$ $K$ 的代数容量为零. (cf. Ransford, Potential Theory.)    
+\end{remark}
+
+\begin{proposition}
+  设 $E \subset \Omega $ 为闭多极集, 则 $\Omega \setminus E$ 为连通.   
+\end{proposition}
+\begin{proof}
+  (仿照之前推论的证明.)
+\end{proof}
+
+\begin{lemma}[Hartogs]\label{lem2.1}
+  设 $\{u_j\} \subset \psh(\Omega )$ 内闭一致有上界, 即 
+  $$\forall z \in \Omega : \varlimsup_{j \to \infty }u_j(z) \leq M. $$  
+  则 $\forall \epsilon >0, \forall $ 紧子集 $K \subset \Omega , \exists j_0=j_0(\epsilon ,K,M) \in \zz^{+}$, s.t. 
+  $$ u_j(z) \leq M+\epsilon , \quad \forall z \in K, \forall j \geq j_0. $$  
+\end{lemma}
+\begin{remark}
+  类似于泛函的共鸣定理.
+\end{remark}
+\begin{proof}
+  不妨设 $\Omega $ 有界. 令 $\delta :=d(K, \partial \Omega ), \hat{\Omega }:=\{z \in \Omega : d(z, \partial \Omega ) > \delta /2\}$. 
+  则 $K \subset \hat{\Omega } \subset \subset \Omega $. 
+  因为 $\{u_j\}$ 在 $\overline{\hat{\Omega }}$ 上一致有界, 所以不妨设 $u_j<0$ 于 $\overline{\hat{\Omega }}$.
+  
+  令 $\delta '=\delta / \sqrt{n}, r= \delta '/4, 0<r'<r$, s.t. 
+  $$ P(z,r) \subset P(w,r+r') \subset \subset \hat{\Omega }, \quad \forall z \in K, w \in P(z,r') .$$ 
+  由于 
+  $$ \varlimsup_{j \to \infty } \fint_{P(z,r)} u_j \leq  \fint_{P(z,r)} \varlimsup_{j \to \infty } u_j \leq M, $$
+  所以 
+  $$ \exists j_0 >0, ~s.t.~ \fint_{P(z,r)} u_j \leq M +\frac{\epsilon }{2}, \quad \forall j \geq j_0 .$$
+  设 $w \in P(z,r')$, 则 
+  $$ \begin{aligned}
+    u_j(w) \leq& \fint_{P(w,r+r')} u_j \leq \frac{\left| P(z,r) \right| }{\left|P(w,r+r')\right|} \fint_{P(z,r)} u_j \\
+    \leq& \left(  \frac{r}{r+r'} \right)^{2n} \left( M+\frac{\epsilon }{2} \right) \\
+    \leq& M+ \epsilon. \quad (\text{若} r'=r'(\epsilon ,M) <<1.)
+  \end{aligned}  $$
+使用 Heine-Borel 定理即可.
+\end{proof}
+
+\begin{remark}
+  $u \in \psh(\Omega ), u \not \equiv -\infty  \Rightarrow u \in BMO_{loc}(\Omega )$, 即 
+  $$ \forall \Omega ' \subset \subset \Omega \Rightarrow  \sup_{B \subset \Omega '} \fint_B \left| u-u_B \right| <\infty , \quad u_B:=\fint_B u. $$ 
+\end{remark}
+
+
+\begin{definition}
+  设 $u \in C^2 (\Omega )$. 称 
+  $$ \mathcal{L}u(a;\xi ):= \sum_{j,k=1}^{n}\frac{\partial^2 u}{\partial z_j \partial \bar{z}_k}(a) \xi _j \bar{\xi }_k $$ 
+  为 $u$ 的Levi形式; $\left( \frac{\partial^2 u}{\partial z_j \partial \bar{z}_k} \right)$ 为 $u$ 的复Hessian矩阵.  
+\end{definition}
+
+\begin{proposition}
+  设 $u \in C^2(\Omega ; \rr)$, 则 
+  $$ u \in \psh (\Omega ) \iff \mathcal{L} u (a;\xi ) \geq 0, \quad \forall a \in \Omega , \forall \xi \in \cc^n ,$$ 
+  即 $\left( \frac{\partial^2 u}{\partial z_j \partial \bar{z}_k} \right)$ 半正定 ( $i \partial \bar{\partial }u \geq 0$). 
+\end{proposition}
+\begin{remark}
+  $i dz \wedge d \bar{z}>0$. 
+\end{remark}
+\begin{proof}
+  考虑复线 $z=a+t \xi , t \in \cc$, 则 
+  $$ \frac{\partial^2 u }{\partial t \partial \bar{t}}(a+t \xi )=\mathcal{L}u(a;\xi ). $$
+  ~~ 
+\end{proof}
+
+\begin{definition}
+  设 $u \in C^2(\Omega ;\rr)$. 若 $\mathcal{L}u(a;\xi )>0, \forall a \in \Omega , \forall \xi \in \cc^n \setminus \{0\}$ (即 $\left( \frac{\partial^2 u }{\partial z_j \partial \bar{z}_k} \right)>0$ 或 $i \partial \bar{\partial }u>0$), 则称 $u$ 在 $\Omega $ 上强多次调和, 其全体记为 $\spsh (\Omega )$.     
+\end{definition}
+
+\begin{remark}
+  $u \in \spsh (\Omega ) \Rightarrow i \partial \bar{\partial } u$ 为 $\Omega $ 上一个 K\"ahler 度量.  
+  反之, 若 $\omega $ 为$\Omega $ 上一个 K\"ahler 度量, 则局部地, $\omega = i \partial \bar{\partial } u, u \in \spsh (\Omega )$.  
+\end{remark}
+
+\begin{theorem}\label{th2.1}
+  设 $u \in \psh(\Omega ), \forall \epsilon >0$, 令 $\Omega _{\epsilon }:=\{z \in \Omega : d(z, \partial  \Omega )>\epsilon \}$. 则存在 $u_{\epsilon } \in \spsh (\Omega_{\epsilon } )$, s.t. $u_{\epsilon } \searrow u$. 
+  若进一步假设 $u \in C(\Omega )$, 则 $u_{\epsilon }$ 内闭匀敛于 $u$.       
+\end{theorem}
+
+\begin{definition}[磨光算子]
+  $\chi \in C_{0}^{\infty }(\cc^n), \chi \geq 0, \supp \chi \subset \overline{\mathbb{B}^n}$, 且 
+  $$\int_{\cc^n} \chi =1, \quad \chi (z_1,\cdots ,z_n)=\chi (|z_1|,\cdots ,|z_n|).$$  
+\end{definition}
+\begin{example}
+  $$ \chi (z) = \begin{cases}
+    \frac{1}{\gamma } e^{\frac{1}{\left| z \right|^2-1 }}, &\text{若}~ |z| <1\\
+    0, &\text{若}~ |z| \geq 1
+  \end{cases} , \quad \gamma =\int_{\mathbb{B}^n}  e^{\frac{1}{\left| z \right|^2-1 }}.$$
+\end{example}
+
+设 $u \in L_{loc}^{1}(\Omega ), \forall  \epsilon >0$, 令 
+$$ \chi _{\epsilon }(z)=\frac{1}{\epsilon ^{2n}} \chi \left( \frac{z}{\epsilon } \right), \quad z \in \Omega _{\epsilon };$$ 
+$$ u_{\epsilon }(z):=u * \chi _{\epsilon }(z)=\int_{\xi \in \cc^n} u(\xi ) \chi _{\epsilon } (z-\xi )=\int_{\xi \in \cc^n } u(z-\xi \cdot \epsilon )\chi (\xi ).$$
+
+\begin{lemma}
+  (1) 若$u \in C(\Omega )$, 则 $u_{\epsilon } \to u$ 内闭一致;\\
+  (2) 若 $u \in \psh (\Omega ) $, 则$ u_{\epsilon } \in \psh (\Omega _{\epsilon })$.  
+\end{lemma}
+\begin{proof}
+  (1) 设 $K \subset \Omega $ 紧. 
+  令
+  $$ \omega (\epsilon ):=\sup_{z \in K, \xi \in \overline{\mathbb{B}^n}}\left| u(z-\epsilon \xi )-u(z) \right| \to 0, ~ (\epsilon \to 0). $$  
+  则
+  $$ \left| u_{\epsilon }(z)-u(z) \right| \leq \int_{\xi \in \cc^n} \left| u(z-\epsilon \xi )-u(z) \right| \chi (\xi ) \leq \omega (\epsilon ) \to 0, \quad \forall  z \in K. $$
+
+  (2) 设 $a+\xi \cdot  \overline{\Delta (a,r)} \subset \Omega _{\epsilon }$, 则 
+  $$ \begin{aligned}
+    \frac{1}{2 \pi }\int_{0}^{2 \pi } u_{\epsilon }(a +\xi r e^{i \theta}) d \theta =& \frac{1}{2 \pi }\int_{0}^{2 \pi } \int_{\omega  \in \cc^n} u(a+\xi r e^{i \theta }-\epsilon \omega )\chi (\omega )dv_{\omega }d \theta \\
+  (\text{Fubini})  =& \int_{\cc^n} \chi (\omega ) dv_{\omega } \cdot  \frac{1}{2 \pi } \int_{0}^{2 \pi } u(a+\xi r e^{i \theta }-\epsilon \omega )d \theta \\
+  \geq & \int_{\cc^n} u(a-\epsilon \omega  ) \chi (\omega ) dv_{\omega }\\
+  =& u_{\epsilon }(a).
+  \end{aligned}  $$ 
+  ~~
+\end{proof}
+
+\begin{proof}[定理 \ref{th2.1}]
+  先取 $u_{\epsilon }$ 为 $u$ 的磨光化. 下证  
+  $u_{\epsilon } \searrow u$: 令 $\delta (z)=d(z,\partial \Omega )$, 
+  则 $z \in \Omega _{|t|}, \forall |t| <\delta (z)$. 
+  令 
+  $$ g(t):= \int_{\cc^n} u(z-t \xi ) \chi (\xi ) = \frac{1}{|t|^{2n}}\int_{\cc^n} u(\xi ) \chi (\frac{z-\xi }{t}).$$
+  于是 $g(t)=g(|t|)=u_{|t|}(z)$. 
+  利用与 Hardy 定理类似的证明 $\Rightarrow g$ 次调和.
+  由最大模原理, $u_{\epsilon }(z) =g(\epsilon ) \searrow $.
+  设 $u(z) \neq  - \infty $. 因为 $g$ 上半连续, 
+  $$ u(z)=g(0) \leq g(\epsilon ) < g(0)+\eta , \quad(\eta <<1), $$
+  因此 $u_{\epsilon }(z) \searrow u(z)$. 
+  若 $u(z) = -\infty $ (\textcolor{red}{练习}).
+  
+  最后, 将 $u_{\epsilon }+\epsilon |z|^2$ 代替 $u_{\epsilon }$ 即可.  
+\end{proof}
+
+\begin{corollary}
+  设$F \in \mathcal{O}(\Omega ,\Omega '), u \in \psh(\Omega ')$. 则 $F^{*}u=u \circ F \in \psh (\Omega )$.  特别地, 多次调和性为双全纯不变量($\Rightarrow $ 可推广到复流形上).
+\end{corollary}
+\begin{proof}
+  先设 $u \in C^2(\Omega ')$. 令 $w=F(z)$, 则
+  $$ \frac{\partial^2 u \circ F}{\partial z_j \partial \bar{z}_k} = \sum_{\alpha \beta }^{} \frac{\partial^2 u}{\partial w_{\alpha } \partial \bar{w}_{\beta }} \cdot  \frac{\partial w_{\alpha }}{\partial z_j} \cdot  \frac{\partial \bar{w}_{\beta }}{\partial \bar{z}_k}.$$
+  于是 
+  $$ \begin{aligned}
+    \mathcal{L}u \circ F (a;\xi )=& \sum_{j,k} \frac{\partial^2 u \circ F}{\partial z_j \partial \bar{z}_k} (a) \xi _j \bar{\xi }_k \\
+    =& \sum_{\alpha \beta } \sum_{j,k} \frac{\partial^2 u}{\partial w_{\alpha } \partial \bar{w}_{\beta }} \cdot  \frac{\partial w_{\alpha }}{\partial z_j} \cdot  \overline{\frac{\partial w_{\beta }}{\partial z_k}}  \xi _j \bar{\xi }_k ~
+    \geq 0.
+  \end{aligned}  $$  
+
+  一般地, 取 $u_{\epsilon } \in \spsh(\Omega_{\epsilon }^{\prime } ), u_{\epsilon }  \searrow u$.  则 $u_{\epsilon } \circ F \in \psh(F^{-1}(\Omega _{\epsilon }^{\prime }))$, 且 $\cup _{\epsilon } F^{-1}(\Omega _{\epsilon }^{\prime })=\Omega, u_{\epsilon } \circ F \searrow u \circ F \Rightarrow u \circ F \in \psh (\Omega )$.  
+\end{proof}
+
+\begin{corollary}
+  设 $\lambda$  为 $\rr^m$  上一个 $C^2$  凸函数, 且关于每个分量 $\nearrow $. 设$u_1,\cdots ,u_m \in \psh(\Omega )$,  则 
+  $ \lambda (u_1,\cdots ,u_m) \in \psh(\Omega ) .$
+\end{corollary}
+\begin{proof}
+  先设 $u_j \in C^2(\Omega )$.
+  $$ \Rightarrow ~ \frac{\partial^2 \lambda (u_1,\cdots u_m) }{\partial z_j \partial \bar{z}_k} = \sum_{\alpha }^{}\frac{\partial \lambda }{\partial x_{\alpha }} \frac{\partial^2 u_{\alpha } }{\partial z_j \partial \bar{z}_k}+\sum_{\alpha ,\beta } \frac{\partial^2 \lambda  }{\partial x_{\alpha } \partial x_{\beta }} \frac{\partial u_{\beta }}{\partial z_j} \frac{\partial u_{\alpha }}{\partial \bar{z}_k}.$$ 
+
+  一般地, 取 $u_j,\epsilon \in \spsh(\Omega _{\epsilon })$, s.t. $u_{j,\epsilon } \searrow u_j$. 则 $\lambda (u_{1,\epsilon},\cdots u_{m,\epsilon } ) \in \spsh (\Omega _{\epsilon })$, 且 $\lambda (u_{1,\epsilon},\cdots, u_{m,\epsilon } ) \searrow \lambda (u_1,\cdots ,u_m) \Rightarrow \lambda (u_{1},\cdots, u_{m } )\in \psh(\Omega )$.    
+\end{proof}
+
+\begin{example}
+  设 $f_1, \cdots ,f_m \in \mathcal{O}(\Omega ), \alpha _1, \cdots ,\alpha _m >0$. 则 
+  $$ u(z):=\log(|f_1|^{\alpha _1}+\cdots +|f_m|^{\alpha _m}) \in \psh(\Omega ).$$
+  特别地, \underline{解析子集为完备多极集}. 
+\end{example}
+\begin{proof}
+  令 $\lambda (x_1,\cdots ,x_m):=\log(e^{x_1}+ \cdots +e^{x_m})$. 则 
+  $$ u(z)=\lambda (\alpha _1 \log |f_1|,\cdots ,\alpha _m \log|f_m|) .$$ 
+  只要证明 $\lambda $ 凸且关于每个变量递增即可. 
+  后者显然. 
+  因为
+  $$ \frac{\partial^2 \lambda  }{\partial x_{\alpha } \partial x_{\beta }}=\frac{\partial }{\partial x_{\alpha }}\frac{e^{x_{\beta }}}{e^{x_1}+ \cdots +e^{x_m}}= \frac{e^{x_{\beta }}\delta _{\alpha \beta }}{e^{x_1}+ \cdots +e^{x_m}}-\frac{e^{x_{\beta }}e^{x_{\alpha }}}{(e^{x_1}+ \cdots +e^{x_m})^2},$$ 
+  所以 $\forall \xi \in \rr^m$, 
+  $$ \begin{aligned}
+   \sum_{\alpha ,\beta }^{} \frac{\partial^2 \lambda  }{\partial x_{\alpha } \partial x_{\beta }} \xi _{\alpha }\xi _{\beta }=& \frac{\sum_{\alpha }^{} e^{x_{\alpha}}(\xi _{\alpha })^2}{e^{x_1}+ \cdots +e^{x_m}}-\frac{\sum_{\alpha }^{}(e^{x_{\alpha }} \xi _{\alpha })^2}{(e^{x_1}+ \cdots +e^{x_m})^2}\\
+    =& \frac{\sum_{\alpha }^{} e^{x_{\alpha}}(\xi _{\alpha })^2 \sum_{\alpha }^{} e^{x_{\alpha }}-\sum_{\alpha }^{}(e^{x_{\alpha }} \xi _{\alpha })^2}{\left(\sum_{\alpha }^{} e^{x_{\alpha }} \right)^2}\\
+    \geq & 0 \quad (\text{Schwarz 不等式}).
+  \end{aligned}  $$ 
+\end{proof}
+
+\noindent \textbf{问题}: 定理 \ref{th2.1} 中是否可取 $u_{\epsilon }\in \spsh(\Omega )$? (一般不行, 但 $\Omega $ 为拟凸域可以.) 
+
+
+\section{多次调和函数的应用}
+
+\begin{theorem}[Hartogs]
+  设 $f$ 为 $\Omega $ 上的一个函数, 其关于每一个分量全纯. 则 $f \in \mathcal{O}(\Omega )$.   
+\end{theorem}
+\begin{proof}
+  Step 1. 假设命题 $n-1$ 时成立 ($n=1$ 是平凡的). 设 $\Delta _1,\dots,\Delta _n$  为圆盘, s.t. $\bar{\Delta }_1 \times \dots \times \bar{\Delta }_n \subset \Omega $, 则存在圆盘 $\widetilde{\Delta }_n \subset \Delta _n$, s.t. $f \in L^{\infty }(\Delta _1 \times \cdots \times  \widetilde{\Delta }_n)$.    
+  证明如下: 对$\forall m \in \zz^{+}$, 令 
+  $$E_m := \{z_n \in \bar{\Delta }_n: \forall z' \in \bar{\Delta }_1 \times \cdots \times \bar{\Delta }_{n-1}, \left| f(z',z_n) \right| \leq m\}.$$  
+  则 $E_m= \cap _{z' \in \bar{\Delta }_1 \times \cdots \times \bar{\Delta }_{n-1}} \{z_n \in \bar\Delta _n: \left| f(z',z_n) \right| \leq m\}$ 为闭集. 且 $\bar{\Delta }_n= \cup _m E_m$ (归纳假设). 由 Baire 纲定理, 存在 $m$ s.t. $E_{m}^{\circ } \neq \emptyset $, 只要取 $\widetilde{\Delta }_n \subset E_{m}^{\circ }$即可.  
+  
+  Step 2. 设 $P(a,R) \subset \subset \Omega $, 且 $\exists 0<r<R$, s.t. $f \in \mathcal{O}(P(a',R) \times \Delta (a_n,r))$. 则 $f \in \mathcal{O}(P(a,R))$. 证明如下: 不妨设 $a=0$, 且 $\left| f \right| \leq M$ 于 $P(0',R) \times \Delta (0,r)$.
+  $$ f(z',z_n)=\sum_{j}c_j(z')z_{n}^{j}, \quad z \in P(0,R), \quad (*)$$
+  其中 $c_j(z')=\frac{1}{j!} \frac{\partial^j f}{\partial z_{n}^{j}}(z',0) \in \mathcal{O}(P(0',R))$.
+  由 Cauchy 估计 $\Rightarrow |c_j(z')| \leq M/r^j$.    令 
+  $$ u_j(z'):=\frac{1}{j} \log \left| c_j(z') \right| \in \psh(P(0',R)). $$     
+  任取 $0<R_1<R_2<R$, 因为 $(*)$ 收敛, 所以 
+  $$ c_j(z')R_{2}^{j} \to 0, \quad \forall z' \in P(0',R_2). $$
+  所以 
+  $$ \varlimsup_j u_j(z') \leq -\log R_2 .$$
+  由 Hartogs 引理 (引理 \ref{lem2.1}), 
+  $$ u_j(z) \leq -\log R_1, \quad \forall z' \in P(0',R_1), \forall j \geq j_0 >> 1. $$ 
+  $\Rightarrow (*)$ 在 $P(0',R_1)$ 内闭匀敛 \textcolor{purple}{(确保连续性)} $\Rightarrow f \in \mathcal{O}(P(0,R_1)) \Rightarrow f \in \mathcal{O}(P(0,R))$.  
+
+  Step 3. 设 $a \in \Omega $, 取 $P(a,2R) \subset \Omega $. 由 Step 1, 存在 $\Delta (c_n,r) \subset \Delta (a_n,R)$, s.t. $f \in L^{\infty }(P(a',R) \times \Delta (c_n,r))$; 由 Step 2 可知 $f \in \mathcal{O}(P((a',c_n),R))$ \textcolor{purple}{(回顾Osgood 定理)}. 因为 $a \in P((a',c_n),R)$, 所以 $f \in \mathcal{O}_a$.       
+\end{proof}
+
+
+\noindent\textbf{Dirichlet 问题}: 设 $\Omega \subset \subset \cc^n, f \in C(\partial \Omega ,\rr)$. Perron 方法: 
+$$ \mathcal{P}:=\{u \in \psh (\Omega ):\varlimsup_{z \to \xi }u(z) \leq f(\xi ), \forall \xi \in \partial \Omega \} $$
+令 $u_f:=\sup_{\mathcal{P}}u$, ---Perron 函数. 
+$u_f$ 是哪一类函数? (正则性, etc.).  $u_f|_{\partial \Omega }=f$? 
+
+\begin{remark}
+  可导出 $\left( i \partial \bar{\partial }  \right)^n u_f=0$ (分布意义). 
+  $$ \partial \bar{\partial } f \wedge \cdots \wedge \partial \bar{\partial } f =0 \quad \text{复齐次Monge-Ampere 方程}.$$
+  若 $u_f \in C^2$, 则 
+  $$ \left( i \partial \bar{\partial }  \right)^n u_f= \det \left( \frac{\partial^2 u_f }{\partial u_j \partial \bar{u}_k} \right) \cdot dV, \quad n \geq 2. $$ 
+  若 $\Omega =\mathbb{B}^n$, 则 $u_f \in C^{1,1}(\mathbb{B}^n)$, 且 $u_f|_{\partial \mathbb{B}^n}=f$.   
+\end{remark}
+\begin{itemize}
+   \item $\bar{\partial }$-方程;
+   \item $\partial \bar{\partial }$-方程;
+   \item M-A 方程. (Ref: Blocki: Complex M-A operator.)  
+\end{itemize}
+
+
+\begin{definition}
+  设 $u$ 为 $\Omega $ 上实值函数. 若 $\pm u \in \psh(\Omega )$, 则称 $u$ 在 $\Omega $ 上\textbf{多调和(pluriharmonic)}. 记全体为 $\ph (\Omega )$.     
+\end{definition}
+
+\begin{proposition}
+  (1) $u \in \ph (\Omega ) \iff u \in C^{\infty }(\Omega )$ 且 $\dbb u=0$.\\
+  (2) $u \in \ph (\Omega ) \iff u$ 可以局部表示为一个全纯函数的实部.  
+\end{proposition}
+\begin{proof}
+  (1) $\Leftarrow $: 显然. \\
+  $\Rightarrow $: 首先, $u$ 在过 $\Omega $ 中任一点 $a$ 的复线上为调和的.   若 $P(a,r) \subset \Omega $, 则 
+  $$ \begin{aligned}
+    u(z)=& \frac{1}{2 \pi }\int_{0}^{2 \pi } \frac{r^2-\left| z_1-a_1 \right| ^2}{\left| r e^{i \theta _1}-(z_1-a_1) \right| ^2} u(a_1+r e^{i \theta _1},z_2,\dots,z_n) d \theta _1\\
+    =& \cdots \\
+    =&  \frac{1}{(2 \pi )^n}\int_{0}^{2 \pi } \cdots \int_{0}^{2 \pi } \Pi _{j=1}^{n} \frac{r^2-\left| z_j-a_j \right| ^2}{\left| r e^{i \theta _j}-(z_j-a_j) \right| ^2} u(a_1+r e^{i \theta _1},\dots,a_n+r e^{i \theta _n}) d \theta _1 \cdots d \theta _n
+  \end{aligned}  $$   
+  $\Rightarrow u \in C^{\infty }(\Omega )$.
+  在复线 $z=a+t\xi, t \in \cc $ 上, 
+  $$ 0=\frac{\partial^2 u (z+t \xi ) }{\partial t \partial \bar{t}} =\mathcal{L}u (z;\xi ).$$  
+  $\Rightarrow \dbb u =0$.
+  
+  (2) $\Leftarrow $: 若局部地, $u =\Re (f), f \in \mathcal{O}$. 则 
+  $$ \dbb u =\frac{1}{2} \dbb (f+\bar{f})=0, $$
+  由 (1) 即得.  \\
+  $\Rightarrow $: 任取球 $B(a,r ) \subset \subset \Omega $. 
+  因为 $\partial u$ 为 $B(a,r)$ 的一个可微 $1$-形式, 所以
+  $$ d(\partial u)= \bar{\partial } \partial u=-\dbb u =0. $$     
+  由 Poincar\'e 引理知, 存在 $f \in C^{\infty }(B(a,r))$, s.t. $df=\partial u$. 
+  由于 
+  $$ d f =\partial f +\bar{\partial }f ,$$
+  所以 $\db f =0$, i.e. $f \in \mathcal{O}(B(a,r))$. 
+  由 
+  $$ \begin{aligned}
+    &d(u-2\Re f)= \partial u+\db u -df-d \bar{f}=0\\
+    \Rightarrow~ & u-2 \Re f \equiv const.\\
+    \Rightarrow~ &u=\Re (2f+const).
+  \end{aligned}  $$  
+  ~~
+\end{proof}
+
+
+\begin{theorem}[Riemann可去奇性定理 III]
+  设 $E \subset \Omega $ 为闭多极集, $f \in \mathcal{O}(\Omega \setminus E) \cap L_{loc}^{\infty }(\Omega )$. 则 $\exists !~ \tilde{f} \in \mathcal{O}(\Omega )$, s.t. $\tilde{f}|_{\Omega \setminus E}=f$.    
+\end{theorem}
+\begin{proof}
+  因为 $\pm \Re f \in \ph (\Omega \setminus E)$, 且于 $\Omega $ 局部有界, 所以由多次调和可去奇性定理 $\Rightarrow \pm \Re f$ 可延拓为 $u_{\pm}\in \psh (\Omega )$. 显然, 
+  $$ u_{+}+u_{-}=0, \quad \text{于} ~ \Omega \setminus E. $$
+  设 $a \in E$, 取 $P(a,r) \subset \Omega $. 
+  $$ (u_{+}+u_{-})(a) \leq \fint_{P(a,r)} (u_{+}+u_{-})=0 \quad (\text{多极集Lebsgue测度为0}). $$      
+  另一方面, 
+  $$ (u_{+}+u_{-})(a) \leq \varlimsup_{\Omega \setminus E \ni z \to a} (u_{+}+u_{-})(z)=0. $$
+  所以 $u_{+}=-u_{-}$ 于 $\Omega $ $\Rightarrow  u_{\pm} \in \ph(\Omega )$.   
+
+  同理, $\pm \Im f$ 也可延拓为 $\pm v \in \ph(\Omega )$. 令 
+  $$ \tilde{f}:=u_{+}+i v_{+} ,$$
+  则 $\tilde{f}|_{\Omega \setminus E}=f$.
+  于是 $\db \tilde{f}=0$ 于 $\Omega \setminus E$. 由于 $\Omega \setminus E$ 在 $\Omega $ 中稠密, 且 $\tilde{f} \in C^{\infty }(\Omega )$, 所以 
+  $$ \db \tilde{f}=0 \quad \text{于}~ \Omega , $$    
+  即 $\tilde{f} \in \mathcal{O}(\Omega )$.     
+\end{proof}
+
+
+\begin{corollary}[Rado]
+  若 $f \in C(\Omega ) \cup \mathcal{O}(\Omega \setminus E)$,  其中 $E=f^{-1}(0)$.  则 $f \in \mathcal{O}(\Omega )$.  
+\end{corollary}
+
+\begin{proof}
+  $u:=\log |f| \in \usc (\Omega ) \cap \psh (\Omega \setminus E)$. 因为 
+  $$ u_j:=\max \{u,-j\} \in \psh (\Omega \setminus E) ,$$
+  且在 $E$  的某邻域内 $=-j \in \psh $, 所以  
+  $u_j \in \psh(\Omega )$, 且 $u_j \searrow u$, 所以 $u \in \psh (\Omega )$.
+  于是 $E=f^{-1}(0)=u^{-1}(-\infty) $ 为一个闭多极集. 由Riemann可去奇性III, $\exists \tilde{f} \in \mathcal{O}(\Omega )$, s.t. $\tilde{f}|_{\Omega \setminus E}=f$. 但是 $\Omega \setminus E$ 于 $\Omega $ 中周密且 $f \in C(\Omega )$, 所以 $\tilde{f}=f$ 于 $\Omega $.           
+\end{proof}
+
+\begin{corollary}[Osgood]
+  设 $\Omega _1, \Omega _2$ 为 $\cc^n$ 中有界区域, $F \in \mathcal{O}(\Omega _1,\Omega _2)$ 且为双射. 则 $F$ 为双全纯.    
+\end{corollary}
+\begin{proof}
+  (\textcolor{red}{提示: 应用秩定理 + Riemann 可去奇性定理 III}).
+\end{proof}
